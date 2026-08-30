@@ -1,0 +1,66 @@
+[18:11:58] [RELAY] 
+
+[18:11:59] [RELAY] 
+
+[18:12:00] [RELAY] Client 'Alice' registered
+[18:12:01] [RELAY] Client 'Bob' registered
+[18:12:02] [RELAY] Encrypted message received: Alice -> Bob
+[18:12:02] [RELAY] Ciphertext length: 86
+[18:12:02] [RELAY] Nonce received
+[18:12:02] [RELAY] Authentication tag received
+[18:12:02] [RELAY] Encrypted message stored for 'Bob'
+[18:12:03] [RELAY] Encrypted message received: Bob -> Alice
+[18:12:03] [RELAY] Ciphertext length: 82
+[18:12:03] [RELAY] Nonce received
+[18:12:03] [RELAY] Authentication tag received
+[18:12:03] [RELAY] Encrypted message stored for 'Alice'
+[18:12:07] [RELAY] Encrypted message received: Alice -> Bob
+[18:12:07] [RELAY] Ciphertext length: 86
+[18:12:07] [RELAY] Nonce received
+[18:12:07] [RELAY] Authentication tag received
+[18:12:07] [RELAY] Encrypted message stored for 'Bob'
+[18:12:09] [RELAY] Encrypted message received: Bob -> Alice
+[18:12:09] [RELAY] Ciphertext length: 82
+[18:12:09] [RELAY] Nonce received
+[18:12:09] [RELAY] Authentication tag received
+[18:12:09] [RELAY] Encrypted message stored for 'Alice'
+[18:12:12] [RELAY] Encrypted message received: Alice -> Bob
+[18:12:12] [RELAY] Ciphertext length: 86
+[18:12:12] [RELAY] Nonce received
+[18:12:12] [RELAY] Authentication tag received
+[18:12:12] [RELAY] Encrypted message stored for 'Bob'
+[18:12:14] [RELAY] Encrypted message received: Bob -> Alice
+[18:12:14] [RELAY] Ciphertext length: 82
+[18:12:14] [RELAY] Nonce received
+[18:12:14] [RELAY] Authentication tag received
+[18:12:14] [RELAY] Encrypted message stored for 'Alice'
+[18:12:18] [RELAY] Encrypted message received: Alice -> Bob
+[18:12:18] [RELAY] Ciphertext length: 86
+[18:12:18] [RELAY] Nonce received
+[18:12:18] [RELAY] Authentication tag received
+[18:12:18] [RELAY] Encrypted message stored for 'Bob'
+[18:12:19] [RELAY] Encrypted message received: Bob -> Alice
+[18:12:19] [RELAY] Ciphertext length: 82
+[18:12:19] [RELAY] Nonce received
+[18:12:19] [RELAY] Authentication tag received
+[18:12:19] [RELAY] Encrypted message stored for 'Alice'
+[18:12:23] [RELAY] Encrypted message received: Alice -> Bob
+[18:12:23] [RELAY] Ciphertext length: 86
+[18:12:23] [RELAY] Nonce received
+[18:12:23] [RELAY] Authentication tag received
+[18:12:23] [RELAY] Encrypted message stored for 'Bob'
+[18:12:24] [RELAY] Encrypted message received: Bob -> Alice
+[18:12:24] [RELAY] Ciphertext length: 82
+[18:12:24] [RELAY] Nonce received
+[18:12:24] [RELAY] Authentication tag received
+[18:12:24] [RELAY] Encrypted message stored for 'Alice'
+[18:12:28] [RELAY] Encrypted message received: Alice -> Bob
+[18:12:28] [RELAY] Ciphertext length: 86
+[18:12:28] [RELAY] Nonce received
+[18:12:28] [RELAY] Authentication tag received
+[18:12:28] [RELAY] Encrypted message stored for 'Bob'
+[18:12:29] [RELAY] Encrypted message received: Bob -> Alice
+[18:12:29] [RELAY] Ciphertext length: 82
+[18:12:29] [RELAY] Nonce received
+[18:12:29] [RELAY] Authentication tag received
+[18:12:29] [RELAY] Encrypted message stored for 'Alice'
