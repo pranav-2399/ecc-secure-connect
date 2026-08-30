@@ -9,6 +9,7 @@ from client.crypto.ecdh import derive_shared_secret
 from client.crypto.hkdf import derive_session_key
 from client.crypto.aes import encrypt, decrypt
 from client.network.api import ServerAPI
+from client.logging_config import setup_logger
 
 class ClientServer:
     """
@@ -34,9 +35,18 @@ class ClientServer:
         # Network API client
         self.api = ServerAPI(relay_url)
         
+        # LOG (2 elixir)
+        # PATH: ecc-secure-key-exchange/logs
+        self.logger = setup_logger( self.client_id, f"logs/{self.client_id.lower()}.log" )
+        self.logger.info("\n")
+
         # Local cryptographic keys
         self.private_key, self.public_key = generate_key_pair()
         self.public_key_pem = serialize_public_key(self.public_key)
+
+        # 2 logs (4 elixir)
+        self.logger.info("ECC key pair generated")
+        self.logger.info(f"Public key generated and serialized : {self.public_key} -> {self.public_key_pem}")
         
         # Session state
         self.peer_public_key = None
@@ -51,6 +61,8 @@ class ClientServer:
         self.interval_thread = None
         self.running = False
         self.server_obj = None
+
+
 
     def _setup_routes(self):
         @self.app.route('/info', methods=['GET'])
@@ -111,34 +123,77 @@ class ClientServer:
     def register_with_relay(self):
         """Registers Client Server identity, public key, and server URL with Central Relay Server."""
         print(f"[{self.client_id} Server @ {self.port}] Registering with Central Relay Server ({self.relay_url})...")
+
+        # NOW WE PUTTIN TS IN THE LOG
+        self.logger.info( f"Registering with Central Relay Server at {self.relay_url}" )
+
         success = self.api.register(self.client_id, self.public_key_pem, self.client_server_url)
         if success:
             print(f"[{self.client_id} Server @ {self.port}] Registered successfully!")
+            # REGISTER TS IN THE LOG
+            self.logger.info( f"Successfully registered with relay on port {self.port}" )
+
         return success
 
-    def perform_key_exchange(self):
-        """
+    ''' this is the old function, we are keeping this just in case. '''
+    # def perform_key_exchange(self):
+    #     print(f"[{self.client_id} Server] Initiating Key Exchange for peer '{self.peer_id}'...")
+    #     peer_pem = self.api.get_public_key(self.peer_id)
+    #     self.peer_public_key = deserialize_public_key(peer_pem)
+        
+    #     # Derive ECDH shared secret
+    #     shared_secret = derive_shared_secret(self.private_key, self.peer_public_key)
+        
+    #     # Derive HKDF 256-bit session key
+    #     self.session_key = derive_session_key(shared_secret)
+        
+    #     print(f"[{self.client_id} Server] Key Exchange complete! Derived 256-bit AES Session Key with '{self.peer_id}' ✓")
+    #     return self.session_key
+    """
+        PERFORM_KEY_EXCHANGE FUNCTION: 
+
         Fetches peer's public key from Central Relay Server and computes:
         1. ECDH Shared Secret
         2. HKDF 256-bit Session Key
-        """
-        print(f"[{self.client_id} Server] Initiating Key Exchange for peer '{self.peer_id}'...")
+
+    """
+
+    def perform_key_exchange(self):
+        self.logger.info( f"Starting key exchange with peer '{self.peer_id}'" )
+
+        self.logger.info( f"Requesting public key of '{self.peer_id}' from relay" )
+
         peer_pem = self.api.get_public_key(self.peer_id)
+        self.logger.info( f"Received public key of '{self.peer_id}'" )
+
         self.peer_public_key = deserialize_public_key(peer_pem)
-        
-        # Derive ECDH shared secret
-        shared_secret = derive_shared_secret(self.private_key, self.peer_public_key)
-        
-        # Derive HKDF 256-bit session key
+        self.logger.info("Performing ECDH key agreement")
+
+        shared_secret = derive_shared_secret( self.private_key, self.peer_public_key )
+
+        self.logger.info("ECDH shared secret successfully derived")
+        self.logger.info("Deriving AES session key using HKDF")
+
         self.session_key = derive_session_key(shared_secret)
-        
-        print(f"[{self.client_id} Server] Key Exchange complete! Derived 256-bit AES Session Key with '{self.peer_id}' ✓")
+
+        self.logger.info( "HKDF complete: 256-bit AES session key established" )
+        self.logger.info( f"Secure session established with '{self.peer_id}'" )
+
         return self.session_key
 
     def send_encrypted_message(self, plaintext: str) -> dict:
-        """Encrypts message using local session key and relays it to peer."""
+        '''Encrypts message using local session key and relays it to peer.'''
         if not self.session_key:
             self.perform_key_exchange()
+
+        # LOG (2 ELIXIR)
+        self.logger.info(
+            f"Encrypting message for '{self.peer_id}'"
+        )
+
+        self.logger.info(
+            f"Plaintext length: {len(plaintext)} bytes"
+        )
 
         encrypted_packet = encrypt(plaintext, self.session_key)
         self.sent_messages_count += 1
@@ -146,6 +201,17 @@ class ClientServer:
         print(f"[{self.client_id} Server -> {self.peer_id}] Sending encrypted message #{self.sent_messages_count}: \"{plaintext}\"")
         print(f"   Ciphertext: {encrypted_packet['ciphertext'][:30]}...")
 
+        # LOGGING: 
+        self.logger.info("AES-GCM encryption successful")
+        self.logger.info( f"Ciphertext length: {len(encrypted_packet['ciphertext'])}" )
+        self.logger.info("Nonce generated")
+        self.logger.info("Authentication tag generated")
+
+        self.logger.info(
+            f"Sending encrypted packet to relay: "
+            f"{self.client_id} -> {self.peer_id}"
+        )
+        
         # 1. Store on central relay server
         self.api.send_message_to_relay(
             sender_id=self.client_id,
@@ -153,6 +219,10 @@ class ClientServer:
             ciphertext=encrypted_packet["ciphertext"],
             nonce=encrypted_packet["nonce"],
             tag=encrypted_packet["tag"]
+        )
+        
+        self.logger.info(
+            "Encrypted packet successfully stored on relay"
         )
 
         # 2. Try direct push to peer client server endpoint if accessible
@@ -180,7 +250,19 @@ class ClientServer:
             except Exception as e:
                 return False, f"Key exchange required: {e}"
 
+        self.logger.info(
+            f"Encrypted packet received from '{sender_id}'"
+        )
+
+        self.logger.info(
+            f"Ciphertext length: {len(ciphertext)}"
+        )
+
+        self.logger.info("Nonce received")
+        self.logger.info("Authentication tag received")
+
         try:
+            self.logger.info( "Attempting AES-GCM authentication and decryption" )
             plaintext = decrypt(ciphertext, nonce, tag, self.session_key)
             record = {
                 "timestamp": datetime.now().isoformat(),
@@ -190,7 +272,13 @@ class ClientServer:
             }
             self.received_messages.append(record)
             print(f"[{self.client_id} Server] Received & Decrypted packet from '{sender_id}': \"{plaintext}\" ✓")
+
+            self.logger.info( "AES-GCM authentication successful" )
+            self.logger.info( "Ciphertext successfully decrypted" )
+            self.logger.info( f"Decrypted plaintext:  \n\t<<<  {plaintext}  >>>" )
+
             return True, plaintext
+
         except ValueError as e:
             record = {
                 "timestamp": datetime.now().isoformat(),
@@ -200,6 +288,10 @@ class ClientServer:
             }
             self.received_messages.append(record)
             print(f"[{self.client_id} Server] ❌ TAMPERING DETECTED from '{sender_id}': {e}")
+
+            self.logger.error( f"AES-GCM authentication failed: {e}" )
+            self.logger.error( f"Possible tampering detected in packet from '{sender_id}'" )
+
             return False, str(e)
 
     def check_and_decrypt_relay_messages(self):

@@ -5,6 +5,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from flask import Flask, request, jsonify
+from logging_config import setup_logger
 
 try:
     from server.relay import relay
@@ -13,6 +14,14 @@ except ImportError:
 
 def create_app():
     app = Flask(__name__)
+
+    # set up logging using log files for the relay server
+    # path : ecc-secure-key-exchange/logs
+    logger = setup_logger(
+        "RELAY",
+        "logs/relay.log"
+    )
+    logger.info("\n")
 
     @app.route('/health', methods=['GET'])
     def health():
@@ -29,6 +38,9 @@ def create_app():
             return jsonify({"error": "client_id is required"}), 400
 
         relay.register_client(client_id, public_key, client_server_url)
+        # LOG REGISTER
+        logger.info( f"Client '{client_id}' registered" )
+
         return jsonify({
             "status": "registered",
             "client_id": client_id,
@@ -73,7 +85,32 @@ def create_app():
         if not all([sender_id, recipient_id, ciphertext, nonce, tag]):
             return jsonify({"error": "sender_id, recipient_id, ciphertext, nonce, and tag are required"}), 400
 
-        relay.store_message(sender_id, recipient_id, ciphertext, nonce, tag)
+        # LOG
+        # ----------------------------------------------------------------------------------------------------
+        logger.info(
+            f"Encrypted message received: "
+            f"{sender_id} -> {recipient_id}"
+        )
+
+        logger.info(
+            f"Ciphertext length: {len(ciphertext)}"
+        )
+
+        logger.info("Nonce received")
+        logger.info("Authentication tag received")
+
+        relay.store_message(
+            sender_id,
+            recipient_id,
+            ciphertext,
+            nonce,
+            tag
+        )
+
+        logger.info(
+            f"Encrypted message stored for '{recipient_id}'"
+        )
+        # ----------------------------------------------------------------------------------------------------
         return jsonify({"status": "message_relayed", "recipient_id": recipient_id}), 200
 
     @app.route('/messages/<client_id>', methods=['GET'])
