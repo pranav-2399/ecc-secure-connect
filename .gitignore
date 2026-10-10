@@ -1,6 +1,10 @@
 venv/
+.venv/
 .pytest_cache/
 
 */*/__pycache__/*
 */*/*/__pycache__/*
-
+**/build/
+ecc-secure-key-exchange/esp32/sdkconfig
+ecc-secure-key-exchange/esp32/sdkconfig.old
+ecc-secure-key-exchange/esp32/managed_components/

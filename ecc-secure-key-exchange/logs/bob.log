@@ -172,3 +172,2517 @@ TG5pAyRQKrhsHqY79qVVDzpGUna32U8CP/0O8uIqrXHcdwrLLqnDkygDLw==
 [18:12:30] [Bob] Ciphertext successfully decrypted
 [18:12:30] [Bob] Decrypted plaintext:  
 	<<<  Heartbeat payload #6 from Alice at 18:12:28  >>>
+[08:43:30] [Bob] 
+
+[08:43:30] [Bob] ECC key pair generated
+[08:43:30] [Bob] Public key generated and serialized : <cryptography.hazmat.bindings._rust.openssl.ec.ECPublicKey object at 0x78eaf57b7810> -> -----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEfHMTHLk6UbPqJeinwFN4vY2sWKR3
+zfr7QP6aIIp9GHktaEf+Ui6mTYTw6f5ag2OvI/zC0odmCK3qsO7cBW2jRA==
+-----END PUBLIC KEY-----
+
+[08:43:30] [Bob] Registering with Central Relay Server at http://127.0.0.1:5000
+[08:43:30] [Bob] Successfully registered with relay on port 5002
+[08:43:31] [Bob] Starting key exchange with peer 'Alice'
+[08:43:31] [Bob] Requesting public key of 'Alice' from relay
+[08:43:31] [Bob] Received public key of 'Alice'
+[08:43:31] [Bob] Performing ECDH key agreement
+[08:43:31] [Bob] ECDH shared secret successfully derived
+[08:43:31] [Bob] Deriving AES session key using HKDF
+[08:43:31] [Bob] HKDF complete: 256-bit AES session key established
+[08:43:31] [Bob] Secure session established with 'Alice'
+[08:43:31] [Bob] Encrypted packet received from 'Alice'
+[08:43:31] [Bob] Ciphertext length: 86
+[08:43:31] [Bob] Nonce received
+[08:43:31] [Bob] Authentication tag received
+[08:43:31] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:31] [Bob] AES-GCM authentication successful
+[08:43:31] [Bob] Ciphertext successfully decrypted
+[08:43:31] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #1 from Alice at 08:43:31  >>>
+[08:43:32] [Bob] Encrypting message for 'Alice'
+[08:43:32] [Bob] Plaintext length: 41 bytes
+[08:43:32] [Bob] AES-GCM encryption successful
+[08:43:32] [Bob] Ciphertext length: 82
+[08:43:32] [Bob] Nonce generated
+[08:43:32] [Bob] Authentication tag generated
+[08:43:32] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[08:43:32] [Bob] Encrypted packet successfully stored on relay
+[08:43:32] [Bob] Encrypted packet received from 'Alice'
+[08:43:32] [Bob] Ciphertext length: 86
+[08:43:32] [Bob] Nonce received
+[08:43:32] [Bob] Authentication tag received
+[08:43:32] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:32] [Bob] AES-GCM authentication successful
+[08:43:32] [Bob] Ciphertext successfully decrypted
+[08:43:32] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #1 from Alice at 08:43:31  >>>
+[08:43:36] [Bob] Encrypted packet received from 'Alice'
+[08:43:36] [Bob] Ciphertext length: 86
+[08:43:36] [Bob] Nonce received
+[08:43:36] [Bob] Authentication tag received
+[08:43:36] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:36] [Bob] AES-GCM authentication successful
+[08:43:36] [Bob] Ciphertext successfully decrypted
+[08:43:36] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #2 from Alice at 08:43:36  >>>
+[08:43:37] [Bob] Encrypting message for 'Alice'
+[08:43:37] [Bob] Plaintext length: 41 bytes
+[08:43:37] [Bob] AES-GCM encryption successful
+[08:43:37] [Bob] Ciphertext length: 82
+[08:43:37] [Bob] Nonce generated
+[08:43:37] [Bob] Authentication tag generated
+[08:43:37] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[08:43:37] [Bob] Encrypted packet successfully stored on relay
+[08:43:37] [Bob] Encrypted packet received from 'Alice'
+[08:43:37] [Bob] Ciphertext length: 86
+[08:43:37] [Bob] Nonce received
+[08:43:37] [Bob] Authentication tag received
+[08:43:37] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:37] [Bob] AES-GCM authentication successful
+[08:43:37] [Bob] Ciphertext successfully decrypted
+[08:43:37] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #2 from Alice at 08:43:36  >>>
+[08:43:41] [Bob] Encrypted packet received from 'Alice'
+[08:43:41] [Bob] Ciphertext length: 86
+[08:43:41] [Bob] Nonce received
+[08:43:41] [Bob] Authentication tag received
+[08:43:41] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:41] [Bob] AES-GCM authentication successful
+[08:43:41] [Bob] Ciphertext successfully decrypted
+[08:43:41] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #3 from Alice at 08:43:41  >>>
+[08:43:42] [Bob] Encrypting message for 'Alice'
+[08:43:42] [Bob] Plaintext length: 41 bytes
+[08:43:42] [Bob] AES-GCM encryption successful
+[08:43:42] [Bob] Ciphertext length: 82
+[08:43:42] [Bob] Nonce generated
+[08:43:42] [Bob] Authentication tag generated
+[08:43:42] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[08:43:42] [Bob] Encrypted packet successfully stored on relay
+[08:43:42] [Bob] Encrypted packet received from 'Alice'
+[08:43:42] [Bob] Ciphertext length: 86
+[08:43:42] [Bob] Nonce received
+[08:43:42] [Bob] Authentication tag received
+[08:43:42] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:42] [Bob] AES-GCM authentication successful
+[08:43:42] [Bob] Ciphertext successfully decrypted
+[08:43:42] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #3 from Alice at 08:43:41  >>>
+[08:43:46] [Bob] Encrypted packet received from 'Alice'
+[08:43:46] [Bob] Ciphertext length: 86
+[08:43:46] [Bob] Nonce received
+[08:43:46] [Bob] Authentication tag received
+[08:43:46] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:46] [Bob] AES-GCM authentication successful
+[08:43:46] [Bob] Ciphertext successfully decrypted
+[08:43:46] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #4 from Alice at 08:43:46  >>>
+[08:43:47] [Bob] Encrypting message for 'Alice'
+[08:43:47] [Bob] Plaintext length: 41 bytes
+[08:43:47] [Bob] AES-GCM encryption successful
+[08:43:47] [Bob] Ciphertext length: 82
+[08:43:47] [Bob] Nonce generated
+[08:43:47] [Bob] Authentication tag generated
+[08:43:47] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[08:43:47] [Bob] Encrypted packet successfully stored on relay
+[08:43:47] [Bob] Encrypted packet received from 'Alice'
+[08:43:47] [Bob] Ciphertext length: 86
+[08:43:47] [Bob] Nonce received
+[08:43:47] [Bob] Authentication tag received
+[08:43:47] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:47] [Bob] AES-GCM authentication successful
+[08:43:47] [Bob] Ciphertext successfully decrypted
+[08:43:47] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #4 from Alice at 08:43:46  >>>
+[08:43:52] [Bob] Encrypted packet received from 'Alice'
+[08:43:52] [Bob] Ciphertext length: 86
+[08:43:52] [Bob] Nonce received
+[08:43:52] [Bob] Authentication tag received
+[08:43:52] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:52] [Bob] AES-GCM authentication successful
+[08:43:52] [Bob] Ciphertext successfully decrypted
+[08:43:52] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #5 from Alice at 08:43:52  >>>
+[08:43:52] [Bob] Encrypting message for 'Alice'
+[08:43:52] [Bob] Plaintext length: 41 bytes
+[08:43:52] [Bob] AES-GCM encryption successful
+[08:43:52] [Bob] Ciphertext length: 82
+[08:43:52] [Bob] Nonce generated
+[08:43:52] [Bob] Authentication tag generated
+[08:43:52] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[08:43:52] [Bob] Encrypted packet successfully stored on relay
+[08:43:52] [Bob] Encrypted packet received from 'Alice'
+[08:43:52] [Bob] Ciphertext length: 86
+[08:43:52] [Bob] Nonce received
+[08:43:52] [Bob] Authentication tag received
+[08:43:52] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:52] [Bob] AES-GCM authentication successful
+[08:43:52] [Bob] Ciphertext successfully decrypted
+[08:43:52] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #5 from Alice at 08:43:52  >>>
+[08:43:57] [Bob] Encrypted packet received from 'Alice'
+[08:43:57] [Bob] Ciphertext length: 86
+[08:43:57] [Bob] Nonce received
+[08:43:57] [Bob] Authentication tag received
+[08:43:57] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:57] [Bob] AES-GCM authentication successful
+[08:43:57] [Bob] Ciphertext successfully decrypted
+[08:43:57] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #6 from Alice at 08:43:57  >>>
+[08:43:57] [Bob] Encrypting message for 'Alice'
+[08:43:57] [Bob] Plaintext length: 41 bytes
+[08:43:57] [Bob] AES-GCM encryption successful
+[08:43:57] [Bob] Ciphertext length: 82
+[08:43:57] [Bob] Nonce generated
+[08:43:57] [Bob] Authentication tag generated
+[08:43:57] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[08:43:57] [Bob] Encrypted packet successfully stored on relay
+[08:43:57] [Bob] Encrypted packet received from 'Alice'
+[08:43:57] [Bob] Ciphertext length: 86
+[08:43:57] [Bob] Nonce received
+[08:43:57] [Bob] Authentication tag received
+[08:43:57] [Bob] Attempting AES-GCM authentication and decryption
+[08:43:57] [Bob] AES-GCM authentication successful
+[08:43:57] [Bob] Ciphertext successfully decrypted
+[08:43:57] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #6 from Alice at 08:43:57  >>>
+[08:44:02] [Bob] Encrypted packet received from 'Alice'
+[08:44:02] [Bob] Ciphertext length: 86
+[08:44:02] [Bob] Nonce received
+[08:44:02] [Bob] Authentication tag received
+[08:44:02] [Bob] Attempting AES-GCM authentication and decryption
+[08:44:02] [Bob] AES-GCM authentication successful
+[08:44:02] [Bob] Ciphertext successfully decrypted
+[08:44:02] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #7 from Alice at 08:44:02  >>>
+[08:44:02] [Bob] Encrypting message for 'Alice'
+[08:44:02] [Bob] Plaintext length: 41 bytes
+[08:44:02] [Bob] AES-GCM encryption successful
+[08:44:02] [Bob] Ciphertext length: 82
+[08:44:02] [Bob] Nonce generated
+[08:44:02] [Bob] Authentication tag generated
+[08:44:02] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[08:44:02] [Bob] Encrypted packet successfully stored on relay
+[08:44:02] [Bob] Encrypted packet received from 'Alice'
+[08:44:02] [Bob] Ciphertext length: 86
+[08:44:02] [Bob] Nonce received
+[08:44:02] [Bob] Authentication tag received
+[08:44:02] [Bob] Attempting AES-GCM authentication and decryption
+[08:44:02] [Bob] AES-GCM authentication successful
+[08:44:02] [Bob] Ciphertext successfully decrypted
+[08:44:02] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #7 from Alice at 08:44:02  >>>
+[08:44:07] [Bob] Encrypting message for 'Alice'
+[08:44:07] [Bob] Plaintext length: 41 bytes
+[08:44:07] [Bob] AES-GCM encryption successful
+[08:44:07] [Bob] Ciphertext length: 82
+[08:44:07] [Bob] Nonce generated
+[08:44:07] [Bob] Authentication tag generated
+[08:44:07] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:27:04] [Bob] 
+
+[09:27:04] [Bob] ECC key pair generated
+[09:27:04] [Bob] Public key generated and serialized : <cryptography.hazmat.bindings._rust.openssl.ec.ECPublicKey object at 0x7d57f6c43810> -> -----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEODKy3HyyzR/bBOUeTj0hexjRUuNW
+FhsSkIXmh5SRXizhJA0YNdTaGl2GpFEPT55+1xk9EjFDtM+ssXaKspsYyw==
+-----END PUBLIC KEY-----
+
+[09:27:04] [Bob] Registering with Central Relay Server at http://127.0.0.1:5000
+[09:27:04] [Bob] Successfully registered with relay on port 5002
+[09:27:06] [Bob] Starting key exchange with peer 'Alice'
+[09:27:06] [Bob] Requesting public key of 'Alice' from relay
+[09:27:11] [Bob] Starting key exchange with peer 'Alice'
+[09:27:11] [Bob] Requesting public key of 'Alice' from relay
+[09:27:16] [Bob] Starting key exchange with peer 'Alice'
+[09:27:16] [Bob] Requesting public key of 'Alice' from relay
+[09:27:21] [Bob] Starting key exchange with peer 'Alice'
+[09:27:21] [Bob] Requesting public key of 'Alice' from relay
+[09:27:26] [Bob] Starting key exchange with peer 'Alice'
+[09:27:26] [Bob] Requesting public key of 'Alice' from relay
+[09:27:31] [Bob] Starting key exchange with peer 'Alice'
+[09:27:31] [Bob] Requesting public key of 'Alice' from relay
+[09:27:31] [Bob] Received public key of 'Alice'
+[09:27:31] [Bob] Performing ECDH key agreement
+[09:27:31] [Bob] ECDH shared secret successfully derived
+[09:27:31] [Bob] Deriving AES session key using HKDF
+[09:27:31] [Bob] HKDF complete: 256-bit AES session key established
+[09:27:31] [Bob] Secure session established with 'Alice'
+[09:27:31] [Bob] Encrypting message for 'Alice'
+[09:27:31] [Bob] Plaintext length: 41 bytes
+[09:27:31] [Bob] AES-GCM encryption successful
+[09:27:31] [Bob] Ciphertext length: 82
+[09:27:31] [Bob] Nonce generated
+[09:27:31] [Bob] Authentication tag generated
+[09:27:31] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:27:31] [Bob] Encrypted packet successfully stored on relay
+[09:27:32] [Bob] Encrypted packet received from 'Alice'
+[09:27:32] [Bob] Ciphertext length: 86
+[09:27:32] [Bob] Nonce received
+[09:27:32] [Bob] Authentication tag received
+[09:27:32] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:32] [Bob] AES-GCM authentication successful
+[09:27:32] [Bob] Ciphertext successfully decrypted
+[09:27:32] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #1 from Alice at 09:27:32  >>>
+[09:27:36] [Bob] Encrypting message for 'Alice'
+[09:27:36] [Bob] Plaintext length: 41 bytes
+[09:27:36] [Bob] AES-GCM encryption successful
+[09:27:36] [Bob] Ciphertext length: 82
+[09:27:36] [Bob] Nonce generated
+[09:27:36] [Bob] Authentication tag generated
+[09:27:36] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:27:36] [Bob] Encrypted packet successfully stored on relay
+[09:27:36] [Bob] Encrypted packet received from 'Alice'
+[09:27:36] [Bob] Ciphertext length: 86
+[09:27:36] [Bob] Nonce received
+[09:27:36] [Bob] Authentication tag received
+[09:27:36] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:36] [Bob] AES-GCM authentication successful
+[09:27:36] [Bob] Ciphertext successfully decrypted
+[09:27:36] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #1 from Alice at 09:27:32  >>>
+[09:27:37] [Bob] Encrypted packet received from 'Alice'
+[09:27:37] [Bob] Ciphertext length: 86
+[09:27:37] [Bob] Nonce received
+[09:27:37] [Bob] Authentication tag received
+[09:27:37] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:37] [Bob] AES-GCM authentication successful
+[09:27:37] [Bob] Ciphertext successfully decrypted
+[09:27:37] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #2 from Alice at 09:27:37  >>>
+[09:27:41] [Bob] Encrypting message for 'Alice'
+[09:27:41] [Bob] Plaintext length: 41 bytes
+[09:27:41] [Bob] AES-GCM encryption successful
+[09:27:41] [Bob] Ciphertext length: 82
+[09:27:41] [Bob] Nonce generated
+[09:27:41] [Bob] Authentication tag generated
+[09:27:41] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:27:41] [Bob] Encrypted packet successfully stored on relay
+[09:27:41] [Bob] Encrypted packet received from 'Alice'
+[09:27:41] [Bob] Ciphertext length: 86
+[09:27:41] [Bob] Nonce received
+[09:27:41] [Bob] Authentication tag received
+[09:27:41] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:41] [Bob] AES-GCM authentication successful
+[09:27:41] [Bob] Ciphertext successfully decrypted
+[09:27:41] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #2 from Alice at 09:27:37  >>>
+[09:27:42] [Bob] Encrypted packet received from 'Alice'
+[09:27:42] [Bob] Ciphertext length: 86
+[09:27:42] [Bob] Nonce received
+[09:27:42] [Bob] Authentication tag received
+[09:27:42] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:42] [Bob] AES-GCM authentication successful
+[09:27:42] [Bob] Ciphertext successfully decrypted
+[09:27:42] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #3 from Alice at 09:27:42  >>>
+[09:27:46] [Bob] Encrypting message for 'Alice'
+[09:27:46] [Bob] Plaintext length: 41 bytes
+[09:27:46] [Bob] AES-GCM encryption successful
+[09:27:46] [Bob] Ciphertext length: 82
+[09:27:46] [Bob] Nonce generated
+[09:27:46] [Bob] Authentication tag generated
+[09:27:46] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:27:46] [Bob] Encrypted packet successfully stored on relay
+[09:27:46] [Bob] Encrypted packet received from 'Alice'
+[09:27:46] [Bob] Ciphertext length: 86
+[09:27:46] [Bob] Nonce received
+[09:27:46] [Bob] Authentication tag received
+[09:27:46] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:46] [Bob] AES-GCM authentication successful
+[09:27:46] [Bob] Ciphertext successfully decrypted
+[09:27:46] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #3 from Alice at 09:27:42  >>>
+[09:27:47] [Bob] Encrypted packet received from 'Alice'
+[09:27:47] [Bob] Ciphertext length: 86
+[09:27:47] [Bob] Nonce received
+[09:27:47] [Bob] Authentication tag received
+[09:27:47] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:47] [Bob] AES-GCM authentication successful
+[09:27:47] [Bob] Ciphertext successfully decrypted
+[09:27:47] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #4 from Alice at 09:27:47  >>>
+[09:27:51] [Bob] Encrypting message for 'Alice'
+[09:27:51] [Bob] Plaintext length: 41 bytes
+[09:27:51] [Bob] AES-GCM encryption successful
+[09:27:51] [Bob] Ciphertext length: 82
+[09:27:51] [Bob] Nonce generated
+[09:27:51] [Bob] Authentication tag generated
+[09:27:51] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:27:51] [Bob] Encrypted packet successfully stored on relay
+[09:27:51] [Bob] Encrypted packet received from 'Alice'
+[09:27:51] [Bob] Ciphertext length: 86
+[09:27:51] [Bob] Nonce received
+[09:27:51] [Bob] Authentication tag received
+[09:27:51] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:51] [Bob] AES-GCM authentication successful
+[09:27:51] [Bob] Ciphertext successfully decrypted
+[09:27:51] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #4 from Alice at 09:27:47  >>>
+[09:27:52] [Bob] Encrypted packet received from 'Alice'
+[09:27:52] [Bob] Ciphertext length: 86
+[09:27:52] [Bob] Nonce received
+[09:27:52] [Bob] Authentication tag received
+[09:27:52] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:52] [Bob] AES-GCM authentication successful
+[09:27:52] [Bob] Ciphertext successfully decrypted
+[09:27:52] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #5 from Alice at 09:27:52  >>>
+[09:27:56] [Bob] Encrypting message for 'Alice'
+[09:27:56] [Bob] Plaintext length: 41 bytes
+[09:27:56] [Bob] AES-GCM encryption successful
+[09:27:56] [Bob] Ciphertext length: 82
+[09:27:56] [Bob] Nonce generated
+[09:27:56] [Bob] Authentication tag generated
+[09:27:56] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:27:56] [Bob] Encrypted packet successfully stored on relay
+[09:27:56] [Bob] Encrypted packet received from 'Alice'
+[09:27:56] [Bob] Ciphertext length: 86
+[09:27:56] [Bob] Nonce received
+[09:27:56] [Bob] Authentication tag received
+[09:27:56] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:56] [Bob] AES-GCM authentication successful
+[09:27:56] [Bob] Ciphertext successfully decrypted
+[09:27:56] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #5 from Alice at 09:27:52  >>>
+[09:27:57] [Bob] Encrypted packet received from 'Alice'
+[09:27:57] [Bob] Ciphertext length: 86
+[09:27:57] [Bob] Nonce received
+[09:27:57] [Bob] Authentication tag received
+[09:27:57] [Bob] Attempting AES-GCM authentication and decryption
+[09:27:57] [Bob] AES-GCM authentication successful
+[09:27:57] [Bob] Ciphertext successfully decrypted
+[09:27:57] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #6 from Alice at 09:27:57  >>>
+[09:28:01] [Bob] Encrypting message for 'Alice'
+[09:28:01] [Bob] Plaintext length: 41 bytes
+[09:28:01] [Bob] AES-GCM encryption successful
+[09:28:01] [Bob] Ciphertext length: 82
+[09:28:01] [Bob] Nonce generated
+[09:28:01] [Bob] Authentication tag generated
+[09:28:01] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:01] [Bob] Encrypted packet successfully stored on relay
+[09:28:01] [Bob] Encrypted packet received from 'Alice'
+[09:28:01] [Bob] Ciphertext length: 86
+[09:28:01] [Bob] Nonce received
+[09:28:01] [Bob] Authentication tag received
+[09:28:01] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:01] [Bob] AES-GCM authentication successful
+[09:28:01] [Bob] Ciphertext successfully decrypted
+[09:28:01] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #6 from Alice at 09:27:57  >>>
+[09:28:02] [Bob] Encrypted packet received from 'Alice'
+[09:28:02] [Bob] Ciphertext length: 86
+[09:28:02] [Bob] Nonce received
+[09:28:02] [Bob] Authentication tag received
+[09:28:02] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:02] [Bob] AES-GCM authentication successful
+[09:28:02] [Bob] Ciphertext successfully decrypted
+[09:28:02] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #7 from Alice at 09:28:02  >>>
+[09:28:06] [Bob] Encrypting message for 'Alice'
+[09:28:06] [Bob] Plaintext length: 41 bytes
+[09:28:06] [Bob] AES-GCM encryption successful
+[09:28:06] [Bob] Ciphertext length: 82
+[09:28:06] [Bob] Nonce generated
+[09:28:06] [Bob] Authentication tag generated
+[09:28:06] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:06] [Bob] Encrypted packet successfully stored on relay
+[09:28:06] [Bob] Encrypted packet received from 'Alice'
+[09:28:06] [Bob] Ciphertext length: 86
+[09:28:06] [Bob] Nonce received
+[09:28:06] [Bob] Authentication tag received
+[09:28:06] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:06] [Bob] AES-GCM authentication successful
+[09:28:06] [Bob] Ciphertext successfully decrypted
+[09:28:06] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #7 from Alice at 09:28:02  >>>
+[09:28:08] [Bob] Encrypted packet received from 'Alice'
+[09:28:08] [Bob] Ciphertext length: 86
+[09:28:08] [Bob] Nonce received
+[09:28:08] [Bob] Authentication tag received
+[09:28:08] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:08] [Bob] AES-GCM authentication successful
+[09:28:08] [Bob] Ciphertext successfully decrypted
+[09:28:08] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #8 from Alice at 09:28:07  >>>
+[09:28:11] [Bob] Encrypting message for 'Alice'
+[09:28:11] [Bob] Plaintext length: 41 bytes
+[09:28:11] [Bob] AES-GCM encryption successful
+[09:28:11] [Bob] Ciphertext length: 82
+[09:28:11] [Bob] Nonce generated
+[09:28:11] [Bob] Authentication tag generated
+[09:28:11] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:11] [Bob] Encrypted packet successfully stored on relay
+[09:28:11] [Bob] Encrypted packet received from 'Alice'
+[09:28:11] [Bob] Ciphertext length: 86
+[09:28:11] [Bob] Nonce received
+[09:28:11] [Bob] Authentication tag received
+[09:28:11] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:11] [Bob] AES-GCM authentication successful
+[09:28:11] [Bob] Ciphertext successfully decrypted
+[09:28:11] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #8 from Alice at 09:28:07  >>>
+[09:28:13] [Bob] Encrypted packet received from 'Alice'
+[09:28:13] [Bob] Ciphertext length: 86
+[09:28:13] [Bob] Nonce received
+[09:28:13] [Bob] Authentication tag received
+[09:28:13] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:13] [Bob] AES-GCM authentication successful
+[09:28:13] [Bob] Ciphertext successfully decrypted
+[09:28:13] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #9 from Alice at 09:28:13  >>>
+[09:28:16] [Bob] Encrypting message for 'Alice'
+[09:28:16] [Bob] Plaintext length: 42 bytes
+[09:28:16] [Bob] AES-GCM encryption successful
+[09:28:16] [Bob] Ciphertext length: 84
+[09:28:16] [Bob] Nonce generated
+[09:28:16] [Bob] Authentication tag generated
+[09:28:16] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:16] [Bob] Encrypted packet successfully stored on relay
+[09:28:16] [Bob] Encrypted packet received from 'Alice'
+[09:28:16] [Bob] Ciphertext length: 86
+[09:28:16] [Bob] Nonce received
+[09:28:16] [Bob] Authentication tag received
+[09:28:16] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:16] [Bob] AES-GCM authentication successful
+[09:28:16] [Bob] Ciphertext successfully decrypted
+[09:28:16] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #9 from Alice at 09:28:13  >>>
+[09:28:18] [Bob] Encrypted packet received from 'Alice'
+[09:28:18] [Bob] Ciphertext length: 88
+[09:28:18] [Bob] Nonce received
+[09:28:18] [Bob] Authentication tag received
+[09:28:18] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:18] [Bob] AES-GCM authentication successful
+[09:28:18] [Bob] Ciphertext successfully decrypted
+[09:28:18] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #10 from Alice at 09:28:18  >>>
+[09:28:21] [Bob] Encrypting message for 'Alice'
+[09:28:21] [Bob] Plaintext length: 42 bytes
+[09:28:21] [Bob] AES-GCM encryption successful
+[09:28:21] [Bob] Ciphertext length: 84
+[09:28:21] [Bob] Nonce generated
+[09:28:21] [Bob] Authentication tag generated
+[09:28:21] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:21] [Bob] Encrypted packet successfully stored on relay
+[09:28:21] [Bob] Encrypted packet received from 'Alice'
+[09:28:21] [Bob] Ciphertext length: 88
+[09:28:21] [Bob] Nonce received
+[09:28:21] [Bob] Authentication tag received
+[09:28:21] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:21] [Bob] AES-GCM authentication successful
+[09:28:21] [Bob] Ciphertext successfully decrypted
+[09:28:21] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #10 from Alice at 09:28:18  >>>
+[09:28:23] [Bob] Encrypted packet received from 'Alice'
+[09:28:23] [Bob] Ciphertext length: 88
+[09:28:23] [Bob] Nonce received
+[09:28:23] [Bob] Authentication tag received
+[09:28:23] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:23] [Bob] AES-GCM authentication successful
+[09:28:23] [Bob] Ciphertext successfully decrypted
+[09:28:23] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #11 from Alice at 09:28:23  >>>
+[09:28:26] [Bob] Encrypting message for 'Alice'
+[09:28:26] [Bob] Plaintext length: 42 bytes
+[09:28:26] [Bob] AES-GCM encryption successful
+[09:28:26] [Bob] Ciphertext length: 84
+[09:28:26] [Bob] Nonce generated
+[09:28:26] [Bob] Authentication tag generated
+[09:28:26] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:26] [Bob] Encrypted packet successfully stored on relay
+[09:28:26] [Bob] Encrypted packet received from 'Alice'
+[09:28:26] [Bob] Ciphertext length: 88
+[09:28:26] [Bob] Nonce received
+[09:28:26] [Bob] Authentication tag received
+[09:28:26] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:26] [Bob] AES-GCM authentication successful
+[09:28:26] [Bob] Ciphertext successfully decrypted
+[09:28:26] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #11 from Alice at 09:28:23  >>>
+[09:28:28] [Bob] Encrypted packet received from 'Alice'
+[09:28:28] [Bob] Ciphertext length: 88
+[09:28:28] [Bob] Nonce received
+[09:28:28] [Bob] Authentication tag received
+[09:28:28] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:28] [Bob] AES-GCM authentication successful
+[09:28:28] [Bob] Ciphertext successfully decrypted
+[09:28:28] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #12 from Alice at 09:28:28  >>>
+[09:28:31] [Bob] Encrypting message for 'Alice'
+[09:28:31] [Bob] Plaintext length: 42 bytes
+[09:28:31] [Bob] AES-GCM encryption successful
+[09:28:31] [Bob] Ciphertext length: 84
+[09:28:31] [Bob] Nonce generated
+[09:28:31] [Bob] Authentication tag generated
+[09:28:31] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:31] [Bob] Encrypted packet successfully stored on relay
+[09:28:31] [Bob] Encrypted packet received from 'Alice'
+[09:28:31] [Bob] Ciphertext length: 88
+[09:28:31] [Bob] Nonce received
+[09:28:31] [Bob] Authentication tag received
+[09:28:31] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:31] [Bob] AES-GCM authentication successful
+[09:28:31] [Bob] Ciphertext successfully decrypted
+[09:28:31] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #12 from Alice at 09:28:28  >>>
+[09:28:33] [Bob] Encrypted packet received from 'Alice'
+[09:28:33] [Bob] Ciphertext length: 88
+[09:28:33] [Bob] Nonce received
+[09:28:33] [Bob] Authentication tag received
+[09:28:33] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:33] [Bob] AES-GCM authentication successful
+[09:28:33] [Bob] Ciphertext successfully decrypted
+[09:28:33] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #13 from Alice at 09:28:33  >>>
+[09:28:36] [Bob] Encrypting message for 'Alice'
+[09:28:36] [Bob] Plaintext length: 42 bytes
+[09:28:36] [Bob] AES-GCM encryption successful
+[09:28:36] [Bob] Ciphertext length: 84
+[09:28:36] [Bob] Nonce generated
+[09:28:36] [Bob] Authentication tag generated
+[09:28:36] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:36] [Bob] Encrypted packet successfully stored on relay
+[09:28:36] [Bob] Encrypted packet received from 'Alice'
+[09:28:36] [Bob] Ciphertext length: 88
+[09:28:36] [Bob] Nonce received
+[09:28:36] [Bob] Authentication tag received
+[09:28:36] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:36] [Bob] AES-GCM authentication successful
+[09:28:36] [Bob] Ciphertext successfully decrypted
+[09:28:36] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #13 from Alice at 09:28:33  >>>
+[09:28:38] [Bob] Encrypted packet received from 'Alice'
+[09:28:38] [Bob] Ciphertext length: 88
+[09:28:38] [Bob] Nonce received
+[09:28:38] [Bob] Authentication tag received
+[09:28:38] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:38] [Bob] AES-GCM authentication successful
+[09:28:38] [Bob] Ciphertext successfully decrypted
+[09:28:38] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #14 from Alice at 09:28:38  >>>
+[09:28:41] [Bob] Encrypting message for 'Alice'
+[09:28:41] [Bob] Plaintext length: 42 bytes
+[09:28:41] [Bob] AES-GCM encryption successful
+[09:28:41] [Bob] Ciphertext length: 84
+[09:28:41] [Bob] Nonce generated
+[09:28:41] [Bob] Authentication tag generated
+[09:28:41] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:41] [Bob] Encrypted packet successfully stored on relay
+[09:28:41] [Bob] Encrypted packet received from 'Alice'
+[09:28:41] [Bob] Ciphertext length: 88
+[09:28:41] [Bob] Nonce received
+[09:28:41] [Bob] Authentication tag received
+[09:28:41] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:41] [Bob] AES-GCM authentication successful
+[09:28:41] [Bob] Ciphertext successfully decrypted
+[09:28:41] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #14 from Alice at 09:28:38  >>>
+[09:28:43] [Bob] Encrypted packet received from 'Alice'
+[09:28:43] [Bob] Ciphertext length: 88
+[09:28:43] [Bob] Nonce received
+[09:28:43] [Bob] Authentication tag received
+[09:28:43] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:43] [Bob] AES-GCM authentication successful
+[09:28:43] [Bob] Ciphertext successfully decrypted
+[09:28:43] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #15 from Alice at 09:28:43  >>>
+[09:28:46] [Bob] Encrypting message for 'Alice'
+[09:28:46] [Bob] Plaintext length: 42 bytes
+[09:28:46] [Bob] AES-GCM encryption successful
+[09:28:46] [Bob] Ciphertext length: 84
+[09:28:46] [Bob] Nonce generated
+[09:28:46] [Bob] Authentication tag generated
+[09:28:46] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:46] [Bob] Encrypted packet successfully stored on relay
+[09:28:46] [Bob] Encrypted packet received from 'Alice'
+[09:28:46] [Bob] Ciphertext length: 88
+[09:28:46] [Bob] Nonce received
+[09:28:46] [Bob] Authentication tag received
+[09:28:46] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:46] [Bob] AES-GCM authentication successful
+[09:28:46] [Bob] Ciphertext successfully decrypted
+[09:28:46] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #15 from Alice at 09:28:43  >>>
+[09:28:48] [Bob] Encrypted packet received from 'Alice'
+[09:28:48] [Bob] Ciphertext length: 88
+[09:28:48] [Bob] Nonce received
+[09:28:48] [Bob] Authentication tag received
+[09:28:48] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:48] [Bob] AES-GCM authentication successful
+[09:28:48] [Bob] Ciphertext successfully decrypted
+[09:28:48] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #16 from Alice at 09:28:48  >>>
+[09:28:51] [Bob] Encrypting message for 'Alice'
+[09:28:51] [Bob] Plaintext length: 42 bytes
+[09:28:51] [Bob] AES-GCM encryption successful
+[09:28:51] [Bob] Ciphertext length: 84
+[09:28:51] [Bob] Nonce generated
+[09:28:51] [Bob] Authentication tag generated
+[09:28:51] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:51] [Bob] Encrypted packet successfully stored on relay
+[09:28:51] [Bob] Encrypted packet received from 'Alice'
+[09:28:51] [Bob] Ciphertext length: 88
+[09:28:51] [Bob] Nonce received
+[09:28:51] [Bob] Authentication tag received
+[09:28:51] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:51] [Bob] AES-GCM authentication successful
+[09:28:51] [Bob] Ciphertext successfully decrypted
+[09:28:51] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #16 from Alice at 09:28:48  >>>
+[09:28:53] [Bob] Encrypted packet received from 'Alice'
+[09:28:53] [Bob] Ciphertext length: 88
+[09:28:53] [Bob] Nonce received
+[09:28:53] [Bob] Authentication tag received
+[09:28:53] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:53] [Bob] AES-GCM authentication successful
+[09:28:53] [Bob] Ciphertext successfully decrypted
+[09:28:53] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #17 from Alice at 09:28:53  >>>
+[09:28:56] [Bob] Encrypting message for 'Alice'
+[09:28:56] [Bob] Plaintext length: 42 bytes
+[09:28:56] [Bob] AES-GCM encryption successful
+[09:28:56] [Bob] Ciphertext length: 84
+[09:28:56] [Bob] Nonce generated
+[09:28:56] [Bob] Authentication tag generated
+[09:28:56] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:28:56] [Bob] Encrypted packet successfully stored on relay
+[09:28:56] [Bob] Encrypted packet received from 'Alice'
+[09:28:56] [Bob] Ciphertext length: 88
+[09:28:56] [Bob] Nonce received
+[09:28:56] [Bob] Authentication tag received
+[09:28:56] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:56] [Bob] AES-GCM authentication successful
+[09:28:56] [Bob] Ciphertext successfully decrypted
+[09:28:56] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #17 from Alice at 09:28:53  >>>
+[09:28:58] [Bob] Encrypted packet received from 'Alice'
+[09:28:58] [Bob] Ciphertext length: 88
+[09:28:58] [Bob] Nonce received
+[09:28:58] [Bob] Authentication tag received
+[09:28:58] [Bob] Attempting AES-GCM authentication and decryption
+[09:28:58] [Bob] AES-GCM authentication successful
+[09:28:58] [Bob] Ciphertext successfully decrypted
+[09:28:58] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #18 from Alice at 09:28:58  >>>
+[09:29:01] [Bob] Encrypting message for 'Alice'
+[09:29:01] [Bob] Plaintext length: 42 bytes
+[09:29:01] [Bob] AES-GCM encryption successful
+[09:29:01] [Bob] Ciphertext length: 84
+[09:29:01] [Bob] Nonce generated
+[09:29:01] [Bob] Authentication tag generated
+[09:29:01] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:01] [Bob] Encrypted packet successfully stored on relay
+[09:29:01] [Bob] Encrypted packet received from 'Alice'
+[09:29:01] [Bob] Ciphertext length: 88
+[09:29:01] [Bob] Nonce received
+[09:29:01] [Bob] Authentication tag received
+[09:29:01] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:01] [Bob] AES-GCM authentication successful
+[09:29:01] [Bob] Ciphertext successfully decrypted
+[09:29:01] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #18 from Alice at 09:28:58  >>>
+[09:29:03] [Bob] Encrypted packet received from 'Alice'
+[09:29:03] [Bob] Ciphertext length: 88
+[09:29:03] [Bob] Nonce received
+[09:29:03] [Bob] Authentication tag received
+[09:29:03] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:03] [Bob] AES-GCM authentication successful
+[09:29:03] [Bob] Ciphertext successfully decrypted
+[09:29:03] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #19 from Alice at 09:29:03  >>>
+[09:29:06] [Bob] Encrypting message for 'Alice'
+[09:29:06] [Bob] Plaintext length: 42 bytes
+[09:29:06] [Bob] AES-GCM encryption successful
+[09:29:06] [Bob] Ciphertext length: 84
+[09:29:06] [Bob] Nonce generated
+[09:29:06] [Bob] Authentication tag generated
+[09:29:06] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:06] [Bob] Encrypted packet successfully stored on relay
+[09:29:06] [Bob] Encrypted packet received from 'Alice'
+[09:29:06] [Bob] Ciphertext length: 88
+[09:29:06] [Bob] Nonce received
+[09:29:06] [Bob] Authentication tag received
+[09:29:06] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:06] [Bob] AES-GCM authentication successful
+[09:29:06] [Bob] Ciphertext successfully decrypted
+[09:29:06] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #19 from Alice at 09:29:03  >>>
+[09:29:08] [Bob] Encrypted packet received from 'Alice'
+[09:29:08] [Bob] Ciphertext length: 88
+[09:29:08] [Bob] Nonce received
+[09:29:08] [Bob] Authentication tag received
+[09:29:08] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:08] [Bob] AES-GCM authentication successful
+[09:29:08] [Bob] Ciphertext successfully decrypted
+[09:29:08] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #20 from Alice at 09:29:08  >>>
+[09:29:11] [Bob] Encrypting message for 'Alice'
+[09:29:11] [Bob] Plaintext length: 42 bytes
+[09:29:11] [Bob] AES-GCM encryption successful
+[09:29:11] [Bob] Ciphertext length: 84
+[09:29:11] [Bob] Nonce generated
+[09:29:11] [Bob] Authentication tag generated
+[09:29:11] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:11] [Bob] Encrypted packet successfully stored on relay
+[09:29:11] [Bob] Encrypted packet received from 'Alice'
+[09:29:11] [Bob] Ciphertext length: 88
+[09:29:11] [Bob] Nonce received
+[09:29:11] [Bob] Authentication tag received
+[09:29:11] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:11] [Bob] AES-GCM authentication successful
+[09:29:11] [Bob] Ciphertext successfully decrypted
+[09:29:11] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #20 from Alice at 09:29:08  >>>
+[09:29:13] [Bob] Encrypted packet received from 'Alice'
+[09:29:13] [Bob] Ciphertext length: 88
+[09:29:13] [Bob] Nonce received
+[09:29:13] [Bob] Authentication tag received
+[09:29:13] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:13] [Bob] AES-GCM authentication successful
+[09:29:13] [Bob] Ciphertext successfully decrypted
+[09:29:13] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #21 from Alice at 09:29:13  >>>
+[09:29:16] [Bob] Encrypting message for 'Alice'
+[09:29:16] [Bob] Plaintext length: 42 bytes
+[09:29:16] [Bob] AES-GCM encryption successful
+[09:29:16] [Bob] Ciphertext length: 84
+[09:29:16] [Bob] Nonce generated
+[09:29:16] [Bob] Authentication tag generated
+[09:29:16] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:16] [Bob] Encrypted packet successfully stored on relay
+[09:29:16] [Bob] Encrypted packet received from 'Alice'
+[09:29:16] [Bob] Ciphertext length: 88
+[09:29:16] [Bob] Nonce received
+[09:29:16] [Bob] Authentication tag received
+[09:29:16] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:16] [Bob] AES-GCM authentication successful
+[09:29:16] [Bob] Ciphertext successfully decrypted
+[09:29:16] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #21 from Alice at 09:29:13  >>>
+[09:29:18] [Bob] Encrypted packet received from 'Alice'
+[09:29:18] [Bob] Ciphertext length: 88
+[09:29:18] [Bob] Nonce received
+[09:29:18] [Bob] Authentication tag received
+[09:29:18] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:18] [Bob] AES-GCM authentication successful
+[09:29:18] [Bob] Ciphertext successfully decrypted
+[09:29:18] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #22 from Alice at 09:29:18  >>>
+[09:29:21] [Bob] Encrypting message for 'Alice'
+[09:29:21] [Bob] Plaintext length: 42 bytes
+[09:29:21] [Bob] AES-GCM encryption successful
+[09:29:21] [Bob] Ciphertext length: 84
+[09:29:21] [Bob] Nonce generated
+[09:29:21] [Bob] Authentication tag generated
+[09:29:21] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:21] [Bob] Encrypted packet successfully stored on relay
+[09:29:22] [Bob] Encrypted packet received from 'Alice'
+[09:29:22] [Bob] Ciphertext length: 88
+[09:29:22] [Bob] Nonce received
+[09:29:22] [Bob] Authentication tag received
+[09:29:22] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:22] [Bob] AES-GCM authentication successful
+[09:29:22] [Bob] Ciphertext successfully decrypted
+[09:29:22] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #22 from Alice at 09:29:18  >>>
+[09:29:23] [Bob] Encrypted packet received from 'Alice'
+[09:29:23] [Bob] Ciphertext length: 88
+[09:29:23] [Bob] Nonce received
+[09:29:23] [Bob] Authentication tag received
+[09:29:23] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:23] [Bob] AES-GCM authentication successful
+[09:29:23] [Bob] Ciphertext successfully decrypted
+[09:29:23] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #23 from Alice at 09:29:23  >>>
+[09:29:27] [Bob] Encrypting message for 'Alice'
+[09:29:27] [Bob] Plaintext length: 42 bytes
+[09:29:27] [Bob] AES-GCM encryption successful
+[09:29:27] [Bob] Ciphertext length: 84
+[09:29:27] [Bob] Nonce generated
+[09:29:27] [Bob] Authentication tag generated
+[09:29:27] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:27] [Bob] Encrypted packet successfully stored on relay
+[09:29:27] [Bob] Encrypted packet received from 'Alice'
+[09:29:27] [Bob] Ciphertext length: 88
+[09:29:27] [Bob] Nonce received
+[09:29:27] [Bob] Authentication tag received
+[09:29:27] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:27] [Bob] AES-GCM authentication successful
+[09:29:27] [Bob] Ciphertext successfully decrypted
+[09:29:27] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #23 from Alice at 09:29:23  >>>
+[09:29:28] [Bob] Encrypted packet received from 'Alice'
+[09:29:28] [Bob] Ciphertext length: 88
+[09:29:28] [Bob] Nonce received
+[09:29:28] [Bob] Authentication tag received
+[09:29:28] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:28] [Bob] AES-GCM authentication successful
+[09:29:28] [Bob] Ciphertext successfully decrypted
+[09:29:28] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #24 from Alice at 09:29:28  >>>
+[09:29:32] [Bob] Encrypting message for 'Alice'
+[09:29:32] [Bob] Plaintext length: 42 bytes
+[09:29:32] [Bob] AES-GCM encryption successful
+[09:29:32] [Bob] Ciphertext length: 84
+[09:29:32] [Bob] Nonce generated
+[09:29:32] [Bob] Authentication tag generated
+[09:29:32] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:32] [Bob] Encrypted packet successfully stored on relay
+[09:29:32] [Bob] Encrypted packet received from 'Alice'
+[09:29:32] [Bob] Ciphertext length: 88
+[09:29:32] [Bob] Nonce received
+[09:29:32] [Bob] Authentication tag received
+[09:29:32] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:32] [Bob] AES-GCM authentication successful
+[09:29:32] [Bob] Ciphertext successfully decrypted
+[09:29:32] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #24 from Alice at 09:29:28  >>>
+[09:29:33] [Bob] Encrypted packet received from 'Alice'
+[09:29:33] [Bob] Ciphertext length: 88
+[09:29:33] [Bob] Nonce received
+[09:29:33] [Bob] Authentication tag received
+[09:29:33] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:33] [Bob] AES-GCM authentication successful
+[09:29:33] [Bob] Ciphertext successfully decrypted
+[09:29:33] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #25 from Alice at 09:29:33  >>>
+[09:29:37] [Bob] Encrypting message for 'Alice'
+[09:29:37] [Bob] Plaintext length: 42 bytes
+[09:29:37] [Bob] AES-GCM encryption successful
+[09:29:37] [Bob] Ciphertext length: 84
+[09:29:37] [Bob] Nonce generated
+[09:29:37] [Bob] Authentication tag generated
+[09:29:37] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:37] [Bob] Encrypted packet successfully stored on relay
+[09:29:37] [Bob] Encrypted packet received from 'Alice'
+[09:29:37] [Bob] Ciphertext length: 88
+[09:29:37] [Bob] Nonce received
+[09:29:37] [Bob] Authentication tag received
+[09:29:37] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:37] [Bob] AES-GCM authentication successful
+[09:29:37] [Bob] Ciphertext successfully decrypted
+[09:29:37] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #25 from Alice at 09:29:33  >>>
+[09:29:38] [Bob] Encrypted packet received from 'Alice'
+[09:29:38] [Bob] Ciphertext length: 88
+[09:29:38] [Bob] Nonce received
+[09:29:38] [Bob] Authentication tag received
+[09:29:38] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:38] [Bob] AES-GCM authentication successful
+[09:29:38] [Bob] Ciphertext successfully decrypted
+[09:29:38] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #26 from Alice at 09:29:38  >>>
+[09:29:42] [Bob] Encrypting message for 'Alice'
+[09:29:42] [Bob] Plaintext length: 42 bytes
+[09:29:42] [Bob] AES-GCM encryption successful
+[09:29:42] [Bob] Ciphertext length: 84
+[09:29:42] [Bob] Nonce generated
+[09:29:42] [Bob] Authentication tag generated
+[09:29:42] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:42] [Bob] Encrypted packet successfully stored on relay
+[09:29:42] [Bob] Encrypted packet received from 'Alice'
+[09:29:42] [Bob] Ciphertext length: 88
+[09:29:42] [Bob] Nonce received
+[09:29:42] [Bob] Authentication tag received
+[09:29:42] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:42] [Bob] AES-GCM authentication successful
+[09:29:42] [Bob] Ciphertext successfully decrypted
+[09:29:42] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #26 from Alice at 09:29:38  >>>
+[09:29:43] [Bob] Encrypted packet received from 'Alice'
+[09:29:43] [Bob] Ciphertext length: 88
+[09:29:43] [Bob] Nonce received
+[09:29:43] [Bob] Authentication tag received
+[09:29:43] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:43] [Bob] AES-GCM authentication successful
+[09:29:43] [Bob] Ciphertext successfully decrypted
+[09:29:43] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #27 from Alice at 09:29:43  >>>
+[09:29:47] [Bob] Encrypting message for 'Alice'
+[09:29:47] [Bob] Plaintext length: 42 bytes
+[09:29:47] [Bob] AES-GCM encryption successful
+[09:29:47] [Bob] Ciphertext length: 84
+[09:29:47] [Bob] Nonce generated
+[09:29:47] [Bob] Authentication tag generated
+[09:29:47] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:47] [Bob] Encrypted packet successfully stored on relay
+[09:29:47] [Bob] Encrypted packet received from 'Alice'
+[09:29:47] [Bob] Ciphertext length: 88
+[09:29:47] [Bob] Nonce received
+[09:29:47] [Bob] Authentication tag received
+[09:29:47] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:47] [Bob] AES-GCM authentication successful
+[09:29:47] [Bob] Ciphertext successfully decrypted
+[09:29:47] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #27 from Alice at 09:29:43  >>>
+[09:29:48] [Bob] Encrypted packet received from 'Alice'
+[09:29:48] [Bob] Ciphertext length: 88
+[09:29:48] [Bob] Nonce received
+[09:29:48] [Bob] Authentication tag received
+[09:29:48] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:48] [Bob] AES-GCM authentication successful
+[09:29:48] [Bob] Ciphertext successfully decrypted
+[09:29:48] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #28 from Alice at 09:29:48  >>>
+[09:29:52] [Bob] Encrypting message for 'Alice'
+[09:29:52] [Bob] Plaintext length: 42 bytes
+[09:29:52] [Bob] AES-GCM encryption successful
+[09:29:52] [Bob] Ciphertext length: 84
+[09:29:52] [Bob] Nonce generated
+[09:29:52] [Bob] Authentication tag generated
+[09:29:52] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:52] [Bob] Encrypted packet successfully stored on relay
+[09:29:52] [Bob] Encrypted packet received from 'Alice'
+[09:29:52] [Bob] Ciphertext length: 88
+[09:29:52] [Bob] Nonce received
+[09:29:52] [Bob] Authentication tag received
+[09:29:52] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:52] [Bob] AES-GCM authentication successful
+[09:29:52] [Bob] Ciphertext successfully decrypted
+[09:29:52] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #28 from Alice at 09:29:48  >>>
+[09:29:53] [Bob] Encrypted packet received from 'Alice'
+[09:29:53] [Bob] Ciphertext length: 88
+[09:29:53] [Bob] Nonce received
+[09:29:53] [Bob] Authentication tag received
+[09:29:53] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:53] [Bob] AES-GCM authentication successful
+[09:29:53] [Bob] Ciphertext successfully decrypted
+[09:29:53] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #29 from Alice at 09:29:53  >>>
+[09:29:57] [Bob] Encrypting message for 'Alice'
+[09:29:57] [Bob] Plaintext length: 42 bytes
+[09:29:57] [Bob] AES-GCM encryption successful
+[09:29:57] [Bob] Ciphertext length: 84
+[09:29:57] [Bob] Nonce generated
+[09:29:57] [Bob] Authentication tag generated
+[09:29:57] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:29:57] [Bob] Encrypted packet successfully stored on relay
+[09:29:57] [Bob] Encrypted packet received from 'Alice'
+[09:29:57] [Bob] Ciphertext length: 88
+[09:29:57] [Bob] Nonce received
+[09:29:57] [Bob] Authentication tag received
+[09:29:57] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:57] [Bob] AES-GCM authentication successful
+[09:29:57] [Bob] Ciphertext successfully decrypted
+[09:29:57] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #29 from Alice at 09:29:53  >>>
+[09:29:58] [Bob] Encrypted packet received from 'Alice'
+[09:29:58] [Bob] Ciphertext length: 88
+[09:29:58] [Bob] Nonce received
+[09:29:58] [Bob] Authentication tag received
+[09:29:58] [Bob] Attempting AES-GCM authentication and decryption
+[09:29:58] [Bob] AES-GCM authentication successful
+[09:29:58] [Bob] Ciphertext successfully decrypted
+[09:29:58] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #30 from Alice at 09:29:58  >>>
+[09:30:02] [Bob] Encrypting message for 'Alice'
+[09:30:02] [Bob] Plaintext length: 42 bytes
+[09:30:02] [Bob] AES-GCM encryption successful
+[09:30:02] [Bob] Ciphertext length: 84
+[09:30:02] [Bob] Nonce generated
+[09:30:02] [Bob] Authentication tag generated
+[09:30:02] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:02] [Bob] Encrypted packet successfully stored on relay
+[09:30:02] [Bob] Encrypted packet received from 'Alice'
+[09:30:02] [Bob] Ciphertext length: 88
+[09:30:02] [Bob] Nonce received
+[09:30:02] [Bob] Authentication tag received
+[09:30:02] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:02] [Bob] AES-GCM authentication successful
+[09:30:02] [Bob] Ciphertext successfully decrypted
+[09:30:02] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #30 from Alice at 09:29:58  >>>
+[09:30:03] [Bob] Encrypted packet received from 'Alice'
+[09:30:03] [Bob] Ciphertext length: 88
+[09:30:03] [Bob] Nonce received
+[09:30:03] [Bob] Authentication tag received
+[09:30:03] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:03] [Bob] AES-GCM authentication successful
+[09:30:03] [Bob] Ciphertext successfully decrypted
+[09:30:03] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #31 from Alice at 09:30:03  >>>
+[09:30:07] [Bob] Encrypting message for 'Alice'
+[09:30:07] [Bob] Plaintext length: 42 bytes
+[09:30:07] [Bob] AES-GCM encryption successful
+[09:30:07] [Bob] Ciphertext length: 84
+[09:30:07] [Bob] Nonce generated
+[09:30:07] [Bob] Authentication tag generated
+[09:30:07] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:07] [Bob] Encrypted packet successfully stored on relay
+[09:30:07] [Bob] Encrypted packet received from 'Alice'
+[09:30:07] [Bob] Ciphertext length: 88
+[09:30:07] [Bob] Nonce received
+[09:30:07] [Bob] Authentication tag received
+[09:30:07] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:07] [Bob] AES-GCM authentication successful
+[09:30:07] [Bob] Ciphertext successfully decrypted
+[09:30:07] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #31 from Alice at 09:30:03  >>>
+[09:30:08] [Bob] Encrypted packet received from 'Alice'
+[09:30:08] [Bob] Ciphertext length: 88
+[09:30:08] [Bob] Nonce received
+[09:30:08] [Bob] Authentication tag received
+[09:30:08] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:08] [Bob] AES-GCM authentication successful
+[09:30:08] [Bob] Ciphertext successfully decrypted
+[09:30:08] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #32 from Alice at 09:30:08  >>>
+[09:30:12] [Bob] Encrypting message for 'Alice'
+[09:30:12] [Bob] Plaintext length: 42 bytes
+[09:30:12] [Bob] AES-GCM encryption successful
+[09:30:12] [Bob] Ciphertext length: 84
+[09:30:12] [Bob] Nonce generated
+[09:30:12] [Bob] Authentication tag generated
+[09:30:12] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:12] [Bob] Encrypted packet successfully stored on relay
+[09:30:12] [Bob] Encrypted packet received from 'Alice'
+[09:30:12] [Bob] Ciphertext length: 88
+[09:30:12] [Bob] Nonce received
+[09:30:12] [Bob] Authentication tag received
+[09:30:12] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:12] [Bob] AES-GCM authentication successful
+[09:30:12] [Bob] Ciphertext successfully decrypted
+[09:30:12] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #32 from Alice at 09:30:08  >>>
+[09:30:13] [Bob] Encrypted packet received from 'Alice'
+[09:30:13] [Bob] Ciphertext length: 88
+[09:30:13] [Bob] Nonce received
+[09:30:13] [Bob] Authentication tag received
+[09:30:13] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:13] [Bob] AES-GCM authentication successful
+[09:30:13] [Bob] Ciphertext successfully decrypted
+[09:30:13] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #33 from Alice at 09:30:13  >>>
+[09:30:17] [Bob] Encrypting message for 'Alice'
+[09:30:17] [Bob] Plaintext length: 42 bytes
+[09:30:17] [Bob] AES-GCM encryption successful
+[09:30:17] [Bob] Ciphertext length: 84
+[09:30:17] [Bob] Nonce generated
+[09:30:17] [Bob] Authentication tag generated
+[09:30:17] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:17] [Bob] Encrypted packet successfully stored on relay
+[09:30:17] [Bob] Encrypted packet received from 'Alice'
+[09:30:17] [Bob] Ciphertext length: 88
+[09:30:17] [Bob] Nonce received
+[09:30:17] [Bob] Authentication tag received
+[09:30:17] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:17] [Bob] AES-GCM authentication successful
+[09:30:17] [Bob] Ciphertext successfully decrypted
+[09:30:17] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #33 from Alice at 09:30:13  >>>
+[09:30:18] [Bob] Encrypted packet received from 'Alice'
+[09:30:18] [Bob] Ciphertext length: 88
+[09:30:18] [Bob] Nonce received
+[09:30:18] [Bob] Authentication tag received
+[09:30:18] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:18] [Bob] AES-GCM authentication successful
+[09:30:18] [Bob] Ciphertext successfully decrypted
+[09:30:18] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #34 from Alice at 09:30:18  >>>
+[09:30:22] [Bob] Encrypting message for 'Alice'
+[09:30:22] [Bob] Plaintext length: 42 bytes
+[09:30:22] [Bob] AES-GCM encryption successful
+[09:30:22] [Bob] Ciphertext length: 84
+[09:30:22] [Bob] Nonce generated
+[09:30:22] [Bob] Authentication tag generated
+[09:30:22] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:22] [Bob] Encrypted packet successfully stored on relay
+[09:30:22] [Bob] Encrypted packet received from 'Alice'
+[09:30:22] [Bob] Ciphertext length: 88
+[09:30:22] [Bob] Nonce received
+[09:30:22] [Bob] Authentication tag received
+[09:30:22] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:22] [Bob] AES-GCM authentication successful
+[09:30:22] [Bob] Ciphertext successfully decrypted
+[09:30:22] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #34 from Alice at 09:30:18  >>>
+[09:30:23] [Bob] Encrypted packet received from 'Alice'
+[09:30:23] [Bob] Ciphertext length: 88
+[09:30:23] [Bob] Nonce received
+[09:30:23] [Bob] Authentication tag received
+[09:30:23] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:23] [Bob] AES-GCM authentication successful
+[09:30:23] [Bob] Ciphertext successfully decrypted
+[09:30:23] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #35 from Alice at 09:30:23  >>>
+[09:30:27] [Bob] Encrypting message for 'Alice'
+[09:30:27] [Bob] Plaintext length: 42 bytes
+[09:30:27] [Bob] AES-GCM encryption successful
+[09:30:27] [Bob] Ciphertext length: 84
+[09:30:27] [Bob] Nonce generated
+[09:30:27] [Bob] Authentication tag generated
+[09:30:27] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:27] [Bob] Encrypted packet successfully stored on relay
+[09:30:27] [Bob] Encrypted packet received from 'Alice'
+[09:30:27] [Bob] Ciphertext length: 88
+[09:30:27] [Bob] Nonce received
+[09:30:27] [Bob] Authentication tag received
+[09:30:27] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:27] [Bob] AES-GCM authentication successful
+[09:30:27] [Bob] Ciphertext successfully decrypted
+[09:30:27] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #35 from Alice at 09:30:23  >>>
+[09:30:28] [Bob] Encrypted packet received from 'Alice'
+[09:30:28] [Bob] Ciphertext length: 88
+[09:30:28] [Bob] Nonce received
+[09:30:28] [Bob] Authentication tag received
+[09:30:28] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:28] [Bob] AES-GCM authentication successful
+[09:30:28] [Bob] Ciphertext successfully decrypted
+[09:30:28] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #36 from Alice at 09:30:28  >>>
+[09:30:32] [Bob] Encrypting message for 'Alice'
+[09:30:32] [Bob] Plaintext length: 42 bytes
+[09:30:32] [Bob] AES-GCM encryption successful
+[09:30:32] [Bob] Ciphertext length: 84
+[09:30:32] [Bob] Nonce generated
+[09:30:32] [Bob] Authentication tag generated
+[09:30:32] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:32] [Bob] Encrypted packet successfully stored on relay
+[09:30:32] [Bob] Encrypted packet received from 'Alice'
+[09:30:32] [Bob] Ciphertext length: 88
+[09:30:32] [Bob] Nonce received
+[09:30:32] [Bob] Authentication tag received
+[09:30:32] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:32] [Bob] AES-GCM authentication successful
+[09:30:32] [Bob] Ciphertext successfully decrypted
+[09:30:32] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #36 from Alice at 09:30:28  >>>
+[09:30:33] [Bob] Encrypted packet received from 'Alice'
+[09:30:33] [Bob] Ciphertext length: 88
+[09:30:33] [Bob] Nonce received
+[09:30:33] [Bob] Authentication tag received
+[09:30:33] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:33] [Bob] AES-GCM authentication successful
+[09:30:33] [Bob] Ciphertext successfully decrypted
+[09:30:33] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #37 from Alice at 09:30:33  >>>
+[09:30:37] [Bob] Encrypting message for 'Alice'
+[09:30:37] [Bob] Plaintext length: 42 bytes
+[09:30:37] [Bob] AES-GCM encryption successful
+[09:30:37] [Bob] Ciphertext length: 84
+[09:30:37] [Bob] Nonce generated
+[09:30:37] [Bob] Authentication tag generated
+[09:30:37] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:37] [Bob] Encrypted packet successfully stored on relay
+[09:30:37] [Bob] Encrypted packet received from 'Alice'
+[09:30:37] [Bob] Ciphertext length: 88
+[09:30:37] [Bob] Nonce received
+[09:30:37] [Bob] Authentication tag received
+[09:30:37] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:37] [Bob] AES-GCM authentication successful
+[09:30:37] [Bob] Ciphertext successfully decrypted
+[09:30:37] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #37 from Alice at 09:30:33  >>>
+[09:30:39] [Bob] Encrypted packet received from 'Alice'
+[09:30:39] [Bob] Ciphertext length: 88
+[09:30:39] [Bob] Nonce received
+[09:30:39] [Bob] Authentication tag received
+[09:30:39] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:39] [Bob] AES-GCM authentication successful
+[09:30:39] [Bob] Ciphertext successfully decrypted
+[09:30:39] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #38 from Alice at 09:30:39  >>>
+[09:30:42] [Bob] Encrypting message for 'Alice'
+[09:30:42] [Bob] Plaintext length: 42 bytes
+[09:30:42] [Bob] AES-GCM encryption successful
+[09:30:42] [Bob] Ciphertext length: 84
+[09:30:42] [Bob] Nonce generated
+[09:30:42] [Bob] Authentication tag generated
+[09:30:42] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:42] [Bob] Encrypted packet successfully stored on relay
+[09:30:42] [Bob] Encrypted packet received from 'Alice'
+[09:30:42] [Bob] Ciphertext length: 88
+[09:30:42] [Bob] Nonce received
+[09:30:42] [Bob] Authentication tag received
+[09:30:42] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:42] [Bob] AES-GCM authentication successful
+[09:30:42] [Bob] Ciphertext successfully decrypted
+[09:30:42] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #38 from Alice at 09:30:39  >>>
+[09:30:44] [Bob] Encrypted packet received from 'Alice'
+[09:30:44] [Bob] Ciphertext length: 88
+[09:30:44] [Bob] Nonce received
+[09:30:44] [Bob] Authentication tag received
+[09:30:44] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:44] [Bob] AES-GCM authentication successful
+[09:30:44] [Bob] Ciphertext successfully decrypted
+[09:30:44] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #39 from Alice at 09:30:44  >>>
+[09:30:47] [Bob] Encrypting message for 'Alice'
+[09:30:47] [Bob] Plaintext length: 42 bytes
+[09:30:47] [Bob] AES-GCM encryption successful
+[09:30:47] [Bob] Ciphertext length: 84
+[09:30:47] [Bob] Nonce generated
+[09:30:47] [Bob] Authentication tag generated
+[09:30:47] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:47] [Bob] Encrypted packet successfully stored on relay
+[09:30:47] [Bob] Encrypted packet received from 'Alice'
+[09:30:47] [Bob] Ciphertext length: 88
+[09:30:47] [Bob] Nonce received
+[09:30:47] [Bob] Authentication tag received
+[09:30:47] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:47] [Bob] AES-GCM authentication successful
+[09:30:47] [Bob] Ciphertext successfully decrypted
+[09:30:47] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #39 from Alice at 09:30:44  >>>
+[09:30:49] [Bob] Encrypted packet received from 'Alice'
+[09:30:49] [Bob] Ciphertext length: 88
+[09:30:49] [Bob] Nonce received
+[09:30:49] [Bob] Authentication tag received
+[09:30:49] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:49] [Bob] AES-GCM authentication successful
+[09:30:49] [Bob] Ciphertext successfully decrypted
+[09:30:49] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #40 from Alice at 09:30:49  >>>
+[09:30:52] [Bob] Encrypting message for 'Alice'
+[09:30:52] [Bob] Plaintext length: 42 bytes
+[09:30:52] [Bob] AES-GCM encryption successful
+[09:30:52] [Bob] Ciphertext length: 84
+[09:30:52] [Bob] Nonce generated
+[09:30:52] [Bob] Authentication tag generated
+[09:30:52] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:52] [Bob] Encrypted packet successfully stored on relay
+[09:30:52] [Bob] Encrypted packet received from 'Alice'
+[09:30:52] [Bob] Ciphertext length: 88
+[09:30:52] [Bob] Nonce received
+[09:30:52] [Bob] Authentication tag received
+[09:30:52] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:52] [Bob] AES-GCM authentication successful
+[09:30:52] [Bob] Ciphertext successfully decrypted
+[09:30:52] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #40 from Alice at 09:30:49  >>>
+[09:30:54] [Bob] Encrypted packet received from 'Alice'
+[09:30:54] [Bob] Ciphertext length: 88
+[09:30:54] [Bob] Nonce received
+[09:30:54] [Bob] Authentication tag received
+[09:30:54] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:54] [Bob] AES-GCM authentication successful
+[09:30:54] [Bob] Ciphertext successfully decrypted
+[09:30:54] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #41 from Alice at 09:30:54  >>>
+[09:30:57] [Bob] Encrypting message for 'Alice'
+[09:30:57] [Bob] Plaintext length: 42 bytes
+[09:30:57] [Bob] AES-GCM encryption successful
+[09:30:57] [Bob] Ciphertext length: 84
+[09:30:57] [Bob] Nonce generated
+[09:30:57] [Bob] Authentication tag generated
+[09:30:57] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:30:57] [Bob] Encrypted packet successfully stored on relay
+[09:30:57] [Bob] Encrypted packet received from 'Alice'
+[09:30:57] [Bob] Ciphertext length: 88
+[09:30:57] [Bob] Nonce received
+[09:30:57] [Bob] Authentication tag received
+[09:30:57] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:57] [Bob] AES-GCM authentication successful
+[09:30:57] [Bob] Ciphertext successfully decrypted
+[09:30:57] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #41 from Alice at 09:30:54  >>>
+[09:30:59] [Bob] Encrypted packet received from 'Alice'
+[09:30:59] [Bob] Ciphertext length: 88
+[09:30:59] [Bob] Nonce received
+[09:30:59] [Bob] Authentication tag received
+[09:30:59] [Bob] Attempting AES-GCM authentication and decryption
+[09:30:59] [Bob] AES-GCM authentication successful
+[09:30:59] [Bob] Ciphertext successfully decrypted
+[09:30:59] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #42 from Alice at 09:30:59  >>>
+[09:31:02] [Bob] Encrypting message for 'Alice'
+[09:31:02] [Bob] Plaintext length: 42 bytes
+[09:31:02] [Bob] AES-GCM encryption successful
+[09:31:02] [Bob] Ciphertext length: 84
+[09:31:02] [Bob] Nonce generated
+[09:31:02] [Bob] Authentication tag generated
+[09:31:02] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:02] [Bob] Encrypted packet successfully stored on relay
+[09:31:02] [Bob] Encrypted packet received from 'Alice'
+[09:31:02] [Bob] Ciphertext length: 88
+[09:31:02] [Bob] Nonce received
+[09:31:02] [Bob] Authentication tag received
+[09:31:02] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:02] [Bob] AES-GCM authentication successful
+[09:31:02] [Bob] Ciphertext successfully decrypted
+[09:31:02] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #42 from Alice at 09:30:59  >>>
+[09:31:04] [Bob] Encrypted packet received from 'Alice'
+[09:31:04] [Bob] Ciphertext length: 88
+[09:31:04] [Bob] Nonce received
+[09:31:04] [Bob] Authentication tag received
+[09:31:04] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:04] [Bob] AES-GCM authentication successful
+[09:31:04] [Bob] Ciphertext successfully decrypted
+[09:31:04] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #43 from Alice at 09:31:04  >>>
+[09:31:07] [Bob] Encrypting message for 'Alice'
+[09:31:07] [Bob] Plaintext length: 42 bytes
+[09:31:07] [Bob] AES-GCM encryption successful
+[09:31:07] [Bob] Ciphertext length: 84
+[09:31:07] [Bob] Nonce generated
+[09:31:07] [Bob] Authentication tag generated
+[09:31:07] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:07] [Bob] Encrypted packet successfully stored on relay
+[09:31:07] [Bob] Encrypted packet received from 'Alice'
+[09:31:07] [Bob] Ciphertext length: 88
+[09:31:07] [Bob] Nonce received
+[09:31:07] [Bob] Authentication tag received
+[09:31:07] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:07] [Bob] AES-GCM authentication successful
+[09:31:07] [Bob] Ciphertext successfully decrypted
+[09:31:07] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #43 from Alice at 09:31:04  >>>
+[09:31:09] [Bob] Encrypted packet received from 'Alice'
+[09:31:09] [Bob] Ciphertext length: 88
+[09:31:09] [Bob] Nonce received
+[09:31:09] [Bob] Authentication tag received
+[09:31:09] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:09] [Bob] AES-GCM authentication successful
+[09:31:09] [Bob] Ciphertext successfully decrypted
+[09:31:09] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #44 from Alice at 09:31:09  >>>
+[09:31:12] [Bob] Encrypting message for 'Alice'
+[09:31:12] [Bob] Plaintext length: 42 bytes
+[09:31:12] [Bob] AES-GCM encryption successful
+[09:31:12] [Bob] Ciphertext length: 84
+[09:31:12] [Bob] Nonce generated
+[09:31:12] [Bob] Authentication tag generated
+[09:31:12] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:12] [Bob] Encrypted packet successfully stored on relay
+[09:31:12] [Bob] Encrypted packet received from 'Alice'
+[09:31:12] [Bob] Ciphertext length: 88
+[09:31:12] [Bob] Nonce received
+[09:31:12] [Bob] Authentication tag received
+[09:31:12] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:12] [Bob] AES-GCM authentication successful
+[09:31:12] [Bob] Ciphertext successfully decrypted
+[09:31:12] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #44 from Alice at 09:31:09  >>>
+[09:31:14] [Bob] Encrypted packet received from 'Alice'
+[09:31:14] [Bob] Ciphertext length: 88
+[09:31:14] [Bob] Nonce received
+[09:31:14] [Bob] Authentication tag received
+[09:31:14] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:14] [Bob] AES-GCM authentication successful
+[09:31:14] [Bob] Ciphertext successfully decrypted
+[09:31:14] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #45 from Alice at 09:31:14  >>>
+[09:31:17] [Bob] Encrypting message for 'Alice'
+[09:31:17] [Bob] Plaintext length: 42 bytes
+[09:31:17] [Bob] AES-GCM encryption successful
+[09:31:17] [Bob] Ciphertext length: 84
+[09:31:17] [Bob] Nonce generated
+[09:31:17] [Bob] Authentication tag generated
+[09:31:17] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:17] [Bob] Encrypted packet successfully stored on relay
+[09:31:17] [Bob] Encrypted packet received from 'Alice'
+[09:31:17] [Bob] Ciphertext length: 88
+[09:31:17] [Bob] Nonce received
+[09:31:17] [Bob] Authentication tag received
+[09:31:17] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:17] [Bob] AES-GCM authentication successful
+[09:31:17] [Bob] Ciphertext successfully decrypted
+[09:31:17] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #45 from Alice at 09:31:14  >>>
+[09:31:19] [Bob] Encrypted packet received from 'Alice'
+[09:31:19] [Bob] Ciphertext length: 88
+[09:31:19] [Bob] Nonce received
+[09:31:19] [Bob] Authentication tag received
+[09:31:19] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:19] [Bob] AES-GCM authentication successful
+[09:31:19] [Bob] Ciphertext successfully decrypted
+[09:31:19] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #46 from Alice at 09:31:19  >>>
+[09:31:22] [Bob] Encrypting message for 'Alice'
+[09:31:22] [Bob] Plaintext length: 42 bytes
+[09:31:22] [Bob] AES-GCM encryption successful
+[09:31:22] [Bob] Ciphertext length: 84
+[09:31:22] [Bob] Nonce generated
+[09:31:22] [Bob] Authentication tag generated
+[09:31:22] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:22] [Bob] Encrypted packet successfully stored on relay
+[09:31:22] [Bob] Encrypted packet received from 'Alice'
+[09:31:22] [Bob] Ciphertext length: 88
+[09:31:22] [Bob] Nonce received
+[09:31:22] [Bob] Authentication tag received
+[09:31:22] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:22] [Bob] AES-GCM authentication successful
+[09:31:22] [Bob] Ciphertext successfully decrypted
+[09:31:22] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #46 from Alice at 09:31:19  >>>
+[09:31:24] [Bob] Encrypted packet received from 'Alice'
+[09:31:24] [Bob] Ciphertext length: 88
+[09:31:24] [Bob] Nonce received
+[09:31:24] [Bob] Authentication tag received
+[09:31:24] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:24] [Bob] AES-GCM authentication successful
+[09:31:24] [Bob] Ciphertext successfully decrypted
+[09:31:24] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #47 from Alice at 09:31:24  >>>
+[09:31:27] [Bob] Encrypting message for 'Alice'
+[09:31:27] [Bob] Plaintext length: 42 bytes
+[09:31:27] [Bob] AES-GCM encryption successful
+[09:31:27] [Bob] Ciphertext length: 84
+[09:31:27] [Bob] Nonce generated
+[09:31:27] [Bob] Authentication tag generated
+[09:31:27] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:27] [Bob] Encrypted packet successfully stored on relay
+[09:31:27] [Bob] Encrypted packet received from 'Alice'
+[09:31:27] [Bob] Ciphertext length: 88
+[09:31:27] [Bob] Nonce received
+[09:31:27] [Bob] Authentication tag received
+[09:31:27] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:27] [Bob] AES-GCM authentication successful
+[09:31:27] [Bob] Ciphertext successfully decrypted
+[09:31:27] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #47 from Alice at 09:31:24  >>>
+[09:31:29] [Bob] Encrypted packet received from 'Alice'
+[09:31:29] [Bob] Ciphertext length: 88
+[09:31:29] [Bob] Nonce received
+[09:31:29] [Bob] Authentication tag received
+[09:31:29] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:29] [Bob] AES-GCM authentication successful
+[09:31:29] [Bob] Ciphertext successfully decrypted
+[09:31:29] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #48 from Alice at 09:31:29  >>>
+[09:31:32] [Bob] Encrypting message for 'Alice'
+[09:31:32] [Bob] Plaintext length: 42 bytes
+[09:31:32] [Bob] AES-GCM encryption successful
+[09:31:32] [Bob] Ciphertext length: 84
+[09:31:32] [Bob] Nonce generated
+[09:31:32] [Bob] Authentication tag generated
+[09:31:32] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:32] [Bob] Encrypted packet successfully stored on relay
+[09:31:32] [Bob] Encrypted packet received from 'Alice'
+[09:31:32] [Bob] Ciphertext length: 88
+[09:31:32] [Bob] Nonce received
+[09:31:32] [Bob] Authentication tag received
+[09:31:32] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:32] [Bob] AES-GCM authentication successful
+[09:31:32] [Bob] Ciphertext successfully decrypted
+[09:31:32] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #48 from Alice at 09:31:29  >>>
+[09:31:34] [Bob] Encrypted packet received from 'Alice'
+[09:31:34] [Bob] Ciphertext length: 88
+[09:31:34] [Bob] Nonce received
+[09:31:34] [Bob] Authentication tag received
+[09:31:34] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:34] [Bob] AES-GCM authentication successful
+[09:31:34] [Bob] Ciphertext successfully decrypted
+[09:31:34] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #49 from Alice at 09:31:34  >>>
+[09:31:37] [Bob] Encrypting message for 'Alice'
+[09:31:37] [Bob] Plaintext length: 42 bytes
+[09:31:37] [Bob] AES-GCM encryption successful
+[09:31:37] [Bob] Ciphertext length: 84
+[09:31:37] [Bob] Nonce generated
+[09:31:37] [Bob] Authentication tag generated
+[09:31:37] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:37] [Bob] Encrypted packet successfully stored on relay
+[09:31:37] [Bob] Encrypted packet received from 'Alice'
+[09:31:37] [Bob] Ciphertext length: 88
+[09:31:37] [Bob] Nonce received
+[09:31:37] [Bob] Authentication tag received
+[09:31:37] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:37] [Bob] AES-GCM authentication successful
+[09:31:37] [Bob] Ciphertext successfully decrypted
+[09:31:37] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #49 from Alice at 09:31:34  >>>
+[09:31:39] [Bob] Encrypted packet received from 'Alice'
+[09:31:39] [Bob] Ciphertext length: 88
+[09:31:39] [Bob] Nonce received
+[09:31:39] [Bob] Authentication tag received
+[09:31:39] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:39] [Bob] AES-GCM authentication successful
+[09:31:39] [Bob] Ciphertext successfully decrypted
+[09:31:39] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #50 from Alice at 09:31:39  >>>
+[09:31:42] [Bob] Encrypting message for 'Alice'
+[09:31:42] [Bob] Plaintext length: 42 bytes
+[09:31:42] [Bob] AES-GCM encryption successful
+[09:31:42] [Bob] Ciphertext length: 84
+[09:31:42] [Bob] Nonce generated
+[09:31:42] [Bob] Authentication tag generated
+[09:31:42] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:42] [Bob] Encrypted packet successfully stored on relay
+[09:31:42] [Bob] Encrypted packet received from 'Alice'
+[09:31:42] [Bob] Ciphertext length: 88
+[09:31:42] [Bob] Nonce received
+[09:31:42] [Bob] Authentication tag received
+[09:31:42] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:42] [Bob] AES-GCM authentication successful
+[09:31:42] [Bob] Ciphertext successfully decrypted
+[09:31:42] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #50 from Alice at 09:31:39  >>>
+[09:31:44] [Bob] Encrypted packet received from 'Alice'
+[09:31:44] [Bob] Ciphertext length: 88
+[09:31:44] [Bob] Nonce received
+[09:31:44] [Bob] Authentication tag received
+[09:31:44] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:44] [Bob] AES-GCM authentication successful
+[09:31:44] [Bob] Ciphertext successfully decrypted
+[09:31:44] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #51 from Alice at 09:31:44  >>>
+[09:31:47] [Bob] Encrypting message for 'Alice'
+[09:31:47] [Bob] Plaintext length: 42 bytes
+[09:31:47] [Bob] AES-GCM encryption successful
+[09:31:47] [Bob] Ciphertext length: 84
+[09:31:47] [Bob] Nonce generated
+[09:31:47] [Bob] Authentication tag generated
+[09:31:47] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:47] [Bob] Encrypted packet successfully stored on relay
+[09:31:47] [Bob] Encrypted packet received from 'Alice'
+[09:31:47] [Bob] Ciphertext length: 88
+[09:31:47] [Bob] Nonce received
+[09:31:47] [Bob] Authentication tag received
+[09:31:47] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:47] [Bob] AES-GCM authentication successful
+[09:31:47] [Bob] Ciphertext successfully decrypted
+[09:31:48] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #51 from Alice at 09:31:44  >>>
+[09:31:49] [Bob] Encrypted packet received from 'Alice'
+[09:31:49] [Bob] Ciphertext length: 88
+[09:31:49] [Bob] Nonce received
+[09:31:49] [Bob] Authentication tag received
+[09:31:49] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:49] [Bob] AES-GCM authentication successful
+[09:31:49] [Bob] Ciphertext successfully decrypted
+[09:31:49] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #52 from Alice at 09:31:49  >>>
+[09:31:53] [Bob] Encrypting message for 'Alice'
+[09:31:53] [Bob] Plaintext length: 42 bytes
+[09:31:53] [Bob] AES-GCM encryption successful
+[09:31:53] [Bob] Ciphertext length: 84
+[09:31:53] [Bob] Nonce generated
+[09:31:53] [Bob] Authentication tag generated
+[09:31:53] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:53] [Bob] Encrypted packet successfully stored on relay
+[09:31:53] [Bob] Encrypted packet received from 'Alice'
+[09:31:53] [Bob] Ciphertext length: 88
+[09:31:53] [Bob] Nonce received
+[09:31:53] [Bob] Authentication tag received
+[09:31:53] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:53] [Bob] AES-GCM authentication successful
+[09:31:53] [Bob] Ciphertext successfully decrypted
+[09:31:53] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #52 from Alice at 09:31:49  >>>
+[09:31:54] [Bob] Encrypted packet received from 'Alice'
+[09:31:54] [Bob] Ciphertext length: 88
+[09:31:54] [Bob] Nonce received
+[09:31:54] [Bob] Authentication tag received
+[09:31:54] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:54] [Bob] AES-GCM authentication successful
+[09:31:54] [Bob] Ciphertext successfully decrypted
+[09:31:54] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #53 from Alice at 09:31:54  >>>
+[09:31:58] [Bob] Encrypting message for 'Alice'
+[09:31:58] [Bob] Plaintext length: 42 bytes
+[09:31:58] [Bob] AES-GCM encryption successful
+[09:31:58] [Bob] Ciphertext length: 84
+[09:31:58] [Bob] Nonce generated
+[09:31:58] [Bob] Authentication tag generated
+[09:31:58] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:31:58] [Bob] Encrypted packet successfully stored on relay
+[09:31:58] [Bob] Encrypted packet received from 'Alice'
+[09:31:58] [Bob] Ciphertext length: 88
+[09:31:58] [Bob] Nonce received
+[09:31:58] [Bob] Authentication tag received
+[09:31:58] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:58] [Bob] AES-GCM authentication successful
+[09:31:58] [Bob] Ciphertext successfully decrypted
+[09:31:58] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #53 from Alice at 09:31:54  >>>
+[09:31:59] [Bob] Encrypted packet received from 'Alice'
+[09:31:59] [Bob] Ciphertext length: 88
+[09:31:59] [Bob] Nonce received
+[09:31:59] [Bob] Authentication tag received
+[09:31:59] [Bob] Attempting AES-GCM authentication and decryption
+[09:31:59] [Bob] AES-GCM authentication successful
+[09:31:59] [Bob] Ciphertext successfully decrypted
+[09:31:59] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #54 from Alice at 09:31:59  >>>
+[09:32:03] [Bob] Encrypting message for 'Alice'
+[09:32:03] [Bob] Plaintext length: 42 bytes
+[09:32:03] [Bob] AES-GCM encryption successful
+[09:32:03] [Bob] Ciphertext length: 84
+[09:32:03] [Bob] Nonce generated
+[09:32:03] [Bob] Authentication tag generated
+[09:32:03] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:03] [Bob] Encrypted packet successfully stored on relay
+[09:32:03] [Bob] Encrypted packet received from 'Alice'
+[09:32:03] [Bob] Ciphertext length: 88
+[09:32:03] [Bob] Nonce received
+[09:32:03] [Bob] Authentication tag received
+[09:32:03] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:03] [Bob] AES-GCM authentication successful
+[09:32:03] [Bob] Ciphertext successfully decrypted
+[09:32:03] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #54 from Alice at 09:31:59  >>>
+[09:32:04] [Bob] Encrypted packet received from 'Alice'
+[09:32:04] [Bob] Ciphertext length: 88
+[09:32:04] [Bob] Nonce received
+[09:32:04] [Bob] Authentication tag received
+[09:32:04] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:04] [Bob] AES-GCM authentication successful
+[09:32:04] [Bob] Ciphertext successfully decrypted
+[09:32:04] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #55 from Alice at 09:32:04  >>>
+[09:32:08] [Bob] Encrypting message for 'Alice'
+[09:32:08] [Bob] Plaintext length: 42 bytes
+[09:32:08] [Bob] AES-GCM encryption successful
+[09:32:08] [Bob] Ciphertext length: 84
+[09:32:08] [Bob] Nonce generated
+[09:32:08] [Bob] Authentication tag generated
+[09:32:08] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:08] [Bob] Encrypted packet successfully stored on relay
+[09:32:08] [Bob] Encrypted packet received from 'Alice'
+[09:32:08] [Bob] Ciphertext length: 88
+[09:32:08] [Bob] Nonce received
+[09:32:08] [Bob] Authentication tag received
+[09:32:08] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:08] [Bob] AES-GCM authentication successful
+[09:32:08] [Bob] Ciphertext successfully decrypted
+[09:32:08] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #55 from Alice at 09:32:04  >>>
+[09:32:09] [Bob] Encrypted packet received from 'Alice'
+[09:32:09] [Bob] Ciphertext length: 88
+[09:32:09] [Bob] Nonce received
+[09:32:09] [Bob] Authentication tag received
+[09:32:09] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:09] [Bob] AES-GCM authentication successful
+[09:32:09] [Bob] Ciphertext successfully decrypted
+[09:32:09] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #56 from Alice at 09:32:09  >>>
+[09:32:13] [Bob] Encrypting message for 'Alice'
+[09:32:13] [Bob] Plaintext length: 42 bytes
+[09:32:13] [Bob] AES-GCM encryption successful
+[09:32:13] [Bob] Ciphertext length: 84
+[09:32:13] [Bob] Nonce generated
+[09:32:13] [Bob] Authentication tag generated
+[09:32:13] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:13] [Bob] Encrypted packet successfully stored on relay
+[09:32:13] [Bob] Encrypted packet received from 'Alice'
+[09:32:13] [Bob] Ciphertext length: 88
+[09:32:13] [Bob] Nonce received
+[09:32:13] [Bob] Authentication tag received
+[09:32:13] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:13] [Bob] AES-GCM authentication successful
+[09:32:13] [Bob] Ciphertext successfully decrypted
+[09:32:13] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #56 from Alice at 09:32:09  >>>
+[09:32:14] [Bob] Encrypted packet received from 'Alice'
+[09:32:14] [Bob] Ciphertext length: 88
+[09:32:14] [Bob] Nonce received
+[09:32:14] [Bob] Authentication tag received
+[09:32:14] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:14] [Bob] AES-GCM authentication successful
+[09:32:14] [Bob] Ciphertext successfully decrypted
+[09:32:14] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #57 from Alice at 09:32:14  >>>
+[09:32:18] [Bob] Encrypting message for 'Alice'
+[09:32:18] [Bob] Plaintext length: 42 bytes
+[09:32:18] [Bob] AES-GCM encryption successful
+[09:32:18] [Bob] Ciphertext length: 84
+[09:32:18] [Bob] Nonce generated
+[09:32:18] [Bob] Authentication tag generated
+[09:32:18] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:18] [Bob] Encrypted packet successfully stored on relay
+[09:32:18] [Bob] Encrypted packet received from 'Alice'
+[09:32:18] [Bob] Ciphertext length: 88
+[09:32:18] [Bob] Nonce received
+[09:32:18] [Bob] Authentication tag received
+[09:32:18] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:18] [Bob] AES-GCM authentication successful
+[09:32:18] [Bob] Ciphertext successfully decrypted
+[09:32:18] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #57 from Alice at 09:32:14  >>>
+[09:32:19] [Bob] Encrypted packet received from 'Alice'
+[09:32:19] [Bob] Ciphertext length: 88
+[09:32:19] [Bob] Nonce received
+[09:32:19] [Bob] Authentication tag received
+[09:32:19] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:19] [Bob] AES-GCM authentication successful
+[09:32:19] [Bob] Ciphertext successfully decrypted
+[09:32:19] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #58 from Alice at 09:32:19  >>>
+[09:32:23] [Bob] Encrypting message for 'Alice'
+[09:32:23] [Bob] Plaintext length: 42 bytes
+[09:32:23] [Bob] AES-GCM encryption successful
+[09:32:23] [Bob] Ciphertext length: 84
+[09:32:23] [Bob] Nonce generated
+[09:32:23] [Bob] Authentication tag generated
+[09:32:23] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:23] [Bob] Encrypted packet successfully stored on relay
+[09:32:23] [Bob] Encrypted packet received from 'Alice'
+[09:32:23] [Bob] Ciphertext length: 88
+[09:32:23] [Bob] Nonce received
+[09:32:23] [Bob] Authentication tag received
+[09:32:23] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:23] [Bob] AES-GCM authentication successful
+[09:32:23] [Bob] Ciphertext successfully decrypted
+[09:32:23] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #58 from Alice at 09:32:19  >>>
+[09:32:24] [Bob] Encrypted packet received from 'Alice'
+[09:32:24] [Bob] Ciphertext length: 88
+[09:32:24] [Bob] Nonce received
+[09:32:24] [Bob] Authentication tag received
+[09:32:24] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:24] [Bob] AES-GCM authentication successful
+[09:32:24] [Bob] Ciphertext successfully decrypted
+[09:32:24] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #59 from Alice at 09:32:24  >>>
+[09:32:28] [Bob] Encrypting message for 'Alice'
+[09:32:28] [Bob] Plaintext length: 42 bytes
+[09:32:28] [Bob] AES-GCM encryption successful
+[09:32:28] [Bob] Ciphertext length: 84
+[09:32:28] [Bob] Nonce generated
+[09:32:28] [Bob] Authentication tag generated
+[09:32:28] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:28] [Bob] Encrypted packet successfully stored on relay
+[09:32:28] [Bob] Encrypted packet received from 'Alice'
+[09:32:28] [Bob] Ciphertext length: 88
+[09:32:28] [Bob] Nonce received
+[09:32:28] [Bob] Authentication tag received
+[09:32:28] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:28] [Bob] AES-GCM authentication successful
+[09:32:28] [Bob] Ciphertext successfully decrypted
+[09:32:28] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #59 from Alice at 09:32:24  >>>
+[09:32:29] [Bob] Encrypted packet received from 'Alice'
+[09:32:29] [Bob] Ciphertext length: 88
+[09:32:29] [Bob] Nonce received
+[09:32:29] [Bob] Authentication tag received
+[09:32:29] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:29] [Bob] AES-GCM authentication successful
+[09:32:29] [Bob] Ciphertext successfully decrypted
+[09:32:29] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #60 from Alice at 09:32:29  >>>
+[09:32:33] [Bob] Encrypting message for 'Alice'
+[09:32:33] [Bob] Plaintext length: 42 bytes
+[09:32:33] [Bob] AES-GCM encryption successful
+[09:32:33] [Bob] Ciphertext length: 84
+[09:32:33] [Bob] Nonce generated
+[09:32:33] [Bob] Authentication tag generated
+[09:32:33] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:33] [Bob] Encrypted packet successfully stored on relay
+[09:32:33] [Bob] Encrypted packet received from 'Alice'
+[09:32:33] [Bob] Ciphertext length: 88
+[09:32:33] [Bob] Nonce received
+[09:32:33] [Bob] Authentication tag received
+[09:32:33] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:33] [Bob] AES-GCM authentication successful
+[09:32:33] [Bob] Ciphertext successfully decrypted
+[09:32:33] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #60 from Alice at 09:32:29  >>>
+[09:32:34] [Bob] Encrypted packet received from 'Alice'
+[09:32:34] [Bob] Ciphertext length: 88
+[09:32:34] [Bob] Nonce received
+[09:32:34] [Bob] Authentication tag received
+[09:32:34] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:34] [Bob] AES-GCM authentication successful
+[09:32:34] [Bob] Ciphertext successfully decrypted
+[09:32:34] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #61 from Alice at 09:32:34  >>>
+[09:32:38] [Bob] Encrypting message for 'Alice'
+[09:32:38] [Bob] Plaintext length: 42 bytes
+[09:32:38] [Bob] AES-GCM encryption successful
+[09:32:38] [Bob] Ciphertext length: 84
+[09:32:38] [Bob] Nonce generated
+[09:32:38] [Bob] Authentication tag generated
+[09:32:38] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:38] [Bob] Encrypted packet successfully stored on relay
+[09:32:38] [Bob] Encrypted packet received from 'Alice'
+[09:32:38] [Bob] Ciphertext length: 88
+[09:32:38] [Bob] Nonce received
+[09:32:38] [Bob] Authentication tag received
+[09:32:38] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:38] [Bob] AES-GCM authentication successful
+[09:32:38] [Bob] Ciphertext successfully decrypted
+[09:32:38] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #61 from Alice at 09:32:34  >>>
+[09:32:39] [Bob] Encrypted packet received from 'Alice'
+[09:32:39] [Bob] Ciphertext length: 88
+[09:32:39] [Bob] Nonce received
+[09:32:39] [Bob] Authentication tag received
+[09:32:39] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:39] [Bob] AES-GCM authentication successful
+[09:32:39] [Bob] Ciphertext successfully decrypted
+[09:32:39] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #62 from Alice at 09:32:39  >>>
+[09:32:43] [Bob] Encrypting message for 'Alice'
+[09:32:43] [Bob] Plaintext length: 42 bytes
+[09:32:43] [Bob] AES-GCM encryption successful
+[09:32:43] [Bob] Ciphertext length: 84
+[09:32:43] [Bob] Nonce generated
+[09:32:43] [Bob] Authentication tag generated
+[09:32:43] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:43] [Bob] Encrypted packet successfully stored on relay
+[09:32:43] [Bob] Encrypted packet received from 'Alice'
+[09:32:43] [Bob] Ciphertext length: 88
+[09:32:43] [Bob] Nonce received
+[09:32:43] [Bob] Authentication tag received
+[09:32:43] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:43] [Bob] AES-GCM authentication successful
+[09:32:43] [Bob] Ciphertext successfully decrypted
+[09:32:43] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #62 from Alice at 09:32:39  >>>
+[09:32:44] [Bob] Encrypted packet received from 'Alice'
+[09:32:44] [Bob] Ciphertext length: 88
+[09:32:44] [Bob] Nonce received
+[09:32:44] [Bob] Authentication tag received
+[09:32:44] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:44] [Bob] AES-GCM authentication successful
+[09:32:44] [Bob] Ciphertext successfully decrypted
+[09:32:44] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #63 from Alice at 09:32:44  >>>
+[09:32:48] [Bob] Encrypting message for 'Alice'
+[09:32:48] [Bob] Plaintext length: 42 bytes
+[09:32:48] [Bob] AES-GCM encryption successful
+[09:32:48] [Bob] Ciphertext length: 84
+[09:32:48] [Bob] Nonce generated
+[09:32:48] [Bob] Authentication tag generated
+[09:32:48] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:48] [Bob] Encrypted packet successfully stored on relay
+[09:32:48] [Bob] Encrypted packet received from 'Alice'
+[09:32:48] [Bob] Ciphertext length: 88
+[09:32:48] [Bob] Nonce received
+[09:32:48] [Bob] Authentication tag received
+[09:32:48] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:48] [Bob] AES-GCM authentication successful
+[09:32:48] [Bob] Ciphertext successfully decrypted
+[09:32:48] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #63 from Alice at 09:32:44  >>>
+[09:32:49] [Bob] Encrypted packet received from 'Alice'
+[09:32:49] [Bob] Ciphertext length: 88
+[09:32:49] [Bob] Nonce received
+[09:32:49] [Bob] Authentication tag received
+[09:32:49] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:49] [Bob] AES-GCM authentication successful
+[09:32:49] [Bob] Ciphertext successfully decrypted
+[09:32:49] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #64 from Alice at 09:32:49  >>>
+[09:32:53] [Bob] Encrypting message for 'Alice'
+[09:32:53] [Bob] Plaintext length: 42 bytes
+[09:32:53] [Bob] AES-GCM encryption successful
+[09:32:53] [Bob] Ciphertext length: 84
+[09:32:53] [Bob] Nonce generated
+[09:32:53] [Bob] Authentication tag generated
+[09:32:53] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:53] [Bob] Encrypted packet successfully stored on relay
+[09:32:53] [Bob] Encrypted packet received from 'Alice'
+[09:32:53] [Bob] Ciphertext length: 88
+[09:32:53] [Bob] Nonce received
+[09:32:53] [Bob] Authentication tag received
+[09:32:53] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:53] [Bob] AES-GCM authentication successful
+[09:32:53] [Bob] Ciphertext successfully decrypted
+[09:32:53] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #64 from Alice at 09:32:49  >>>
+[09:32:54] [Bob] Encrypted packet received from 'Alice'
+[09:32:54] [Bob] Ciphertext length: 88
+[09:32:54] [Bob] Nonce received
+[09:32:54] [Bob] Authentication tag received
+[09:32:54] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:54] [Bob] AES-GCM authentication successful
+[09:32:54] [Bob] Ciphertext successfully decrypted
+[09:32:54] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #65 from Alice at 09:32:54  >>>
+[09:32:58] [Bob] Encrypting message for 'Alice'
+[09:32:58] [Bob] Plaintext length: 42 bytes
+[09:32:58] [Bob] AES-GCM encryption successful
+[09:32:58] [Bob] Ciphertext length: 84
+[09:32:58] [Bob] Nonce generated
+[09:32:58] [Bob] Authentication tag generated
+[09:32:58] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:32:58] [Bob] Encrypted packet successfully stored on relay
+[09:32:58] [Bob] Encrypted packet received from 'Alice'
+[09:32:58] [Bob] Ciphertext length: 88
+[09:32:58] [Bob] Nonce received
+[09:32:58] [Bob] Authentication tag received
+[09:32:58] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:58] [Bob] AES-GCM authentication successful
+[09:32:58] [Bob] Ciphertext successfully decrypted
+[09:32:58] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #65 from Alice at 09:32:54  >>>
+[09:32:59] [Bob] Encrypted packet received from 'Alice'
+[09:32:59] [Bob] Ciphertext length: 88
+[09:32:59] [Bob] Nonce received
+[09:32:59] [Bob] Authentication tag received
+[09:32:59] [Bob] Attempting AES-GCM authentication and decryption
+[09:32:59] [Bob] AES-GCM authentication successful
+[09:32:59] [Bob] Ciphertext successfully decrypted
+[09:32:59] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #66 from Alice at 09:32:59  >>>
+[09:33:03] [Bob] Encrypting message for 'Alice'
+[09:33:03] [Bob] Plaintext length: 42 bytes
+[09:33:03] [Bob] AES-GCM encryption successful
+[09:33:03] [Bob] Ciphertext length: 84
+[09:33:03] [Bob] Nonce generated
+[09:33:03] [Bob] Authentication tag generated
+[09:33:03] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:03] [Bob] Encrypted packet successfully stored on relay
+[09:33:03] [Bob] Encrypted packet received from 'Alice'
+[09:33:03] [Bob] Ciphertext length: 88
+[09:33:03] [Bob] Nonce received
+[09:33:03] [Bob] Authentication tag received
+[09:33:03] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:03] [Bob] AES-GCM authentication successful
+[09:33:03] [Bob] Ciphertext successfully decrypted
+[09:33:03] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #66 from Alice at 09:32:59  >>>
+[09:33:05] [Bob] Encrypted packet received from 'Alice'
+[09:33:05] [Bob] Ciphertext length: 88
+[09:33:05] [Bob] Nonce received
+[09:33:05] [Bob] Authentication tag received
+[09:33:05] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:05] [Bob] AES-GCM authentication successful
+[09:33:05] [Bob] Ciphertext successfully decrypted
+[09:33:05] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #67 from Alice at 09:33:04  >>>
+[09:33:08] [Bob] Encrypting message for 'Alice'
+[09:33:08] [Bob] Plaintext length: 42 bytes
+[09:33:08] [Bob] AES-GCM encryption successful
+[09:33:08] [Bob] Ciphertext length: 84
+[09:33:08] [Bob] Nonce generated
+[09:33:08] [Bob] Authentication tag generated
+[09:33:08] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:08] [Bob] Encrypted packet successfully stored on relay
+[09:33:08] [Bob] Encrypted packet received from 'Alice'
+[09:33:08] [Bob] Ciphertext length: 88
+[09:33:08] [Bob] Nonce received
+[09:33:08] [Bob] Authentication tag received
+[09:33:08] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:08] [Bob] AES-GCM authentication successful
+[09:33:08] [Bob] Ciphertext successfully decrypted
+[09:33:08] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #67 from Alice at 09:33:04  >>>
+[09:33:10] [Bob] Encrypted packet received from 'Alice'
+[09:33:10] [Bob] Ciphertext length: 88
+[09:33:10] [Bob] Nonce received
+[09:33:10] [Bob] Authentication tag received
+[09:33:10] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:10] [Bob] AES-GCM authentication successful
+[09:33:10] [Bob] Ciphertext successfully decrypted
+[09:33:10] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #68 from Alice at 09:33:10  >>>
+[09:33:13] [Bob] Encrypting message for 'Alice'
+[09:33:13] [Bob] Plaintext length: 42 bytes
+[09:33:13] [Bob] AES-GCM encryption successful
+[09:33:13] [Bob] Ciphertext length: 84
+[09:33:13] [Bob] Nonce generated
+[09:33:13] [Bob] Authentication tag generated
+[09:33:13] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:13] [Bob] Encrypted packet successfully stored on relay
+[09:33:13] [Bob] Encrypted packet received from 'Alice'
+[09:33:13] [Bob] Ciphertext length: 88
+[09:33:13] [Bob] Nonce received
+[09:33:13] [Bob] Authentication tag received
+[09:33:13] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:13] [Bob] AES-GCM authentication successful
+[09:33:13] [Bob] Ciphertext successfully decrypted
+[09:33:13] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #68 from Alice at 09:33:10  >>>
+[09:33:15] [Bob] Encrypted packet received from 'Alice'
+[09:33:15] [Bob] Ciphertext length: 88
+[09:33:15] [Bob] Nonce received
+[09:33:15] [Bob] Authentication tag received
+[09:33:15] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:15] [Bob] AES-GCM authentication successful
+[09:33:15] [Bob] Ciphertext successfully decrypted
+[09:33:15] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #69 from Alice at 09:33:15  >>>
+[09:33:18] [Bob] Encrypting message for 'Alice'
+[09:33:18] [Bob] Plaintext length: 42 bytes
+[09:33:18] [Bob] AES-GCM encryption successful
+[09:33:18] [Bob] Ciphertext length: 84
+[09:33:18] [Bob] Nonce generated
+[09:33:18] [Bob] Authentication tag generated
+[09:33:18] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:18] [Bob] Encrypted packet successfully stored on relay
+[09:33:18] [Bob] Encrypted packet received from 'Alice'
+[09:33:18] [Bob] Ciphertext length: 88
+[09:33:18] [Bob] Nonce received
+[09:33:18] [Bob] Authentication tag received
+[09:33:18] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:18] [Bob] AES-GCM authentication successful
+[09:33:18] [Bob] Ciphertext successfully decrypted
+[09:33:18] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #69 from Alice at 09:33:15  >>>
+[09:33:20] [Bob] Encrypted packet received from 'Alice'
+[09:33:20] [Bob] Ciphertext length: 88
+[09:33:20] [Bob] Nonce received
+[09:33:20] [Bob] Authentication tag received
+[09:33:20] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:20] [Bob] AES-GCM authentication successful
+[09:33:20] [Bob] Ciphertext successfully decrypted
+[09:33:20] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #70 from Alice at 09:33:20  >>>
+[09:33:23] [Bob] Encrypting message for 'Alice'
+[09:33:23] [Bob] Plaintext length: 42 bytes
+[09:33:23] [Bob] AES-GCM encryption successful
+[09:33:23] [Bob] Ciphertext length: 84
+[09:33:23] [Bob] Nonce generated
+[09:33:23] [Bob] Authentication tag generated
+[09:33:23] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:23] [Bob] Encrypted packet successfully stored on relay
+[09:33:23] [Bob] Encrypted packet received from 'Alice'
+[09:33:23] [Bob] Ciphertext length: 88
+[09:33:23] [Bob] Nonce received
+[09:33:23] [Bob] Authentication tag received
+[09:33:23] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:23] [Bob] AES-GCM authentication successful
+[09:33:23] [Bob] Ciphertext successfully decrypted
+[09:33:23] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #70 from Alice at 09:33:20  >>>
+[09:33:25] [Bob] Encrypted packet received from 'Alice'
+[09:33:25] [Bob] Ciphertext length: 88
+[09:33:25] [Bob] Nonce received
+[09:33:25] [Bob] Authentication tag received
+[09:33:25] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:25] [Bob] AES-GCM authentication successful
+[09:33:25] [Bob] Ciphertext successfully decrypted
+[09:33:25] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #71 from Alice at 09:33:25  >>>
+[09:33:28] [Bob] Encrypting message for 'Alice'
+[09:33:28] [Bob] Plaintext length: 42 bytes
+[09:33:28] [Bob] AES-GCM encryption successful
+[09:33:28] [Bob] Ciphertext length: 84
+[09:33:28] [Bob] Nonce generated
+[09:33:28] [Bob] Authentication tag generated
+[09:33:28] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:28] [Bob] Encrypted packet successfully stored on relay
+[09:33:28] [Bob] Encrypted packet received from 'Alice'
+[09:33:28] [Bob] Ciphertext length: 88
+[09:33:28] [Bob] Nonce received
+[09:33:28] [Bob] Authentication tag received
+[09:33:28] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:28] [Bob] AES-GCM authentication successful
+[09:33:28] [Bob] Ciphertext successfully decrypted
+[09:33:28] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #71 from Alice at 09:33:25  >>>
+[09:33:30] [Bob] Encrypted packet received from 'Alice'
+[09:33:30] [Bob] Ciphertext length: 88
+[09:33:30] [Bob] Nonce received
+[09:33:30] [Bob] Authentication tag received
+[09:33:30] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:30] [Bob] AES-GCM authentication successful
+[09:33:30] [Bob] Ciphertext successfully decrypted
+[09:33:30] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #72 from Alice at 09:33:30  >>>
+[09:33:33] [Bob] Encrypting message for 'Alice'
+[09:33:33] [Bob] Plaintext length: 42 bytes
+[09:33:33] [Bob] AES-GCM encryption successful
+[09:33:33] [Bob] Ciphertext length: 84
+[09:33:33] [Bob] Nonce generated
+[09:33:33] [Bob] Authentication tag generated
+[09:33:33] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:33] [Bob] Encrypted packet successfully stored on relay
+[09:33:33] [Bob] Encrypted packet received from 'Alice'
+[09:33:33] [Bob] Ciphertext length: 88
+[09:33:33] [Bob] Nonce received
+[09:33:33] [Bob] Authentication tag received
+[09:33:33] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:33] [Bob] AES-GCM authentication successful
+[09:33:33] [Bob] Ciphertext successfully decrypted
+[09:33:33] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #72 from Alice at 09:33:30  >>>
+[09:33:35] [Bob] Encrypted packet received from 'Alice'
+[09:33:35] [Bob] Ciphertext length: 88
+[09:33:35] [Bob] Nonce received
+[09:33:35] [Bob] Authentication tag received
+[09:33:35] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:35] [Bob] AES-GCM authentication successful
+[09:33:35] [Bob] Ciphertext successfully decrypted
+[09:33:35] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #73 from Alice at 09:33:35  >>>
+[09:33:38] [Bob] Encrypting message for 'Alice'
+[09:33:38] [Bob] Plaintext length: 42 bytes
+[09:33:38] [Bob] AES-GCM encryption successful
+[09:33:38] [Bob] Ciphertext length: 84
+[09:33:38] [Bob] Nonce generated
+[09:33:38] [Bob] Authentication tag generated
+[09:33:38] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:38] [Bob] Encrypted packet successfully stored on relay
+[09:33:38] [Bob] Encrypted packet received from 'Alice'
+[09:33:38] [Bob] Ciphertext length: 88
+[09:33:38] [Bob] Nonce received
+[09:33:38] [Bob] Authentication tag received
+[09:33:38] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:38] [Bob] AES-GCM authentication successful
+[09:33:38] [Bob] Ciphertext successfully decrypted
+[09:33:38] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #73 from Alice at 09:33:35  >>>
+[09:33:40] [Bob] Encrypted packet received from 'Alice'
+[09:33:40] [Bob] Ciphertext length: 88
+[09:33:40] [Bob] Nonce received
+[09:33:40] [Bob] Authentication tag received
+[09:33:40] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:40] [Bob] AES-GCM authentication successful
+[09:33:40] [Bob] Ciphertext successfully decrypted
+[09:33:40] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #74 from Alice at 09:33:40  >>>
+[09:33:43] [Bob] Encrypting message for 'Alice'
+[09:33:43] [Bob] Plaintext length: 42 bytes
+[09:33:43] [Bob] AES-GCM encryption successful
+[09:33:43] [Bob] Ciphertext length: 84
+[09:33:43] [Bob] Nonce generated
+[09:33:43] [Bob] Authentication tag generated
+[09:33:43] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:43] [Bob] Encrypted packet successfully stored on relay
+[09:33:43] [Bob] Encrypted packet received from 'Alice'
+[09:33:43] [Bob] Ciphertext length: 88
+[09:33:43] [Bob] Nonce received
+[09:33:43] [Bob] Authentication tag received
+[09:33:43] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:43] [Bob] AES-GCM authentication successful
+[09:33:43] [Bob] Ciphertext successfully decrypted
+[09:33:43] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #74 from Alice at 09:33:40  >>>
+[09:33:45] [Bob] Encrypted packet received from 'Alice'
+[09:33:45] [Bob] Ciphertext length: 88
+[09:33:45] [Bob] Nonce received
+[09:33:45] [Bob] Authentication tag received
+[09:33:45] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:45] [Bob] AES-GCM authentication successful
+[09:33:45] [Bob] Ciphertext successfully decrypted
+[09:33:45] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #75 from Alice at 09:33:45  >>>
+[09:33:48] [Bob] Encrypting message for 'Alice'
+[09:33:48] [Bob] Plaintext length: 42 bytes
+[09:33:48] [Bob] AES-GCM encryption successful
+[09:33:48] [Bob] Ciphertext length: 84
+[09:33:48] [Bob] Nonce generated
+[09:33:48] [Bob] Authentication tag generated
+[09:33:48] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:48] [Bob] Encrypted packet successfully stored on relay
+[09:33:48] [Bob] Encrypted packet received from 'Alice'
+[09:33:48] [Bob] Ciphertext length: 88
+[09:33:48] [Bob] Nonce received
+[09:33:48] [Bob] Authentication tag received
+[09:33:48] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:48] [Bob] AES-GCM authentication successful
+[09:33:48] [Bob] Ciphertext successfully decrypted
+[09:33:48] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #75 from Alice at 09:33:45  >>>
+[09:33:50] [Bob] Encrypted packet received from 'Alice'
+[09:33:50] [Bob] Ciphertext length: 88
+[09:33:50] [Bob] Nonce received
+[09:33:50] [Bob] Authentication tag received
+[09:33:50] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:50] [Bob] AES-GCM authentication successful
+[09:33:50] [Bob] Ciphertext successfully decrypted
+[09:33:50] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #76 from Alice at 09:33:50  >>>
+[09:33:53] [Bob] Encrypting message for 'Alice'
+[09:33:53] [Bob] Plaintext length: 42 bytes
+[09:33:53] [Bob] AES-GCM encryption successful
+[09:33:53] [Bob] Ciphertext length: 84
+[09:33:53] [Bob] Nonce generated
+[09:33:53] [Bob] Authentication tag generated
+[09:33:53] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:53] [Bob] Encrypted packet successfully stored on relay
+[09:33:53] [Bob] Encrypted packet received from 'Alice'
+[09:33:53] [Bob] Ciphertext length: 88
+[09:33:53] [Bob] Nonce received
+[09:33:53] [Bob] Authentication tag received
+[09:33:53] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:53] [Bob] AES-GCM authentication successful
+[09:33:53] [Bob] Ciphertext successfully decrypted
+[09:33:53] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #76 from Alice at 09:33:50  >>>
+[09:33:55] [Bob] Encrypted packet received from 'Alice'
+[09:33:55] [Bob] Ciphertext length: 88
+[09:33:55] [Bob] Nonce received
+[09:33:55] [Bob] Authentication tag received
+[09:33:55] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:55] [Bob] AES-GCM authentication successful
+[09:33:55] [Bob] Ciphertext successfully decrypted
+[09:33:55] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #77 from Alice at 09:33:55  >>>
+[09:33:58] [Bob] Encrypting message for 'Alice'
+[09:33:58] [Bob] Plaintext length: 42 bytes
+[09:33:58] [Bob] AES-GCM encryption successful
+[09:33:58] [Bob] Ciphertext length: 84
+[09:33:58] [Bob] Nonce generated
+[09:33:58] [Bob] Authentication tag generated
+[09:33:58] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:33:58] [Bob] Encrypted packet successfully stored on relay
+[09:33:58] [Bob] Encrypted packet received from 'Alice'
+[09:33:58] [Bob] Ciphertext length: 88
+[09:33:58] [Bob] Nonce received
+[09:33:58] [Bob] Authentication tag received
+[09:33:58] [Bob] Attempting AES-GCM authentication and decryption
+[09:33:58] [Bob] AES-GCM authentication successful
+[09:33:58] [Bob] Ciphertext successfully decrypted
+[09:33:58] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #77 from Alice at 09:33:55  >>>
+[09:34:00] [Bob] Encrypted packet received from 'Alice'
+[09:34:00] [Bob] Ciphertext length: 88
+[09:34:00] [Bob] Nonce received
+[09:34:00] [Bob] Authentication tag received
+[09:34:00] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:00] [Bob] AES-GCM authentication successful
+[09:34:00] [Bob] Ciphertext successfully decrypted
+[09:34:00] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #78 from Alice at 09:34:00  >>>
+[09:34:03] [Bob] Encrypting message for 'Alice'
+[09:34:03] [Bob] Plaintext length: 42 bytes
+[09:34:03] [Bob] AES-GCM encryption successful
+[09:34:03] [Bob] Ciphertext length: 84
+[09:34:03] [Bob] Nonce generated
+[09:34:03] [Bob] Authentication tag generated
+[09:34:03] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:03] [Bob] Encrypted packet successfully stored on relay
+[09:34:04] [Bob] Encrypted packet received from 'Alice'
+[09:34:04] [Bob] Ciphertext length: 88
+[09:34:04] [Bob] Nonce received
+[09:34:04] [Bob] Authentication tag received
+[09:34:04] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:04] [Bob] AES-GCM authentication successful
+[09:34:04] [Bob] Ciphertext successfully decrypted
+[09:34:04] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #78 from Alice at 09:34:00  >>>
+[09:34:05] [Bob] Encrypted packet received from 'Alice'
+[09:34:05] [Bob] Ciphertext length: 88
+[09:34:05] [Bob] Nonce received
+[09:34:05] [Bob] Authentication tag received
+[09:34:05] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:05] [Bob] AES-GCM authentication successful
+[09:34:05] [Bob] Ciphertext successfully decrypted
+[09:34:05] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #79 from Alice at 09:34:05  >>>
+[09:34:09] [Bob] Encrypting message for 'Alice'
+[09:34:09] [Bob] Plaintext length: 42 bytes
+[09:34:09] [Bob] AES-GCM encryption successful
+[09:34:09] [Bob] Ciphertext length: 84
+[09:34:09] [Bob] Nonce generated
+[09:34:09] [Bob] Authentication tag generated
+[09:34:09] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:09] [Bob] Encrypted packet successfully stored on relay
+[09:34:09] [Bob] Encrypted packet received from 'Alice'
+[09:34:09] [Bob] Ciphertext length: 88
+[09:34:09] [Bob] Nonce received
+[09:34:09] [Bob] Authentication tag received
+[09:34:09] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:09] [Bob] AES-GCM authentication successful
+[09:34:09] [Bob] Ciphertext successfully decrypted
+[09:34:09] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #79 from Alice at 09:34:05  >>>
+[09:34:10] [Bob] Encrypted packet received from 'Alice'
+[09:34:10] [Bob] Ciphertext length: 88
+[09:34:10] [Bob] Nonce received
+[09:34:10] [Bob] Authentication tag received
+[09:34:10] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:10] [Bob] AES-GCM authentication successful
+[09:34:10] [Bob] Ciphertext successfully decrypted
+[09:34:10] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #80 from Alice at 09:34:10  >>>
+[09:34:14] [Bob] Encrypting message for 'Alice'
+[09:34:14] [Bob] Plaintext length: 42 bytes
+[09:34:14] [Bob] AES-GCM encryption successful
+[09:34:14] [Bob] Ciphertext length: 84
+[09:34:14] [Bob] Nonce generated
+[09:34:14] [Bob] Authentication tag generated
+[09:34:14] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:14] [Bob] Encrypted packet successfully stored on relay
+[09:34:14] [Bob] Encrypted packet received from 'Alice'
+[09:34:14] [Bob] Ciphertext length: 88
+[09:34:14] [Bob] Nonce received
+[09:34:14] [Bob] Authentication tag received
+[09:34:14] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:14] [Bob] AES-GCM authentication successful
+[09:34:14] [Bob] Ciphertext successfully decrypted
+[09:34:14] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #80 from Alice at 09:34:10  >>>
+[09:34:15] [Bob] Encrypted packet received from 'Alice'
+[09:34:15] [Bob] Ciphertext length: 88
+[09:34:15] [Bob] Nonce received
+[09:34:15] [Bob] Authentication tag received
+[09:34:15] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:15] [Bob] AES-GCM authentication successful
+[09:34:15] [Bob] Ciphertext successfully decrypted
+[09:34:15] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #81 from Alice at 09:34:15  >>>
+[09:34:19] [Bob] Encrypting message for 'Alice'
+[09:34:19] [Bob] Plaintext length: 42 bytes
+[09:34:19] [Bob] AES-GCM encryption successful
+[09:34:19] [Bob] Ciphertext length: 84
+[09:34:19] [Bob] Nonce generated
+[09:34:19] [Bob] Authentication tag generated
+[09:34:19] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:19] [Bob] Encrypted packet successfully stored on relay
+[09:34:19] [Bob] Encrypted packet received from 'Alice'
+[09:34:19] [Bob] Ciphertext length: 88
+[09:34:19] [Bob] Nonce received
+[09:34:19] [Bob] Authentication tag received
+[09:34:19] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:19] [Bob] AES-GCM authentication successful
+[09:34:19] [Bob] Ciphertext successfully decrypted
+[09:34:19] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #81 from Alice at 09:34:15  >>>
+[09:34:20] [Bob] Encrypted packet received from 'Alice'
+[09:34:20] [Bob] Ciphertext length: 88
+[09:34:20] [Bob] Nonce received
+[09:34:20] [Bob] Authentication tag received
+[09:34:20] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:20] [Bob] AES-GCM authentication successful
+[09:34:20] [Bob] Ciphertext successfully decrypted
+[09:34:20] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #82 from Alice at 09:34:20  >>>
+[09:34:24] [Bob] Encrypting message for 'Alice'
+[09:34:24] [Bob] Plaintext length: 42 bytes
+[09:34:24] [Bob] AES-GCM encryption successful
+[09:34:24] [Bob] Ciphertext length: 84
+[09:34:24] [Bob] Nonce generated
+[09:34:24] [Bob] Authentication tag generated
+[09:34:24] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:24] [Bob] Encrypted packet successfully stored on relay
+[09:34:24] [Bob] Encrypted packet received from 'Alice'
+[09:34:24] [Bob] Ciphertext length: 88
+[09:34:24] [Bob] Nonce received
+[09:34:24] [Bob] Authentication tag received
+[09:34:24] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:24] [Bob] AES-GCM authentication successful
+[09:34:24] [Bob] Ciphertext successfully decrypted
+[09:34:24] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #82 from Alice at 09:34:20  >>>
+[09:34:25] [Bob] Encrypted packet received from 'Alice'
+[09:34:25] [Bob] Ciphertext length: 88
+[09:34:25] [Bob] Nonce received
+[09:34:25] [Bob] Authentication tag received
+[09:34:25] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:25] [Bob] AES-GCM authentication successful
+[09:34:25] [Bob] Ciphertext successfully decrypted
+[09:34:25] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #83 from Alice at 09:34:25  >>>
+[09:34:29] [Bob] Encrypting message for 'Alice'
+[09:34:29] [Bob] Plaintext length: 42 bytes
+[09:34:29] [Bob] AES-GCM encryption successful
+[09:34:29] [Bob] Ciphertext length: 84
+[09:34:29] [Bob] Nonce generated
+[09:34:29] [Bob] Authentication tag generated
+[09:34:29] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:29] [Bob] Encrypted packet successfully stored on relay
+[09:34:29] [Bob] Encrypted packet received from 'Alice'
+[09:34:29] [Bob] Ciphertext length: 88
+[09:34:29] [Bob] Nonce received
+[09:34:29] [Bob] Authentication tag received
+[09:34:29] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:29] [Bob] AES-GCM authentication successful
+[09:34:29] [Bob] Ciphertext successfully decrypted
+[09:34:29] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #83 from Alice at 09:34:25  >>>
+[09:34:30] [Bob] Encrypted packet received from 'Alice'
+[09:34:30] [Bob] Ciphertext length: 88
+[09:34:30] [Bob] Nonce received
+[09:34:30] [Bob] Authentication tag received
+[09:34:30] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:30] [Bob] AES-GCM authentication successful
+[09:34:30] [Bob] Ciphertext successfully decrypted
+[09:34:30] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #84 from Alice at 09:34:30  >>>
+[09:34:34] [Bob] Encrypting message for 'Alice'
+[09:34:34] [Bob] Plaintext length: 42 bytes
+[09:34:34] [Bob] AES-GCM encryption successful
+[09:34:34] [Bob] Ciphertext length: 84
+[09:34:34] [Bob] Nonce generated
+[09:34:34] [Bob] Authentication tag generated
+[09:34:34] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:34] [Bob] Encrypted packet successfully stored on relay
+[09:34:34] [Bob] Encrypted packet received from 'Alice'
+[09:34:34] [Bob] Ciphertext length: 88
+[09:34:34] [Bob] Nonce received
+[09:34:34] [Bob] Authentication tag received
+[09:34:34] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:34] [Bob] AES-GCM authentication successful
+[09:34:34] [Bob] Ciphertext successfully decrypted
+[09:34:34] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #84 from Alice at 09:34:30  >>>
+[09:34:35] [Bob] Encrypted packet received from 'Alice'
+[09:34:35] [Bob] Ciphertext length: 88
+[09:34:35] [Bob] Nonce received
+[09:34:35] [Bob] Authentication tag received
+[09:34:35] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:35] [Bob] AES-GCM authentication successful
+[09:34:35] [Bob] Ciphertext successfully decrypted
+[09:34:35] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #85 from Alice at 09:34:35  >>>
+[09:34:39] [Bob] Encrypting message for 'Alice'
+[09:34:39] [Bob] Plaintext length: 42 bytes
+[09:34:39] [Bob] AES-GCM encryption successful
+[09:34:39] [Bob] Ciphertext length: 84
+[09:34:39] [Bob] Nonce generated
+[09:34:39] [Bob] Authentication tag generated
+[09:34:39] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:39] [Bob] Encrypted packet successfully stored on relay
+[09:34:39] [Bob] Encrypted packet received from 'Alice'
+[09:34:39] [Bob] Ciphertext length: 88
+[09:34:39] [Bob] Nonce received
+[09:34:39] [Bob] Authentication tag received
+[09:34:39] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:39] [Bob] AES-GCM authentication successful
+[09:34:39] [Bob] Ciphertext successfully decrypted
+[09:34:39] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #85 from Alice at 09:34:35  >>>
+[09:34:40] [Bob] Encrypted packet received from 'Alice'
+[09:34:40] [Bob] Ciphertext length: 88
+[09:34:40] [Bob] Nonce received
+[09:34:40] [Bob] Authentication tag received
+[09:34:40] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:40] [Bob] AES-GCM authentication successful
+[09:34:40] [Bob] Ciphertext successfully decrypted
+[09:34:40] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #86 from Alice at 09:34:40  >>>
+[09:34:44] [Bob] Encrypting message for 'Alice'
+[09:34:44] [Bob] Plaintext length: 42 bytes
+[09:34:44] [Bob] AES-GCM encryption successful
+[09:34:44] [Bob] Ciphertext length: 84
+[09:34:44] [Bob] Nonce generated
+[09:34:44] [Bob] Authentication tag generated
+[09:34:44] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:44] [Bob] Encrypted packet successfully stored on relay
+[09:34:44] [Bob] Encrypted packet received from 'Alice'
+[09:34:44] [Bob] Ciphertext length: 88
+[09:34:44] [Bob] Nonce received
+[09:34:44] [Bob] Authentication tag received
+[09:34:44] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:44] [Bob] AES-GCM authentication successful
+[09:34:44] [Bob] Ciphertext successfully decrypted
+[09:34:44] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #86 from Alice at 09:34:40  >>>
+[09:34:45] [Bob] Encrypted packet received from 'Alice'
+[09:34:45] [Bob] Ciphertext length: 88
+[09:34:45] [Bob] Nonce received
+[09:34:45] [Bob] Authentication tag received
+[09:34:45] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:45] [Bob] AES-GCM authentication successful
+[09:34:45] [Bob] Ciphertext successfully decrypted
+[09:34:45] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #87 from Alice at 09:34:45  >>>
+[09:34:49] [Bob] Encrypting message for 'Alice'
+[09:34:49] [Bob] Plaintext length: 42 bytes
+[09:34:49] [Bob] AES-GCM encryption successful
+[09:34:49] [Bob] Ciphertext length: 84
+[09:34:49] [Bob] Nonce generated
+[09:34:49] [Bob] Authentication tag generated
+[09:34:49] [Bob] Sending encrypted packet to relay: Bob -> Alice
+[09:34:49] [Bob] Encrypted packet successfully stored on relay
+[09:34:49] [Bob] Encrypted packet received from 'Alice'
+[09:34:49] [Bob] Ciphertext length: 88
+[09:34:49] [Bob] Nonce received
+[09:34:49] [Bob] Authentication tag received
+[09:34:49] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:49] [Bob] AES-GCM authentication successful
+[09:34:49] [Bob] Ciphertext successfully decrypted
+[09:34:49] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #87 from Alice at 09:34:45  >>>
+[09:34:50] [Bob] Encrypted packet received from 'Alice'
+[09:34:50] [Bob] Ciphertext length: 88
+[09:34:50] [Bob] Nonce received
+[09:34:50] [Bob] Authentication tag received
+[09:34:50] [Bob] Attempting AES-GCM authentication and decryption
+[09:34:50] [Bob] AES-GCM authentication successful
+[09:34:50] [Bob] Ciphertext successfully decrypted
+[09:34:50] [Bob] Decrypted plaintext:  
+	<<<  Heartbeat payload #88 from Alice at 09:34:50  >>>

@@ -1,3 +1,0 @@
-"""
-Client network package initialization.
-"""

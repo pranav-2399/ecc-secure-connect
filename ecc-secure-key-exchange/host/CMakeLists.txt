@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.16)
+project(ecc_secure_key_exchange_host LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(OpenSSL REQUIRED COMPONENTS Crypto)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CURL REQUIRED IMPORTED_TARGET libcurl)
+
+add_executable(ecc_simulator src/simulation.cpp src/ecc.cpp src/aead.cpp)
+add_executable(ecc_client src/client.cpp src/transport.cpp src/ecc.cpp src/aead.cpp)
+target_include_directories(ecc_simulator PRIVATE include)
+target_include_directories(ecc_client PRIVATE include)
+target_link_libraries(ecc_simulator PRIVATE OpenSSL::Crypto)
+target_link_libraries(ecc_client PRIVATE OpenSSL::Crypto PkgConfig::CURL)
+target_compile_options(ecc_simulator PRIVATE -Wall -Wextra -Wpedantic)
+target_compile_options(ecc_client PRIVATE -Wall -Wextra -Wpedantic)
