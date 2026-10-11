@@ -1,0 +1,28 @@
+menu "ECC Secure Chat"
+
+config ECCCHAT_WIFI_SSID
+	string "Wi-Fi SSID (2.4 GHz)"
+	default ""
+
+config ECCCHAT_WIFI_PASSWORD
+	string "Wi-Fi password"
+	default ""
+
+config ECCCHAT_RELAY_HOST
+	string "Laptop relay IPv4 address"
+	default "192.168.1.10"
+
+config ECCCHAT_RELAY_PORT
+	int "Laptop relay port"
+	range 1 65535
+	default 5000
+
+config ECCCHAT_CLIENT_ID
+	string "ESP32 client ID"
+	default "ESP32"
+
+config ECCCHAT_PEER_ID
+	string "Laptop peer ID"
+	default "Laptop"
+
+endmenu

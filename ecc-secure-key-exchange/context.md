@@ -1,6 +1,6 @@
 # C++ ECC key exchange project
 
-The cryptography and both interactive clients are C++. A small Flask application remains solely as an opaque communication relay for the laptop simulation; it stores public-key text and forwards encrypted packets without performing cryptographic operations.
+The cryptography and both interactive clients are C++. A small Flask application remains solely as an opaque communication relay. In the laptop-to-ESP32 setup, the relay runs on the laptop and both clients reach it over the same Wi-Fi LAN; USB is reserved for the ESP32 serial console.
 
 ## Source layout
 
@@ -12,7 +12,8 @@ The cryptography and both interactive clients are C++. A small Flask application
 | `host/src/client.cpp`, `host/src/transport.cpp` | Interactive C++ clients and replaceable communication transport (currently HTTP to Flask) |
 | `communication/communication_server.py` | Communication-only Flask relay; stores public-key strings and forwards opaque encrypted packets |
 | `esp32/main/crypto.cpp` | ESP-IDF version of the crypto modules, using mbedTLS MPI and RNG while keeping point arithmetic explicit |
-| `esp32/main/crypto_demo.cpp` | On-device self-test for key generation, ECDH, HKDF, AES-GCM, and tag rejection |
+| `esp32/main/secure_chat.cpp` | ESP32 Wi-Fi client, key exchange, encrypted message loop, and interactive USB serial console |
+| `esp32/main/relay_client.cpp` | ESP-IDF HTTP adapter for the relay's existing REST endpoints |
 
 Both C++ versions use the P-256 curve, 65-byte SEC1 uncompressed public points, HKDF-SHA256 context `ecc-secure-key-exchange/v1|ECDH-P256|HKDF-SHA256|AES-256-GCM`, AES-256-GCM, a 12-byte nonce, and a 16-byte tag. The Flask relay does no key generation, parsing, ECDH, key derivation, encryption, or decryption.
 
@@ -110,51 +111,104 @@ PYTHON_BIN=communication/.venv/bin/python communication/run_local_smoke_test.sh
 
 The script builds both C++ executables, starts the relay on loopback, launches Alice and Bob as separate processes, sends a message in both directions, checks that each is decrypted by the other client, and then shuts down the relay. If Flask is installed in your system Python, `PYTHON_BIN=python3` also works.
 
-## Build and run the ESP32 self-test
+## Run the laptop-to-ESP32 chat
 
 ### Requirements
 
 - ESP-IDF installed and exported in the current terminal (`IDF_PATH` set)
-- An ESP32-family board supported by that ESP-IDF release
-- USB data cable and the board's serial device/COM port
+- Original ESP32 board with Wi-Fi (the pictured ESP32-WROOM-based board is suitable)
+- Laptop and ESP32 connected to the same 2.4 GHz Wi-Fi network
+- USB data cable; USB carries firmware/logs/input, while Wi-Fi carries relay traffic
+- A non-space copy of this project path for ESP-IDF (ESP-IDF does not support spaces in project paths)
 
-From the repository folder, first build for the original ESP32 target:
+The Flask relay runs only on the laptop. The ESP32 connects to it over Wi-Fi; no separate Bluetooth module or USB-UART adapter is used. Use three laptop terminals: relay server, ESP32 serial monitor, and laptop client. The monitor and client can run separately because the messages travel over Wi-Fi, not through the monitor's serial port.
+
+### 1. Sync the updated source into the no-space build copy
+
+If using the build copy under `~/projects`, sync source changes from the workspace copy while preserving its generated build and local configuration files:
 
 ```bash
-cd esp32
+rsync -a --exclude='.git/' --exclude='esp32/build/' --exclude='host/build/' \
+  --exclude='communication/.venv/' \
+  "/home/pranav-anandan/Documents/Pranav College/Semester 5 - Fall 2026-2027/7 ES/project/ecc-secure-key-exchange/" \
+  ~/projects/ecc-secure-key-exchange/
+```
+
+### 2. Find the laptop's Wi-Fi IPv4 address
+
+Run `hostname -I` on the laptop and select its IPv4 address on the same Wi-Fi network as the ESP32. Do not use `127.0.0.1` for the ESP32 relay address; that address would refer to the ESP32 itself.
+
+### 3. Start the relay (terminal 1)
+
+```bash
+cd ~/projects/ecc-secure-key-exchange/communication
+source .venv/bin/activate
+python communication_server.py --host 0.0.0.0 --port 5000
+```
+
+The laptop client can still use `127.0.0.1`; the ESP32 must use the laptop's Wi-Fi IPv4 address. Keep the laptop on the same network while chatting.
+
+### 4. Configure, build, flash, and monitor the ESP32 (terminal 2)
+
+```bash
+cd ~/projects/ecc-secure-key-exchange/esp32
+. ~/esp/esp-idf/export.sh
 idf.py set-target esp32
-idf.py build
+idf.py menuconfig
 ```
 
-Connect the board, then flash and open its serial monitor (replace the port with the one for your machine):
+if new terminal:
+groups \\to check if dialout is there
+newgrp dialout
+
+
+In **ECC Secure Chat**, enter the 2.4 GHz Wi-Fi SSID/password and the laptop IPv4 address; keep port `5000`, ESP32 ID `ESP32`, and peer ID `Laptop` unless you also change the laptop client IDs. In **Component config → mbedTLS**, ensure HKDF is enabled. Under **Serial flasher config**, set flash size to **4 MB**; under **Partition Table**, select **Single factory app (large), no OTA**. The standard 1 MB app partition is too small for this Wi-Fi build; the large single-app table allocates 1.5 MB and fits it. Save and exit.
+
+Then build and flash using the persistent serial path (adjust it if your device path differs):
 
 ```bash
-idf.py -p /dev/ttyUSB0 flash monitor
+idf.py build
+idf.py -p /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A7B056860-if00 flash monitor
 ```
 
-On Linux the port may instead be `/dev/ttyACM0`; on Windows use the assigned `COM` port. The firmware runs the same crypto self-test on the device and prints public points plus pass/fail status. It does not print private scalars, shared secrets, or AES keys.
+If this terminal does not have serial-device permission, start a new shell with `newgrp dialout` first, then run the flash command there. The firmware runs Wi-Fi, ECC and chat setup in a dedicated 16 KB FreeRTOS task to avoid overflowing ESP-IDF's small default `main` task stack.
 
-For another target, set it explicitly before building, for example:
+The monitor prints Wi-Fi connection status, key registration, and session status. It also serves as the ESP32 client's terminal: type a message and press Enter. Use `/quit` to end the session. The device generates a fresh P-256 keypair on each boot, registers only the public point, validates the laptop's point, and derives the session key locally.
+
+### 5. Start the laptop client (terminal 3)
 
 ```bash
-idf.py set-target esp32c3
-idf.py build
+cd ~/projects/ecc-secure-key-exchange/host
+cmake -S . -B build
+cmake --build build -j
+./build/ecc_client Laptop ESP32 http://127.0.0.1:5000
 ```
 
-### What to verify on the board
+Once both clients report that the ECDH/HKDF session is established, type messages in either terminal. The relay forwards only public-key text and opaque nonce/tag/ciphertext fields. The ESP32 serial monitor and the laptop client each display their own received plaintext. Messages are limited to 512 bytes on the ESP32.
 
-- The printed SEC1 public points each represent 65 bytes and begin with `04` when hex encoded.
-- The two ECDH computations match.
-- HKDF derives identical 32-byte keys on both sides.
-- AES-GCM decrypts the original message.
-- Changing one tag byte causes authentication failure.
+Stop the clients with `/quit`, the monitor with `Ctrl+]`, and the relay with `Ctrl+C`. If the ESP32 cannot reach the relay, confirm both devices are on the same LAN and that the laptop firewall permits TCP port 5000 on that network.
+
+### Manual end-to-end checks
+
+- Both clients display successful session establishment after exchanging public keys.
+- Send a message laptop-to-ESP32 and another ESP32-to-laptop; each receiver should show the original plaintext.
+- Restart the ESP32 or laptop client to generate a new keypair and establish a new session.
+- Confirm the server terminal shows HTTP traffic only; it must not receive plaintext, private scalars, ECDH secrets, or AES session keys.
 
 ## What is implemented and what remains
 
 - The laptop crypto simulation runs the crypto exchange in C++.
 - Separate laptop C++ clients exchange public keys and encrypted messages through the Flask communication relay.
-- The ESP32 firmware runs a complete crypto self-test in C++ on one board. ESP32 Wi-Fi/serial transport and persistent identity key storage are not implemented. The C++ transport is separated so it can be replaced with serial when the ESP32 is ready. Active key substitution remains possible because clients trust the public key returned by the relay.
+- The ESP32 firmware exchanges public keys and AES-GCM packets with the laptop C++ client through the Flask relay over Wi-Fi, while USB serial provides a separate interactive console.
+- The ESP32 creates ephemeral keys per boot; persistent identity keys, authenticated peer identity, server TLS, retransmission/session recovery, and production-grade constant-time ECC are not implemented. Active key substitution remains possible because clients trust the public key returned by the relay.
 
 ## Security note
 
 The point formulas are written explicitly to show how `Q = dG` is computed. They use affine coordinates and variable-time operations, so execution time can depend on the private scalar. Treat this implementation as a learning and project demonstration, not as production cryptography. For deployed devices, replace custom scalar multiplication with the audited constant-time ECC operations in mbedTLS while preserving the module interfaces and wire format.
+
+
+. ~/esp/esp-idf/export.sh
+cp "/home/pranav-anandan/Documents/Pranav College/Semester 5 - Fall 2026-2027/7 ES/project/ecc-secure-key-exchange/esp32/main/crypto.cpp" \
+  ~/projects/ecc-secure-key-exchange/esp32/main/crypto.cpp
+cd ~/projects/ecc-secure-key-exchange/esp32
+idf.py build
