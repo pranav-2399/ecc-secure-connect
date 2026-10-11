@@ -130,7 +130,7 @@ If using the build copy under `~/projects`, sync source changes from the workspa
 ```bash
 rsync -a --exclude='.git/' --exclude='esp32/build/' --exclude='host/build/' \
   --exclude='communication/.venv/' \
-  "/home/pranav-anandan/Documents/Pranav College/Semester 5 - Fall 2026-2027/7 ES/project/ecc-secure-key-exchange/" \
+  "/home/pranav-anandan/Documents/Pranav College/Semester 5 - Fall 2026-2027/7 ES/project/" \
   ~/projects/ecc-secure-key-exchange/
 ```
 
@@ -208,7 +208,9 @@ The point formulas are written explicitly to show how `Q = dG` is computed. They
 
 
 . ~/esp/esp-idf/export.sh
-cp "/home/pranav-anandan/Documents/Pranav College/Semester 5 - Fall 2026-2027/7 ES/project/ecc-secure-key-exchange/esp32/main/crypto.cpp" \
-  ~/projects/ecc-secure-key-exchange/esp32/main/crypto.cpp
+rsync -a --exclude='.git/' --exclude='esp32/build/' --exclude='host/build/' \
+  --exclude='communication/.venv/' \
+  "/home/pranav-anandan/Documents/Pranav College/Semester 5 - Fall 2026-2027/7 ES/project/" \
+  ~/projects/ecc-secure-key-exchange/
 cd ~/projects/ecc-secure-key-exchange/esp32
 idf.py build

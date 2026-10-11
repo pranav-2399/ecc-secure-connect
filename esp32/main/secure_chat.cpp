@@ -5,6 +5,7 @@
 #include "esp_log.h"
 #include "esp_netif.h"
 #include "esp_wifi.h"
+#include "driver/uart.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
 #include "freertos/task.h"
@@ -299,11 +300,30 @@ void run_chat() {
 	}
 	std::printf("\nESP32 chat is ready. Type a message and press Enter; /quit ends the session.\n> ");
 	std::fflush(stdout);
-	char input[kMaxMessageBytes + 2]{};
-	while (std::fgets(input, sizeof(input), stdin) != nullptr) {
-		std::string message(input);
-		while (!message.empty() &&
-			   (message.back() == '\n' || message.back() == '\r')) message.pop_back();
+	// Read the USB-UART console directly. stdio fgets() can report EOF on some
+	// ESP-IDF console configurations, which would otherwise end the chat at once.
+	const esp_err_t uart_result = uart_driver_install(UART_NUM_0, 2048, 0, 0, nullptr, 0);
+	if (uart_result != ESP_OK && uart_result != ESP_ERR_INVALID_STATE) {
+		ESP_LOGE(kTag, "Could not initialize UART console input: %s",
+				esp_err_to_name(uart_result));
+		receiver.running = false;
+		while (!receiver.done.load()) vTaskDelay(pdMS_TO_TICKS(100));
+		mbedtls_platform_zeroize(session_key.data(), session_key.size());
+		return;
+	}
+	char input[kMaxMessageBytes + 1]{};
+	size_t input_length = 0;
+	while (true) {
+		uint8_t ch = 0;
+		if (uart_read_bytes(UART_NUM_0, &ch, 1, portMAX_DELAY) <= 0) continue;
+		if (ch == '\r') continue;
+		if (ch != '\n') {
+			if (input_length < kMaxMessageBytes) input[input_length++] = static_cast<char>(ch);
+			continue;
+		}
+		std::string message(input, input_length);
+		input_length = 0;
+		input[0] = '\0';
 		if (message == "/quit") break;
 		if (message.empty()) {
 			std::printf("> ");
