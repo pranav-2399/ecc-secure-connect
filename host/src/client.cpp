@@ -5,8 +5,10 @@
 #include <openssl/crypto.h>
 #include <atomic>
 #include <chrono>
+#include <cstdlib>
 #include <iostream>
 #include <mutex>
+#include <algorithm>
 #include <thread>
 
 namespace {
@@ -21,7 +23,15 @@ namespace {
 	}
 
 	void usage(const char* executable) {
-		std::cerr << "Usage: " << executable << " <client-id> <peer-id> [relay-url]\n" << "Example: " << executable << " Alice Bob http://127.0.0.1:5000\n";
+		std::cerr << "Usage: " << executable << " <client-id> <peer-id> [relay-url] [--atm]\n"
+				  << "Example: " << executable << " Laptop ESP32 http://127.0.0.1:5000 --atm\n";
+	}
+
+	bool is_pin(const std::string& value) {
+		return value.size() >= 4 && value.size() <= 8 &&
+			std::all_of(value.begin(), value.end(), [](unsigned char ch) {
+				return ch >= '0' && ch <= '9';
+			});
 	}
 	
 	std::vector<uint8_t> decode_hex(const std::string& hex) {
@@ -44,12 +54,28 @@ namespace {
 }
 
 int main(int argc, char** argv) {
-	if (argc < 3 || argc > 4) { usage(argv[0]); return 2; }
+	if (argc < 3 || argc > 5) { usage(argv[0]); return 2; }
 
 	const std::string client_id = argv[1];
 	const std::string peer_id = argv[2];
-	const std::string relay_url = argc == 4 ? argv[3] : "http://127.0.0.1:5000";
+	std::string relay_url = "http://127.0.0.1:5000";
+	bool atm_mode = false;
+	bool relay_url_seen = false;
+	for (int i = 3; i < argc; ++i) {
+		if (std::string(argv[i]) == "--atm") atm_mode = true;
+		else if (!relay_url_seen) {
+			relay_url = argv[i];
+			relay_url_seen = true;
+		}
+		else { usage(argv[0]); return 2; }
+	}
 	if (client_id == peer_id) { std::cerr << "Client and peer IDs must differ.\n"; return 2; }
+	const char* configured_pin = std::getenv("ECC_ATM_PIN");
+	std::string expected_pin = configured_pin == nullptr ? "" : configured_pin;
+	if (atm_mode && !is_pin(expected_pin)) {
+		std::cerr << "ATM mode requires ECC_ATM_PIN to be set to 4-8 digits.\n";
+		return 2;
+	}
 
 	try {
 		demo::CommunicationTransport transport(relay_url);
@@ -72,7 +98,11 @@ int main(int argc, char** argv) {
 		const demo::Point peer_public = demo::decode_public_key(peer_bytes.data(), peer_bytes.size());
 		auto shared_secret = demo::derive_shared_secret(key_pair.private_scalar, peer_public);
 		demo::SessionKey session_key = demo::derive_session_key(shared_secret.data(), shared_secret.size());
-		std::cout << "ECDH and HKDF session established with " << peer_id << ".\n" << "Type a message and press Enter. Use /quit to end.\n";
+		std::cout << "ECDH and HKDF session established with " << peer_id << ".\n";
+		if (atm_mode)
+			std::cout << "ATM verifier ready. Enter the PIN on the ESP32 serial terminal; use /quit here to close.\n";
+		else
+			std::cout << "Type a message and press Enter. Use /quit to end.\n";
 
 		std::atomic<bool> running{true};
 		std::mutex output_lock;
@@ -87,7 +117,22 @@ int main(int argc, char** argv) {
 						}
 						try {
 							const std::string plaintext = demo::decrypt_message(incoming.packet, session_key);
-							std::cout << "\n" << incoming.sender_id << ": " << plaintext << "\n> " << std::flush;
+							if (atm_mode && plaintext.rfind("ATM_PIN:", 0) == 0) {
+								std::string supplied_pin = plaintext.substr(8);
+								const bool valid = is_pin(supplied_pin) &&
+									supplied_pin.size() == expected_pin.size() &&
+									CRYPTO_memcmp(supplied_pin.data(), expected_pin.data(), expected_pin.size()) == 0;
+								if (!supplied_pin.empty()) OPENSSL_cleanse(supplied_pin.data(), supplied_pin.size());
+								const std::string result = valid ? "ATM_RESULT:APPROVED" : "ATM_RESULT:DENIED";
+								const demo::Packet response = demo::encrypt_message(result, session_key);
+								transport.send_packet(client_id, peer_id, response);
+								std::cout << "\n[ATM] PIN " << (valid ? "verified" : "rejected")
+										  << "; encrypted result returned to ESP32.\n> " << std::flush;
+							} else if (atm_mode) {
+								std::cout << "\n[ATM] Ignored an unexpected message.\n> " << std::flush;
+							} else {
+								std::cout << "\n" << incoming.sender_id << ": " << plaintext << "\n> " << std::flush;
+							}
 						} catch (const std::exception& error) {
 							std::cout << "\n[rejected] Message authentication failed: " << error.what() << "\n> " << std::flush;
 						}
@@ -101,9 +146,10 @@ int main(int argc, char** argv) {
 		});
 
 		std::string message;
-		std::cout << "> " << std::flush;
+		if (!atm_mode) std::cout << "> " << std::flush;
 		while (std::getline(std::cin, message)) {
 			if (message == "/quit") break;
+			if (atm_mode) continue;
 			if (message.empty()) { std::cout << "> " << std::flush; continue; }
 			try {
 				const demo::Packet packet = demo::encrypt_message(message, session_key);
@@ -117,6 +163,7 @@ int main(int argc, char** argv) {
 		receiver.join();
 		OPENSSL_cleanse(session_key.data(), session_key.size());
 		OPENSSL_cleanse(shared_secret.data(), shared_secret.size());
+		if (!expected_pin.empty()) OPENSSL_cleanse(expected_pin.data(), expected_pin.size());
 		key_pair.private_scalar = 0;
 		std::cout << "Session ended.\n";
 		return 0;

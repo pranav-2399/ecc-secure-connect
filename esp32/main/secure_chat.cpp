@@ -138,6 +138,13 @@ bool from_hex(const std::string& hex, std::vector<uint8_t>& bytes) {
 	return true;
 }
 
+bool is_pin(const std::string& value) {
+	if (value.size() < 4 || value.size() > 8) return false;
+	for (const unsigned char ch : value)
+		if (ch < '0' || ch > '9') return false;
+	return true;
+}
+
 bool split_packet_line(const std::string& line, std::string& sender,
 					   EncryptedPacket& packet) {
 	std::istringstream fields(line);
@@ -184,9 +191,15 @@ void poll_messages(void* context) {
 					packet.ciphertext.size(), packet.nonce.data(), packet.tag.data(),
 					plaintext.data());
 				if (rc == 0) {
-					std::printf("\n%s: %.*s\n> ", sender.c_str(),
-							static_cast<int>(plaintext.size()),
-							reinterpret_cast<const char*>(plaintext.data()));
+					const std::string message(plaintext.begin(), plaintext.end());
+					if (message == "ATM_RESULT:APPROVED") {
+						std::printf("\n[ATM] PIN verified. Transaction approved.\n> ");
+					} else if (message == "ATM_RESULT:DENIED") {
+						std::printf("\n[ATM] PIN rejected. Transaction denied.\n> ");
+					} else {
+						std::printf("\n[rejected] Unexpected verifier response\n> ");
+					}
+					mbedtls_platform_zeroize(plaintext.data(), plaintext.size());
 				} else {
 					std::printf("\n[rejected] AES-GCM authentication failed\n> ");
 				}
@@ -298,7 +311,7 @@ void run_chat() {
 		ESP_LOGE(kTag, "Could not start the receive task");
 		return;
 	}
-	std::printf("\nESP32 chat is ready. Type a message and press Enter; /quit ends the session.\n> ");
+	std::printf("\nATM PIN entry ready. Enter 4-8 digits on the attached serial terminal; /quit ends the session.\n> ");
 	std::fflush(stdout);
 	// Read the USB-UART console directly. stdio fgets() can report EOF on some
 	// ESP-IDF console configurations, which would otherwise end the chat at once.
@@ -330,8 +343,7 @@ void run_chat() {
 				input_length = 0;
 				input[0] = '\0';
 				line_too_long = false;
-				std::printf("Message too long (maximum %u bytes).\n> ",
-						static_cast<unsigned>(kMaxMessageBytes));
+				std::printf("Input too long. Enter a 4-8 digit PIN.\n> ");
 				std::fflush(stdout);
 				continue;
 			}
@@ -344,12 +356,23 @@ void run_chat() {
 				std::fflush(stdout);
 				continue;
 			}
-			std::vector<uint8_t> ciphertext(message.size());
+			if (!is_pin(message)) {
+				mbedtls_platform_zeroize(message.data(), message.size());
+				mbedtls_platform_zeroize(input, sizeof(input));
+				std::printf("Invalid PIN format. Use 4-8 digits.\n> ");
+				std::fflush(stdout);
+				continue;
+			}
+			std::string request = "ATM_PIN:" + message;
+			mbedtls_platform_zeroize(message.data(), message.size());
+			mbedtls_platform_zeroize(input, sizeof(input));
+			std::vector<uint8_t> ciphertext(request.size());
 			std::array<uint8_t, ecc_demo::kNonceBytes> nonce{};
 			std::array<uint8_t, ecc_demo::kTagBytes> tag{};
 			rc = ecc_demo::encrypt_gcm(
-				rng, session_key.data(), reinterpret_cast<const uint8_t*>(message.data()),
-				message.size(), ciphertext.data(), nonce, tag);
+				rng, session_key.data(), reinterpret_cast<const uint8_t*>(request.data()),
+				request.size(), ciphertext.data(), nonce, tag);
+			mbedtls_platform_zeroize(request.data(), request.size());
 			if (rc == 0) {
 				const std::string payload = to_hex(nonce.data(), nonce.size()) + "\n" +
 					to_hex(tag.data(), tag.size()) + "\n" +
@@ -358,7 +381,7 @@ void run_chat() {
 					std::string(CONFIG_ECCCHAT_CLIENT_ID) + "/" + CONFIG_ECCCHAT_PEER_ID,
 					payload);
 				if (sent.status == 200) {
-					std::printf("[sent securely]\n");
+					std::printf("[PIN submitted securely; awaiting verification]\n");
 				} else {
 					std::printf("[send failed: relay HTTP %d]\n", sent.status);
 				}
