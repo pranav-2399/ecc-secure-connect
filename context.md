@@ -22,11 +22,150 @@ Both C++ versions use the P-256 curve, 65-byte SEC1 uncompressed public points, 
 1. **Generate a private key.** The cryptographic random generator produces 32 bytes. Rejection sampling accepts only a scalar `d` where `1 <= d < n`; `n` is the P-256 base-point order. The private scalar remains local.
 2. **Compute the public key.** P-256 uses the field prime `p` and curve equation `y² = x³ - 3x + b (mod p)`. The code initializes the published generator point `G` and computes `Q = dG`. It implements affine point addition and doubling, then uses double-and-add scalar multiplication. The point is checked against the curve before it is used.
 3. **Encode the public key.** The point is sent as `04 || X || Y`, where each coordinate is 32 bytes. The private scalar is never sent.
-4. **Exchange public points.** In the laptop application, each C++ client registers its encoded public point with Flask and fetches the peer point. Flask stores and returns the strings without interpreting their cryptographic meaning. The ESP32 self-test creates two local simulated peers; replacing the HTTP transport with serial is a later transport change.
+4. **Exchange public points.** Each C++ client, including the ESP32, registers its encoded public point with Flask and fetches the peer point over HTTP/Wi-Fi. Flask stores and returns the strings without interpreting their cryptographic meaning. USB serial is used for ESP32 console input/output, not for key exchange or message transport.
 5. **Derive the ECDH secret.** Each side multiplies its private scalar by the peer's validated public point. Both sides get the same 32-byte x-coordinate. The host implementation does this with its explicit point arithmetic; the firmware calls mbedTLS ECDH using the same P-256 values.
 6. **Derive the AES key.** HKDF-SHA256 derives a 32-byte key using the shared protocol context. Both sides must use the same context and salt policy.
 7. **Encrypt and authenticate.** AES-256-GCM encrypts the message with a fresh 12-byte nonce and produces a 16-byte authentication tag. Decryption verifies the tag before accepting plaintext.
 8. **Check tampering.** The simulator and ESP32 self-test alter the tag and verify that authenticated decryption rejects the packet.
+
+## Mathematical walkthrough: P-256, ECDH, HKDF, and AES-GCM
+
+This section follows the live C++ client order from fresh key pair to encrypted message. ECC and ECDH establish a secret; they do **not** directly encrypt the message. HKDF turns the ECDH result into a symmetric key, and AES-256-GCM performs the message encryption and authentication.
+
+### 1. The finite field and P-256 curve
+
+P-256 arithmetic uses two related moduli:
+
+- The coordinate field is the finite field `F_p`, where `p` is the 256-bit prime
+  `FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF`.
+- The base point `G` has prime order `n`, where
+  `n = FFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551`.
+  Private scalars are taken modulo `n`.
+
+The curve is the set of points `(x,y)` satisfying
+
+```text
+y² ≡ x³ + a·x + b (mod p)
+a = p - 3
+b = 5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B
+```
+
+The point at infinity `O` is the identity for point addition: `P + O = P`. The fixed generator `G` is a distinguished point on this curve. The constants are standardized domain parameters; both clients must use the same parameters. The curve equation and group law are described in [RFC 6090](https://www.rfc-editor.org/rfc/rfc6090.html), and NIST lists recommended curve parameters in [SP 800-186](https://csrc.nist.gov/pubs/sp/800/186/final).
+
+### 2. Generate a private scalar and public point
+
+Each client obtains random candidate bytes from its cryptographic random generator and interprets them as an integer. Rejection sampling keeps drawing until the private scalar `d` satisfies
+
+```text
+1 ≤ d < n
+```
+
+This is a random integer in the scalar range. `d` must remain secret: if it is exposed, an attacker can compute the public point and the ECDH session secret.
+
+The public key is the elliptic-curve scalar multiple
+
+```text
+Q = dG
+```
+
+Scalar multiplication means adding `G` to itself `d` times in the curve group. The implementation uses double-and-add: read the bits of `d`; conditionally add the current point into an accumulator for each set bit, and double the current point between bits. This reduces the work from `d` additions to a number of point operations proportional to the bit length of `d` (about 256 bits here).
+
+For affine points `P=(x₁,y₁)` and `R=(x₂,y₂)`, the code computes sums modulo `p`. If `P ≠ R`, it uses
+
+```text
+λ = (y₂ - y₁) / (x₂ - x₁) mod p
+x₃ = λ² - x₁ - x₂ mod p
+y₃ = λ(x₁ - x₃) - y₁ mod p
+```
+
+For doubling `P = R` with `y₁ ≠ 0`, it uses
+
+```text
+λ = (3x₁² + a) / (2y₁) mod p
+x₃ = λ² - 2x₁ mod p
+y₃ = λ(x₁ - x₃) - y₁ mod p
+```
+
+Division modulo `p` means multiplication by a modular inverse: `u/v mod p = u·v⁻¹ mod p`. The host code obtains the inverse using Fermat's relation `v⁻¹ ≡ v^(p-2) mod p`; the ESP32 point arithmetic uses the mbedTLS MPI modular-inverse operation. Exceptional cases such as `P + O`, `P + (-P) = O`, and doubling a point with `y=0` are handled separately.
+
+The map from `d` to `Q` is easy to compute, while recovering `d` from `Q` and `G` is the elliptic-curve discrete logarithm problem. That one-way property is what allows the public point to be sent while keeping the private scalar private. It does not by itself authenticate who owns a public point.
+
+### 3. Encode and validate public points
+
+For this protocol, a public point is serialized in SEC1 uncompressed form:
+
+```text
+04 || X || Y
+```
+
+`04` is the format marker; `X` and `Y` are each exactly 32-byte, big-endian field elements. The full point is therefore 65 bytes (130 hexadecimal characters when sent through the relay). The relay receives only this public encoding, never `d`.
+
+On receipt, each client checks the encoding and verifies that the coordinates are in the allowed range and satisfy the selected curve equation. The ESP32 also calls the mbedTLS P-256 public-key check. Invalid encodings or points are rejected before ECDH. A valid point check prevents malformed inputs; it does not prove the point belongs to the intended person because this project has no certificate, signature, or trusted-key verification.
+
+### 4. ECDH: both sides calculate the same curve point
+
+Let User A have private scalar `d_A` and public point `Q_A = d_A G`; User B has `d_B` and `Q_B = d_B G`. They exchange only `Q_A` and `Q_B`. User A computes
+
+```text
+S_A = d_A Q_B = d_A(d_B G) = (d_A d_B)G
+```
+
+User B computes
+
+```text
+S_B = d_B Q_A = d_B(d_A G) = (d_B d_A)G = S_A
+```
+
+The shared value is a curve point. The code uses its x-coordinate as the ECDH shared secret and serializes it as exactly 32 big-endian bytes, including leading zero bytes when needed. The scalar multiplication has the same algebra on both clients; the laptop computes it with the project's point routines, and the ESP32 uses mbedTLS's ECDH computation with its private scalar and the validated peer point. The relay never sees this point or its x-coordinate.
+
+The ECDH result is not used directly as the AES key. Its x-coordinate has structure and should be passed through a key-derivation function. The scheme is the elliptic-curve Diffie–Hellman key-agreement operation described in [NIST SP 800-56A Rev. 3](https://csrc.nist.gov/pubs/sp/800/56/a/r3/final).
+
+### 5. HKDF-SHA256: turn the shared value into an AES key
+
+Both sides call HKDF with the same input keying material (IKM), salt policy, hash, and context string. This implementation uses SHA-256, no explicit salt (`salt = nullptr`, length `0` on ESP32; an all-zero 32-byte salt on the host), and this exact `info` byte string:
+
+```text
+ecc-secure-key-exchange/v1|ECDH-P256|HKDF-SHA256|AES-256-GCM
+```
+
+For SHA-256, the hash output length is 32 bytes. RFC 5869 defines two stages:
+
+```text
+PRK = HMAC-SHA256(salt, IKM)
+T(1) = HMAC-SHA256(PRK, info || 0x01)
+OKM = first 32 bytes of T(1)
+```
+
+The salt is absent, so RFC 5869's rule is equivalent to using 32 zero bytes for `salt`. `info` labels the intended protocol/key use; it is public and is not a password or an additional secret. Since the requested output is 32 bytes and SHA-256 produces 32 bytes, one expand block (`T(1)`) is sufficient. The resulting 32-byte output is the 256-bit AES session key. Matching ECDH bytes and matching HKDF inputs yield identical keys on laptop and ESP32. See [RFC 5869](https://www.rfc-editor.org/rfc/rfc5869.html) for the extract-and-expand construction.
+
+### 6. AES-256-GCM: encrypt and authenticate each message
+
+For every message, the sender obtains a fresh random 12-byte (96-bit) nonce and encrypts the plaintext under the 32-byte session key with AES-256-GCM. GCM uses counter mode to produce ciphertext and a GHASH-based authentication calculation to produce a 16-byte (128-bit) tag. This code supplies no additional authenticated data (AAD), so the authenticated inputs are the ciphertext and GCM's nonce/key context.
+
+The relay carries three fields that it can see but cannot decrypt:
+
+```text
+nonce:      12 bytes
+tag:        16 bytes
+ciphertext: same length as plaintext
+```
+
+The relay forwards them without learning the key or plaintext. At the receiver, AES-GCM checks the tag using the received nonce and ciphertext. The client displays plaintext only if this check succeeds; a modified or mismatched packet is rejected. The tag provides integrity/authenticity relative to possession of the shared session key; because public keys are unauthenticated in this demo, it does not establish a real-world identity. GCM's authenticated-encryption construction is specified in [NIST SP 800-38D](https://csrc.nist.gov/pubs/sp/800/38/d/final).
+
+### 7. Full mathematical flow at a glance
+
+```text
+random d_A, d_B ∈ [1, n-1]
+Q_A = d_A G                       Q_B = d_B G
+        └──── exchange Q_A, Q_B ────┘
+S_A = d_A Q_B = d_A d_B G = d_B Q_A = S_B
+Z = fixed-width-32-byte x-coordinate of S_A/S_B
+PRK = HMAC-SHA256(zero_salt_32, Z)
+K = HMAC-SHA256(PRK, info || 0x01)  [32-byte AES-256 key]
+(C, tag) = AES-256-GCM-Encrypt(K, random_nonce_12, plaintext)
+```
+
+The laptop and ESP32 implementations currently derive one session key for both message directions; a future protocol could derive separate directional keys with distinct `info` labels. The key pair is ephemeral per client run/boot, but the current relay protocol does not authenticate exchanged public keys or provide automatic session-liveness detection. Consequently, an active attacker able to replace public keys can establish separate sessions with each side (a man-in-the-middle attack), and clients should restart together with a fresh relay state during this demo.
 
 ## Run the laptop crypto simulation
 
@@ -122,6 +261,8 @@ The script builds both C++ executables, starts the relay on loopback, launches A
 - A non-space copy of this project path for ESP-IDF (ESP-IDF does not support spaces in project paths)
 
 The Flask relay runs only on the laptop. The ESP32 connects to it over Wi-Fi; no separate Bluetooth module or USB-UART adapter is used. Use three laptop terminals: relay server, ESP32 serial monitor, and laptop client. The monitor and client can run separately because the messages travel over Wi-Fi, not through the monitor's serial port.
+
+For a clean new chat session with the current relay, stop both clients and restart the Flask process before reconnecting them. The relay currently keeps public keys and queued packets in memory and has no presence/heartbeat protocol, so it cannot notify a still-running peer when the other client exits; old registered keys or queued ciphertext can otherwise remain until the relay restarts.
 
 ### 1. Sync the updated source into the no-space build copy
 

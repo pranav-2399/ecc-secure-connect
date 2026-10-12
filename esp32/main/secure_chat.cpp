@@ -313,53 +313,69 @@ void run_chat() {
 	}
 	char input[kMaxMessageBytes + 1]{};
 	size_t input_length = 0;
+	bool previous_was_cr = false;
+	bool line_too_long = false;
 	while (true) {
 		uint8_t ch = 0;
 		if (uart_read_bytes(UART_NUM_0, &ch, 1, portMAX_DELAY) <= 0) continue;
-		if (ch == '\r') continue;
-		if (ch != '\n') {
-			if (input_length < kMaxMessageBytes) input[input_length++] = static_cast<char>(ch);
+		// idf.py monitor may send CR, LF, or CRLF depending on terminal settings.
+		// Treat either CR or LF as Enter, consuming the LF half of CRLF once.
+		if (ch == '\n' && previous_was_cr) {
+			previous_was_cr = false;
 			continue;
 		}
-		std::string message(input, input_length);
-		input_length = 0;
-		input[0] = '\0';
-		if (message == "/quit") break;
-		if (message.empty()) {
+		if (ch == '\r' || ch == '\n') {
+			previous_was_cr = ch == '\r';
+			if (line_too_long) {
+				input_length = 0;
+				input[0] = '\0';
+				line_too_long = false;
+				std::printf("Message too long (maximum %u bytes).\n> ",
+						static_cast<unsigned>(kMaxMessageBytes));
+				std::fflush(stdout);
+				continue;
+			}
+			std::string message(input, input_length);
+			input_length = 0;
+			input[0] = '\0';
+			if (message == "/quit") break;
+			if (message.empty()) {
+				std::printf("> ");
+				std::fflush(stdout);
+				continue;
+			}
+			std::vector<uint8_t> ciphertext(message.size());
+			std::array<uint8_t, ecc_demo::kNonceBytes> nonce{};
+			std::array<uint8_t, ecc_demo::kTagBytes> tag{};
+			rc = ecc_demo::encrypt_gcm(
+				rng, session_key.data(), reinterpret_cast<const uint8_t*>(message.data()),
+				message.size(), ciphertext.data(), nonce, tag);
+			if (rc == 0) {
+				const std::string payload = to_hex(nonce.data(), nonce.size()) + "\n" +
+					to_hex(tag.data(), tag.size()) + "\n" +
+					to_hex(ciphertext.data(), ciphertext.size());
+				const auto sent = relay.post("/message/" +
+					std::string(CONFIG_ECCCHAT_CLIENT_ID) + "/" + CONFIG_ECCCHAT_PEER_ID,
+					payload);
+				if (sent.status == 200) {
+					std::printf("[sent securely]\n");
+				} else {
+					std::printf("[send failed: relay HTTP %d]\n", sent.status);
+				}
+			} else {
+				std::printf("[encryption failed: -0x%04x]\n",
+						static_cast<unsigned>(-rc));
+			}
 			std::printf("> ");
 			std::fflush(stdout);
 			continue;
 		}
-		if (message.size() > kMaxMessageBytes) {
-			std::printf("Message too long (maximum %u bytes).\n> ",
-						static_cast<unsigned>(kMaxMessageBytes));
-			std::fflush(stdout);
-			continue;
-		}
-		std::vector<uint8_t> ciphertext(message.size());
-		std::array<uint8_t, ecc_demo::kNonceBytes> nonce{};
-		std::array<uint8_t, ecc_demo::kTagBytes> tag{};
-		rc = ecc_demo::encrypt_gcm(
-			rng, session_key.data(), reinterpret_cast<const uint8_t*>(message.data()),
-			message.size(), ciphertext.data(), nonce, tag);
-		if (rc == 0) {
-			const std::string payload = to_hex(nonce.data(), nonce.size()) + "\n" +
-				to_hex(tag.data(), tag.size()) + "\n" +
-				to_hex(ciphertext.data(), ciphertext.size());
-			const auto sent = relay.post("/message/" +
-				std::string(CONFIG_ECCCHAT_CLIENT_ID) + "/" + CONFIG_ECCCHAT_PEER_ID,
-				payload);
-			if (sent.status == 200) {
-				std::printf("[sent securely]\n");
-			} else {
-				std::printf("[send failed: relay HTTP %d]\n", sent.status);
-			}
+		previous_was_cr = false;
+		if (input_length < kMaxMessageBytes) {
+			input[input_length++] = static_cast<char>(ch);
 		} else {
-			std::printf("[encryption failed: -0x%04x]\n",
-						static_cast<unsigned>(-rc));
+			line_too_long = true;
 		}
-		std::printf("> ");
-		std::fflush(stdout);
 	}
 	receiver.running = false;
 	for (int wait = 0; wait < 90 && !receiver.done.load(); ++wait)
