@@ -192,10 +192,19 @@ void poll_messages(void* context) {
 					plaintext.data());
 				if (rc == 0) {
 					const std::string message(plaintext.begin(), plaintext.end());
-					if (message == "ATM_RESULT:APPROVED") {
-						std::printf("\n[ATM] PIN verified. Transaction approved.\n> ");
-					} else if (message == "ATM_RESULT:DENIED") {
-						std::printf("\n[ATM] PIN rejected. Transaction denied.\n> ");
+					if (message.rfind("ATM_RESULT:APPROVED:", 0) == 0) {
+						std::printf("\n[ATM] Cash withdrawal approved. Remaining demo balance: %s\n> ",
+								message.substr(20).c_str());
+					} else if (message.rfind("ATM_RESULT:PIN_INVALID:", 0) == 0) {
+						std::printf("\n[ATM] Incorrect PIN. Attempts remaining: %s\n> ",
+								message.substr(23).c_str());
+					} else if (message == "ATM_RESULT:LOCKED") {
+						std::printf("\n[ATM] Account locked. Contact the operator.\n> ");
+					} else if (message.rfind("ATM_RESULT:INSUFFICIENT_FUNDS:", 0) == 0) {
+						std::printf("\n[ATM] Insufficient demo balance. Balance: %s\n> ",
+								message.substr(30).c_str());
+					} else if (message == "ATM_RESULT:INVALID_AMOUNT") {
+						std::printf("\n[ATM] Invalid amount. Enter 100-10000 in steps of 100.\n> ");
 					} else {
 						std::printf("\n[rejected] Unexpected verifier response\n> ");
 					}
@@ -311,7 +320,7 @@ void run_chat() {
 		ESP_LOGE(kTag, "Could not start the receive task");
 		return;
 	}
-	std::printf("\nATM PIN entry ready. Enter 4-8 digits on the attached serial terminal; /quit ends the session.\n> ");
+	std::printf("\nDemo cash withdrawal ready. Enter a 4-8 digit PIN, then amount in whole rupees (100-10000, multiples of 100). /quit ends.\n> ");
 	std::fflush(stdout);
 	// Read the USB-UART console directly. stdio fgets() can report EOF on some
 	// ESP-IDF console configurations, which would otherwise end the chat at once.
@@ -328,6 +337,8 @@ void run_chat() {
 	size_t input_length = 0;
 	bool previous_was_cr = false;
 	bool line_too_long = false;
+	std::string pending_pin;
+	bool awaiting_amount = false;
 	while (true) {
 		uint8_t ch = 0;
 		if (uart_read_bytes(UART_NUM_0, &ch, 1, portMAX_DELAY) <= 0) continue;
@@ -343,27 +354,68 @@ void run_chat() {
 				input_length = 0;
 				input[0] = '\0';
 				line_too_long = false;
-				std::printf("Input too long. Enter a 4-8 digit PIN.\n> ");
+				std::printf("Input too long. Start again with your PIN.\n> ");
+				if (!pending_pin.empty()) mbedtls_platform_zeroize(pending_pin.data(), pending_pin.size());
+				pending_pin.clear();
+				awaiting_amount = false;
 				std::fflush(stdout);
 				continue;
 			}
 			std::string message(input, input_length);
 			input_length = 0;
 			input[0] = '\0';
-			if (message == "/quit") break;
-			if (message.empty()) {
-				std::printf("> ");
+			if (message == "/quit") {
+				if (!pending_pin.empty()) mbedtls_platform_zeroize(pending_pin.data(), pending_pin.size());
+				break;
+			}
+			if (message == "/cancel") {
+				if (!pending_pin.empty()) mbedtls_platform_zeroize(pending_pin.data(), pending_pin.size());
+				pending_pin.clear();
+				awaiting_amount = false;
+				mbedtls_platform_zeroize(message.data(), message.size());
+				std::printf("Withdrawal cancelled. Enter PIN.\n> ");
 				std::fflush(stdout);
 				continue;
 			}
-			if (!is_pin(message)) {
+			if (message.empty()) {
+				std::printf(awaiting_amount ? "Amount> " : "> ");
+				std::fflush(stdout);
+				continue;
+			}
+			if (!awaiting_amount && !is_pin(message)) {
 				mbedtls_platform_zeroize(message.data(), message.size());
 				mbedtls_platform_zeroize(input, sizeof(input));
 				std::printf("Invalid PIN format. Use 4-8 digits.\n> ");
 				std::fflush(stdout);
 				continue;
 			}
-			std::string request = "ATM_PIN:" + message;
+			if (!awaiting_amount) {
+				pending_pin = message;
+				mbedtls_platform_zeroize(message.data(), message.size());
+				mbedtls_platform_zeroize(input, sizeof(input));
+				awaiting_amount = true;
+				std::printf("PIN received. Enter withdrawal amount in whole rupees (100-10000, multiples of 100); /cancel to abort.\nAmount> ");
+				std::fflush(stdout);
+				continue;
+			}
+			bool valid_amount = !message.empty();
+			long amount = 0;
+			for (const unsigned char digit : message) {
+				if (digit < '0' || digit > '9') { valid_amount = false; break; }
+				amount = amount * 10 + (digit - '0');
+				if (amount > 10000) { valid_amount = false; break; }
+			}
+			if (!valid_amount || amount < 100 || amount % 100 != 0) {
+				mbedtls_platform_zeroize(message.data(), message.size());
+				mbedtls_platform_zeroize(input, sizeof(input));
+				std::printf("Invalid amount. Use 100-10000 in steps of 100; /cancel to abort.\nAmount> ");
+				std::fflush(stdout);
+				continue;
+			}
+			std::string request = "ATM_WITHDRAW:" + pending_pin + ":" + std::to_string(amount);
+			if (!pending_pin.empty()) mbedtls_platform_zeroize(pending_pin.data(), pending_pin.size());
+			pending_pin.clear();
+			awaiting_amount = false;
 			mbedtls_platform_zeroize(message.data(), message.size());
 			mbedtls_platform_zeroize(input, sizeof(input));
 			std::vector<uint8_t> ciphertext(request.size());

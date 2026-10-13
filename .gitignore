@@ -8,3 +8,4 @@ venv/
 esp32/sdkconfig
 esp32/sdkconfig.old
 esp32/managed_components/
+host/atm_demo.sqlite3*

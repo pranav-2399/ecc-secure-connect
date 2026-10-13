@@ -84,6 +84,8 @@ namespace demo {
 			throw std::runtime_error("AES-GCM authentication failed");
 
 		total += length;
-		return std::string(plaintext.begin(), plaintext.begin() + total);
+		std::string result(plaintext.begin(), plaintext.begin() + total);
+		OPENSSL_cleanse(plaintext.data(), plaintext.size());
+		return result;
 	}
 }  // namespace demo

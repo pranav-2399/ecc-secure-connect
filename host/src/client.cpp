@@ -1,4 +1,5 @@
 #include "aead.hpp"
+#include "atm.hpp"
 #include "ecc.hpp"
 #include "transport.hpp"
 
@@ -9,6 +10,7 @@
 #include <iostream>
 #include <mutex>
 #include <algorithm>
+#include <charconv>
 #include <thread>
 
 namespace {
@@ -24,7 +26,13 @@ namespace {
 
 	void usage(const char* executable) {
 		std::cerr << "Usage: " << executable << " <client-id> <peer-id> [relay-url] [--atm]\n"
+				  << "       " << executable << " --unlock-account\n"
 				  << "Example: " << executable << " Laptop ESP32 http://127.0.0.1:5000 --atm\n";
+	}
+
+	std::string env_or(const char* name, const char* fallback) {
+		const char* value = std::getenv(name);
+		return value && *value ? value : fallback;
 	}
 
 	bool is_pin(const std::string& value) {
@@ -54,6 +62,16 @@ namespace {
 }
 
 int main(int argc, char** argv) {
+	if (argc == 2 && std::string(argv[1]) == "--unlock-account") {
+		try {
+			demo::unlock_account(env_or("ECC_ATM_ACCOUNT", "DEMO-001"));
+			std::cout << "Demo account unlocked; failed-attempt counter reset.\n";
+			return 0;
+		} catch (const std::exception& error) {
+			std::cerr << "Could not unlock demo account: " << error.what() << "\n";
+			return 1;
+		}
+	}
 	if (argc < 3 || argc > 5) { usage(argv[0]); return 2; }
 
 	const std::string client_id = argv[1];
@@ -116,19 +134,51 @@ int main(int argc, char** argv) {
 							continue;
 						}
 						try {
-							const std::string plaintext = demo::decrypt_message(incoming.packet, session_key);
-							if (atm_mode && plaintext.rfind("ATM_PIN:", 0) == 0) {
-								std::string supplied_pin = plaintext.substr(8);
-								const bool valid = is_pin(supplied_pin) &&
-									supplied_pin.size() == expected_pin.size() &&
-									CRYPTO_memcmp(supplied_pin.data(), expected_pin.data(), expected_pin.size()) == 0;
+							std::string plaintext = demo::decrypt_message(incoming.packet, session_key);
+							if (atm_mode && plaintext.rfind("ATM_WITHDRAW:", 0) == 0) {
+								std::string fields = plaintext.substr(13);
+								const size_t separator = fields.find(':');
+								std::string supplied_pin = fields.substr(0, separator);
+								int64_t amount = -1;
+								if (separator != std::string::npos) {
+									const std::string amount_text = fields.substr(separator + 1);
+									const auto parsed = std::from_chars(amount_text.data(),
+										amount_text.data() + amount_text.size(), amount);
+									if (parsed.ec != std::errc{} || parsed.ptr != amount_text.data() + amount_text.size())
+										amount = -1;
+								}
+								auto result = demo::process_withdrawal(env_or("ECC_ATM_ACCOUNT", "DEMO-001"),
+										expected_pin, supplied_pin, amount);
 								if (!supplied_pin.empty()) OPENSSL_cleanse(supplied_pin.data(), supplied_pin.size());
-								const std::string result = valid ? "ATM_RESULT:APPROVED" : "ATM_RESULT:DENIED";
-								const demo::Packet response = demo::encrypt_message(result, session_key);
+								if (!fields.empty()) OPENSSL_cleanse(fields.data(), fields.size());
+								std::string response_text;
+								switch (result.status) {
+								case demo::WithdrawalStatus::approved:
+									response_text = "ATM_RESULT:APPROVED:" + std::to_string(result.balance); break;
+								case demo::WithdrawalStatus::invalid_pin:
+									response_text = "ATM_RESULT:PIN_INVALID:" + std::to_string(result.attempts_remaining); break;
+								case demo::WithdrawalStatus::locked:
+									response_text = "ATM_RESULT:LOCKED"; break;
+								case demo::WithdrawalStatus::insufficient_funds:
+									response_text = "ATM_RESULT:INSUFFICIENT_FUNDS:" + std::to_string(result.balance); break;
+								case demo::WithdrawalStatus::invalid_amount:
+									response_text = "ATM_RESULT:INVALID_AMOUNT"; break;
+								}
+								OPENSSL_cleanse(plaintext.data(), plaintext.size());
+								const demo::Packet response = demo::encrypt_message(response_text, session_key);
 								transport.send_packet(client_id, peer_id, response);
-								std::cout << "\n[ATM] PIN " << (valid ? "verified" : "rejected")
-										  << "; encrypted result returned to ESP32.\n> " << std::flush;
+								if (result.status == demo::WithdrawalStatus::approved)
+									std::cout << "\n[ATM] Withdrawal approved; remaining demo balance: " << result.balance << ".\n> " << std::flush;
+								else if (result.status == demo::WithdrawalStatus::invalid_pin)
+									std::cout << "\n[ATM] PIN rejected; " << result.attempts_remaining << " attempt(s) remain.\n> " << std::flush;
+								else if (result.status == demo::WithdrawalStatus::locked)
+									std::cout << "\n[ATM] Account locked after three incorrect PIN attempts. Contact the operator.\n> " << std::flush;
+								else if (result.status == demo::WithdrawalStatus::insufficient_funds)
+									std::cout << "\n[ATM] Insufficient demo balance: " << result.balance << ".\n> " << std::flush;
+								else
+									std::cout << "\n[ATM] Invalid amount. Use 100-10000 in steps of 100.\n> " << std::flush;
 							} else if (atm_mode) {
+								OPENSSL_cleanse(plaintext.data(), plaintext.size());
 								std::cout << "\n[ATM] Ignored an unexpected message.\n> " << std::flush;
 							} else {
 								std::cout << "\n" << incoming.sender_id << ": " << plaintext << "\n> " << std::flush;

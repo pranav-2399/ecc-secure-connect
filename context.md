@@ -181,7 +181,7 @@ On Debian or Ubuntu, install the dependencies with:
 
 ```bash
 sudo apt update
-sudo apt install build-essential cmake libssl-dev libcurl4-openssl-dev libboost-dev
+sudo apt install build-essential cmake libssl-dev libcurl4-openssl-dev libboost-dev libsqlite3-dev
 ```
 
 From the repository folder:
@@ -252,31 +252,45 @@ The script builds both C++ executables, starts the relay on loopback, launches A
 
 ## Run the two-laptop ATM PIN demo
 
-This demo uses **Laptop A** as both the Flask relay and the ATM PIN verifier. **Laptop B** is only a USB-serial keyboard/terminal attached to the ESP32; it does not receive or verify the PIN. The ESP32 encrypts the entered PIN with its established ECDH/HKDF session key and sends it through Flask. Laptop A compares it with the configured demonstration PIN and sends an encrypted approved/denied result back. The PIN is not printed by either C++ client.
+This is a **cash-withdrawal simulator**, not an ATM-grade or banking system. **Laptop A** runs the Flask relay and the C++ transaction verifier/ledger. **Laptop B** is only the USB-serial keyboard/terminal attached to the ESP32. The ESP32 encrypts the PIN and requested withdrawal; the Laptop A C++ client checks the PIN, maintains the account lockout and balance in SQLite, records successful withdrawals, and sends the result back encrypted. The Flask relay only queues ciphertext and public keys.
 
-Use only a throwaway demonstration PIN, never a bank PIN. This is a learning demo with no attempt limit, account lockout, TLS, or authenticated public-key identity, so it is not an ATM-grade system.
+The demo account starts with **₹50,000**, permits withdrawals of **₹100–₹10,000** in ₹100 increments, and locks after **three consecutive incorrect PIN submissions**. Balance, lockout counter, and withdrawal records persist in `host/atm_demo.sqlite3`. The PIN itself is not stored in SQLite; provide it to the verifier via `ECC_ATM_PIN`. A successful PIN resets the failed-attempt counter. An operator must explicitly unlock an account after lockout.
 
-### 1. Sync the source on Laptop A
+Use only a throwaway demonstration PIN and fictitious balances. This project is not suitable for real funds or deployment as an ATM: its custom ECC arithmetic is variable-time, the relay is plain HTTP, exchanged public keys are unauthenticated, and it has no trusted secure PIN-entry device, payment-network PIN processing, HSM, tamper-resistant enclosure, certified cash dispenser, or production audit controls. The “withdrawal” only debits a local demo ledger; it does not control a cash dispenser. Real deployments must follow applicable payment-network rules and PCI PIN-security/device requirements, with independent assessment and approved hardware; see [PCI PIN Security](https://www.pcisecuritystandards.org/standards/pin-security/) and [PCI PTS HSM](https://www.pcisecuritystandards.org/standards/pts-hardware-security-module-hsm/).
+
+### 1. Build the verifier on Laptop A (macOS)
+
+Install the host dependencies once (install Xcode Command Line Tools first with `xcode-select --install` if needed):
 
 ```bash
-rsync -a --exclude='.git/' --exclude='esp32/build/' --exclude='host/build/' \
-  --exclude='communication/.venv/' \
-  "/home/pranav-anandan/Documents/Pranav College/Semester 5 - Fall 2026-2027/7 ES/project/" \
-  ~/projects/ecc-secure-key-exchange/
+brew install cmake pkg-config openssl curl boost sqlite3 python
 ```
 
-### 2. Build the host client and configure the ESP32
-
-Build the host client before launching it. If this checkout was copied from a different path, remove its old generated CMake cache first:
+Build from the Mac clone of this repository:
 
 ```bash
 cd ~/projects/ecc-secure-key-exchange/host
-rm -rf build
-cmake -S . -B build
-cmake --build build -j
+export PKG_CONFIG_PATH="$(brew --prefix sqlite3)/lib/pkgconfig:$(brew --prefix curl)/lib/pkgconfig:$(brew --prefix openssl)/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+cmake -S . -B build -DOPENSSL_ROOT_DIR="$(brew --prefix openssl)" -DBOOST_ROOT="$(brew --prefix boost)"
+cmake --build build --parallel
 ```
 
-Find Laptop A's Wi-Fi IP with `hostname -I`; choose the address on the same Wi-Fi network as the ESP32. Configure the ESP32 relay host to this address, not `127.0.0.1`.
+### 2. Find the Mac's Wi-Fi IP and start the relay (Laptop A, terminal 1)
+
+```bash
+ipconfig getifaddr en0
+cd ~/projects/ecc-secure-key-exchange/communication
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python communication_server.py --host 0.0.0.0 --port 5000
+```
+
+Keep the relay running. If macOS asks whether Python may accept incoming connections, allow it on the trusted network. The Mac and ESP32 must be able to communicate on the same Wi-Fi/hotspot. The ESP32 uses the Mac's Wi-Fi IP; the Mac C++ client uses `127.0.0.1`.
+
+### 3. Configure, flash, and monitor the ESP32 on Linux (Laptop B)
+
+Connect the ESP32 to Linux. Set its relay host to the Mac IP found above, then build and flash:
 
 ```bash
 cd ~/projects/ecc-secure-key-exchange/esp32
@@ -287,65 +301,54 @@ idf.py menuconfig
 
 Under **ECC Secure Chat**, set the 2.4 GHz Wi-Fi SSID/password and Laptop A's Wi-Fi IPv4 address. Ensure HKDF is enabled, flash size is **4 MB**, and partition table is **Single factory app (large), no OTA**. Save and exit.
 
-### 3. Start Flask on Laptop A (terminal 1)
-
 ```bash
-cd ~/projects/ecc-secure-key-exchange/communication
-source .venv/bin/activate
-python communication_server.py --host 0.0.0.0 --port 5000
-```
-
-### 4. Flash from Laptop A, then attach the serial keyboard laptop
-
-Keep Flask running. Connect the ESP32 to Laptop A, build, and flash it (adjust the persistent port if needed):
-
-```bash
-cd ~/projects/ecc-secure-key-exchange/esp32
-. ~/esp/esp-idf/export.sh
 idf.py build
-idf.py -p /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A7B056860-if00 flash
-```
-
-After flashing, disconnect USB from Laptop A and connect the ESP32 to Laptop B. The ESP32 reconnects to Wi-Fi and waits for the Laptop A client. Laptop B does not need the source code or ESP-IDF; it only runs a serial terminal.
-
-On Laptop B, install and launch a serial terminal:
-
-```bash
-sudo apt update
-sudo apt install picocom
 ls -l /dev/serial/by-id/*
-picocom -b 115200 /dev/serial/by-id/YOUR_ESP32_DEVICE
+idf.py -p /dev/serial/by-id/YOUR_ESP32_DEVICE flash monitor
 ```
 
-Replace `YOUR_ESP32_DEVICE` with the listed device name. If permission is denied, add the user to `dialout` and log out/in, or start a new shell with `newgrp dialout` and run `picocom` there. Wait for the ESP32 to print that it is waiting for the verifier.
+If serial permission is denied, add the user to `dialout` and log out/in, or start a shell with `newgrp dialout`. Leave the monitor open on Linux; it is the keyboard and output terminal. Once the ESP32 says it is waiting for the peer, start the Mac verifier within 60 seconds.
 
-### 5. Start the PIN verifier on Laptop A (terminal 2)
+### 4. Start the ATM verifier on Laptop A (macOS, terminal 2)
 
-Start this within 60 seconds of the ESP32 waiting for its peer; otherwise reset the ESP32 and retry. Set the expected demo PIN without putting it in shell history, then launch ATM mode:
+The first withdrawal request creates the demo account with ₹50,000 in `host/atm_demo.sqlite3`. Optional settings are `ECC_ATM_ACCOUNT` (default `DEMO-001`), `ECC_ATM_INITIAL_BALANCE` (whole rupees, used only when the account is first created), and `ECC_ATM_DB` (database path). In macOS's default zsh shell:
 
 ```bash
 cd ~/projects/ecc-secure-key-exchange/host
-read -s -p "Set demo verifier PIN (4-8 digits): " ECC_ATM_PIN; echo
+read -s "ECC_ATM_PIN?Set demo verifier PIN (4-8 digits): "
+echo
 export ECC_ATM_PIN
 ./build/ecc_client Laptop ESP32 http://127.0.0.1:5000 --atm
 ```
 
-Keep this terminal open. It reports only whether each PIN was accepted or rejected, never the entered PIN. Wait for both sides to report the encrypted session is established. On Laptop B's serial terminal, type a 4-8 digit PIN and press Enter; input is not echoed by the firmware. The ESP32 displays the encrypted result (`Transaction approved` or `Transaction denied`). Exit picocom with **Ctrl+A**, then **Ctrl+X**.
+Keep this terminal open. It reports approval, rejection, lockout, and remaining demo balance without printing the entered PIN. On Laptop B's Linux serial monitor, enter a 4-8 digit PIN and press Enter, then enter the withdrawal amount.
 
-### 6. Expected behavior
+The ESP32 asks for the PIN and then a withdrawal amount in whole rupees (₹100–₹10,000, multiples of ₹100). Use `/cancel` at the amount prompt to discard the pending PIN. The PIN and amount are submitted together in one AES-GCM-protected packet. On approval, the Laptop A ledger debits the amount atomically and records the transaction; the ESP32 displays the remaining demo balance. An insufficient-funds result leaves the balance unchanged. The current unauthenticated ECDH setup does not authenticate the peer or relay.
 
-1. Enter the same 4-8 digit value set in `ECC_ATM_PIN`: Laptop A reports verified and the ESP32 reports approved.
-2. Enter a different 4-8 digit value: Laptop A reports rejected and the ESP32 reports denied.
-3. Restart Flask and both clients before starting a fresh session; this relay keeps keys and queued packets in memory.
+### 5. Expected behavior
 
-The PIN travels from Laptop B to the ESP32 over the directly connected USB serial cable, then from ESP32 to Laptop A inside an AES-GCM encrypted packet. Flask sees public keys and ciphertext fields, not the PIN. The verifier stores the reference PIN in its process environment and compares it in memory. The current implementation does not rate-limit attempts; do not use a real or reused PIN.
+1. A valid PIN plus an allowed amount within the balance: the transaction is approved and the balance decreases by that amount.
+2. A valid PIN plus an amount above the balance: the transaction is declined and the balance does not change.
+3. One and two incorrect PINs: the verifier reports one fewer remaining attempt each time. Stop and restart the verifier; the count must persist.
+4. A third consecutive incorrect PIN: the account is locked. A subsequent correct PIN must also be declined, including after restarting Flask and both clients.
+5. Unlock the demo account from Laptop A, then confirm a correct PIN works again. Run this from `host/` using the same `ECC_ATM_ACCOUNT` and `ECC_ATM_DB` settings as the verifier:
+
+   ```bash
+   ./build/ecc_client --unlock-account
+   ```
+
+6. Confirm zero, negative, non-₹100-multiple, and over-₹10,000 amounts are rejected at the ESP32 prompt; confirm an amount below ₹100 or above ₹10,000 cannot debit the account.
+
+Restart Flask and both clients before a fresh cryptographic session; the relay's key registrations and message queues are in memory, while the SQLite demo account remains on disk.
+
+The PIN travels from Laptop B to the ESP32 over the directly connected USB serial cable, then from ESP32 to Laptop A inside an AES-GCM encrypted packet. Flask sees public keys and ciphertext fields, not the PIN. The verifier compares the configured reference PIN in memory using a constant-time byte comparison; SQLite stores the account balance, failed-attempt count, lock flag, and withdrawal ledger, but not the PIN. The lockout counter persists across client/server restarts. The local `--unlock-account` operator command intentionally resets the lock flag and counter; it is not an authenticated bank-operator workflow.
 
 ## What is implemented and what remains
 
 - The laptop crypto simulation runs the crypto exchange in C++.
 - Separate laptop C++ clients exchange public keys and encrypted messages through the Flask communication relay.
 - The ESP32 firmware exchanges public keys and AES-GCM packets with the laptop C++ client through the Flask relay over Wi-Fi, while USB serial provides a separate interactive console.
-- ATM mode on the laptop client compares an encrypted ESP32 PIN submission against a verifier PIN supplied through `ECC_ATM_PIN`, then returns an encrypted approved/denied result.
+- ATM simulator mode checks encrypted PIN/withdrawal requests, locks an account after three consecutive failed PINs, persists that state in SQLite, and atomically debits/records successful withdrawals. It supports an operator-only local unlock command.
 - The ESP32 creates ephemeral keys per boot; persistent identity keys, authenticated peer identity, server TLS, retransmission/session recovery, and production-grade constant-time ECC are not implemented. Active key substitution remains possible because clients trust the public key returned by the relay.
 
 ## Security note
